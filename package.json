@@ -23,7 +23,7 @@
     "@use-expo/font": "^2.0.0",
     "expo": "^42.0.0",
     "expo-app-loading": "^1.0.1",
-    "expo-asset": "~8.3.2",
+    "expo-asset": "~8.3.3",
     "expo-dev-client": "^0.4.7",
     "expo-font": "~9.2.1",
     "galio-framework": "^0.8.0",
