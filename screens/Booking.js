@@ -4,7 +4,7 @@ import {
   ImageBackground,
   Dimensions,
   StatusBar,
-  KeyboardAvoidingView
+  KeyboardAvoidingView,
 } from "react-native";
 import { Block, Checkbox, Text, theme } from "galio-framework";
 
@@ -24,41 +24,10 @@ class Booking extends React.Component {
         >
           <Block safe flex middle>
             <Block style={styles.registerContainer}>
-              {/* <Block flex={0.25} middle style={styles.socialConnect}>
-                <Text color="#8898AA" size={12}>
-                  Sign up with
-                </Text>
-                <Block row style={{ marginTop: theme.SIZES.BASE }}>
-                  <Button style={{ ...styles.socialButtons, marginRight: 30 }}>
-                    <Block row>
-                      <Icon
-                        name="logo-github"
-                        family="Ionicon"
-                        size={14}
-                        color={"black"}
-                        style={{ marginTop: 2, marginRight: 5 }}
-                      />
-                      <Text style={styles.socialTextButtons}>GITHUB</Text>
-                    </Block>
-                  </Button>
-                  <Button style={styles.socialButtons}>
-                    <Block row>
-                      <Icon
-                        name="logo-google"
-                        family="Ionicon"
-                        size={14}
-                        color={"black"}
-                        style={{ marginTop: 2, marginRight: 5 }}
-                      />
-                      <Text style={styles.socialTextButtons}>GOOGLE</Text>
-                    </Block>
-                  </Button>
-                </Block>
-              </Block>//delet */}
               <Block flex>
                 <Block flex={0.17} middle>
                   <Text  style ={{fontWeight:'bold'}} size={30} >
-                    Sign Up
+                    Online Booking
                   </Text>
                 </Block>
                 <Block flex center>
@@ -112,15 +81,6 @@ class Booking extends React.Component {
                           />
                         }
                       />
-                      <Block row style={styles.passwordCheck}>
-                        <Text size={12} color={argonTheme.COLORS.MUTED}>
-                          password strength:
-                        </Text>
-                        <Text bold size={12} color={argonTheme.COLORS.SUCCESS}>
-                          {" "}
-                          strong
-                        </Text>
-                      </Block>
                     </Block>
                     <Block row width={width * 0.75}>
                       <Checkbox
@@ -144,7 +104,7 @@ class Booking extends React.Component {
                     <Block middle>
                       <Button color="primary" style={styles.createButton}>
                         <Text bold size={14} color={argonTheme.COLORS.WHITE}>
-                          CREATE ACCOUNT
+                            Confirm
                         </Text>
                       </Button>
                     </Block>
