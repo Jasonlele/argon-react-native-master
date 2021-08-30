@@ -6,7 +6,7 @@ export default {
      */
     ValidateLogin(phone,password){
         
-        if((phone=="18970190597")&&(password=="123")){
+        if((phone=="123456789")&&(password=="123")){
             return true 
         }
         else{
