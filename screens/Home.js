@@ -21,10 +21,6 @@ class Home extends React.Component {
           </Block>
           <Card item={articles[3]} horizontal />
           <Card item={articles[4]} full />
-          <Card item={articles[4]} full />
-          
-
-          <Text>xxxxxx</Text>
         </Block>
       </ScrollView>
     )
