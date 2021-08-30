@@ -10,6 +10,7 @@ import { Block } from "galio-framework";
 // screens
 import Home from "../screens/Home";
 import Onboarding from "../screens/Onboarding";
+import Booking from "../screens/Booking";
 import Pro from "../screens/Pro";
 import Profile from "../screens/Profile";
 import Register from "../screens/Register";
@@ -81,7 +82,7 @@ function ArticlesStack(props) {
         options={{
           header: ({ navigation, scene }) => (
             <Header
-              title="什么东西"
+              title=""
               back
               white
               transparent
@@ -182,6 +183,31 @@ export default function OnboardingStack(props) {
   );
 }
 
+function BookingStack(props) {
+  return (
+    <Stack.Navigator initialRouteName="Booking" mode="card" headerMode="screen">
+      <Stack.Screen
+        name="Booking"
+        component={Booking}
+        options={{
+          header: ({ navigation, scene }) => (
+            <Header
+              transparent
+              white
+              title=""
+              navigation={navigation}
+              scene={scene}
+            />
+          ),
+          cardStyle: { backgroundColor: "#FFFFFF" },
+          headerTransparent: true
+        }}
+      />
+      
+    </Stack.Navigator>
+  );
+}
+
 function AppStack(props) {
   return (
     <Drawer.Navigator
@@ -214,6 +240,7 @@ function AppStack(props) {
       initialRouteName="Home"
     >
       <Drawer.Screen name="Home" component={HomeStack} />
+      <Drawer.Screen name="Booking" component={Booking} />
       <Drawer.Screen name="Profile" component={ProfileStack} />
       <Drawer.Screen name="Account" component={Register} />
       <Drawer.Screen name="Elements" component={ElementsStack} />

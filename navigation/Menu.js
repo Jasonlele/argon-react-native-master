@@ -12,11 +12,11 @@ import { DrawerItem as DrawerCustomItem } from '../components';
 function CustomDrawerContent({ drawerPosition, navigation, profile, focused, state, ...rest }) {
   const screens = [
     "Home", 
+    "Booking",
     "Profile",
     "Account",
     "Elements",
     "Articles",
-  
   ];
   return (
     <Block
