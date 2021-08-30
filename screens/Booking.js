@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   StyleSheet,
   ImageBackground,
   Dimensions,
   StatusBar,
   KeyboardAvoidingView,
+  ScrollView,
+  View,
 } from "react-native";
+import DatePicker from 'react-native-date-picker'
 import { Block, Checkbox, Text, theme } from "galio-framework";
-
 import { Button, Icon, Input } from "../components";
 import { Images, argonTheme } from "../constants";
 
