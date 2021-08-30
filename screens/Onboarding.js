@@ -150,30 +150,7 @@ class Onboarding extends React.Component {
                          
 
                          
-                  </Block>      
-              
-              {/* <Block style={styles.title}>
-                <Block>
-                  <Text color="white" size={60}>
-                    Design
-                  </Text>
-                </Block>
-                <Block>
-                  <Text color="white" size={60}>
-                    System
-                  </Text>
-                </Block>
-                <Block style={styles.subTitle}>
-                  <Text color="white" size={16}>
-                    Fully coded React Native components.
-                  </Text>
-                </Block>
-              </Block> */}
-
-              
-              
-              
-              
+                  </Block> 
               <Block center >
                 <Button
                 //  onPress={this.testFun.bind(this)}  
