@@ -29,7 +29,7 @@ class Booking extends React.Component {
         const bookDay = this.dateToString(date)
         let obj = this.state.obj
         obj.bookDay = bookDay
-        this.setState({obj,show:false})
+        this.setState({obj,date,show:false})
     }else{
         //这是点击取消按钮
         this.setState({show:false})
@@ -123,7 +123,7 @@ class Booking extends React.Component {
                     <Block middle> 
                       <View>
                         <View>
-                          <Button onPress={() => {this.setState({show:true})}} title="Choose date">
+                          <Button color= "black" onPress={() => {this.setState({show:true})}} title="Choose date">
                             <Text style= {{fontSize: 18, fontWeight: "bold", color: "#FFFFFF"}}>Booking</Text>
                             </Button>
                           {show && (
@@ -139,7 +139,7 @@ class Booking extends React.Component {
                           )}
                         </View>
                       </View>
-                      <Text>{this.dateToString(date)}</Text>
+                      <Text bold size={18} style={{marginTop:10}}>{this.dateToString(date)}</Text>
                       <Button color="primary" style={styles.createButton}>
                         <Text bold size={14} color={argonTheme.COLORS.WHITE}>
                             Confirm
