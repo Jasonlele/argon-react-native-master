@@ -66,13 +66,13 @@ class Register extends React.Component {
                     <Block width={width * 0.8} style={{ marginBottom: 15 }}>
                       <Input
                         borderless
-                        placeholder="Email"
+                        placeholder="Phone Number"
                         iconContent={
                           <Icon
                             size={16}
                             color={argonTheme.COLORS.ICON}
-                            name="ic_mail_24px"
-                            family="ArgonExtra"
+                            name="smartphone"
+                            family="FontAwesome"
                             style={styles.inputIcons}
                           />
                         }
@@ -87,8 +87,8 @@ class Register extends React.Component {
                           <Icon
                             size={16}
                             color={argonTheme.COLORS.ICON}
-                            name="padlock-unlocked"
-                            family="ArgonExtra"
+                            name="key"
+                            family="font-awesome-5"
                             style={styles.inputIcons}
                           />
                         }
