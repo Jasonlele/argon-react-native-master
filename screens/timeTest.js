@@ -18,11 +18,14 @@ const { width, height } = Dimensions.get("screen");
 class Booking extends React.Component {
   state={
     obj:{
-        bookDay:"",  //预约
+        bookDay:"",
+        bookTime:"",  //预约
     },
     date:new Date(),//给日期控件用
+    mode:"date",
     show:false //是否显示时间控件
   }
+
   handleDateChange = (event,date) => {
     //这是设置日期,即确认按钮
     if(event.type === "set"){
@@ -34,25 +37,51 @@ class Booking extends React.Component {
         //这是点击取消按钮
         this.setState({show:false})
     }
-}
+  }
 
-  //日期转字符串的函数,自己写的
-  dateToString = (date) => {
-      var year = date.getFullYear();
-      var month =(date.getMonth() + 1).toString();
-      var day = (date.getDate()).toString();
-      if (day.length == 1) {
-          day = "0" + day;
-      }
-      if (month.length == 1) {
-          month = "0" + month;
-      }
-      var dateTime = year + "-" + month + "-" + day;
-      return dateTime;
+  handleTimeChange = (event,date) => {
+    //这是设置时间,即确认按钮
+    if(event.type === "set"){
+        const bookTime = this.timeToString(date)
+        let obj = this.state.obj
+        obj.bookTime = bookTime
+        this.setState({obj,date,show:false})
+    }else{
+        //这是点击取消按钮
+        this.setState({show:false})
     }
+  }
+  //时间转字符串的函数
+  timeToString = (date) => {
+    var hour =  date.getHours().toString();
+    var minute = date.getMinutes().toString();
+    if (hour.length == 1) {
+      hour = "0" + hour;
+    }
+    if (minute.length == 1) {
+        minute = "0" + minute;
+    }
+    var timeDate = hour+ ":" + minute;
+    return timeDate;
+  }
+
+  //日期转字符串的函数
+  dateToString = (date) => {
+    var year = date.getFullYear();
+    var month =(date.getMonth() + 1).toString();
+    var day = (date.getDate()).toString();
+    if (day.length == 1) {
+        day = "0" + day;
+    }
+    if (month.length == 1) {
+        month = "0" + month;
+    }
+    var dateTime = year + "-" + month + "-" + day;
+    return dateTime;
+  }
 
   render() {
-    const {date, show} = this.state
+    const {date, mode, show} = this.state
     return (
       <Block flex middle>
         <StatusBar hidden />
@@ -123,23 +152,40 @@ class Booking extends React.Component {
                     <Block middle> 
                       <View>
                         <View>
-                          <Button color= "black" onPress={() => {this.setState({show:true})}} title="Choose date">
-                            <Text style= {{fontSize: 18, fontWeight: "bold", color: "#FFFFFF"}}>Booking</Text>
+                          <Button color= "black" onPress={() => {this.setState({mode:"date",show:true})}} title="Choose date">
+                            <Text style= {{fontSize: 18, fontWeight: "bold", color: "#FFFFFF"}}>Booking Date</Text>
                             </Button>
                           {show && (
                               <DateTimePicker
-                              testID="dateTimePicker"
+                              testID="datePicker"
                               value={date}
-                              mode="date"
+                              mode={mode}
                               minimumDate={new Date()}
-                              maximumDate={new Date(2032,1,1)}
-                              display="spinner"
+                              maximumDate={new Date(2023,1,1)}
+                              display="default"
                               onChange={this.handleDateChange}
                               />
                           )}
                         </View>
                       </View>
-                      <Text bold size={18} style={{marginTop:10}}>{this.dateToString(date)}</Text>
+                      <View>
+                        <View>
+                        <Button color= "black" onPress={() => {this.setState({mode:"time",show:true})}} title="Choose time">
+                            <Text style= {{fontSize: 18, fontWeight: "bold", color: "#FFFFFF"}}>Booking Time</Text>
+                            </Button>
+                          {show && (
+                              <DateTimePicker
+                              testID="dateTimePicker"
+                              value={date}
+                              mode= {mode}
+                              is24Hour={true}
+                              display="default"
+                              onChange={this.handleTimeChange}
+                              />
+                          )}
+                        </View>
+                      </View>
+                      <Text bold size={18} style={{marginTop:10}}>{this.dateToString(date)} {this.timeToString(date)}</Text>
                       <Button color="primary" style={styles.createButton}>
                         <Text bold size={14} color={argonTheme.COLORS.WHITE}>
                             Confirm
