@@ -1,7 +1,7 @@
 export default [
   {
     title: 'Online Booking',
-    image: '../assets/imgs/booking.png',
+    image: 'https://github.com/Jasonlele/argon-react-native-master/blob/ddc6a55e9c26df961225d0180b960e3cc7d0721a/assets/imgs/Emergency.png    ',
     cta: 'Book Now',
     jump: 'Booking', 
     horizontal: true
