@@ -5,16 +5,54 @@ import {
   Dimensions,
   StatusBar,
   KeyboardAvoidingView,
+  View,
 } from "react-native";
-import DatePicker from 'react-native-date-picker'
+import DateTimePicker from "@react-native-community/datetimepicker"
 import { Block, Checkbox, Text, theme } from "galio-framework";
 import { Button, Icon, Input } from "../components";
 import { Images, argonTheme } from "../constants";
 
 const { width, height } = Dimensions.get("screen");
 
+
 class Booking extends React.Component {
+  state={
+    obj:{
+        bookDay:"",  //生日
+    },
+    date:new Date(),//给日期控件用
+    show:false //是否显示时间控件
+  }
+  handleDateChange = (event,date) => {
+    //这是设置日期,即确认按钮
+    if(event.type === "set"){
+        const bookDay = this.dateToString(date)
+        let obj = this.state.obj
+        obj.bookDay = bookDay
+        this.setState({obj,show:false})
+    }else{
+        //这是点击取消按钮
+        this.setState({show:false})
+    }
+}
+
+  //日期转字符串的函数,自己写的
+  dateToString = (date) => {
+      var year = date.getFullYear();
+      var month =(date.getMonth() + 1).toString();
+      var day = (date.getDate()).toString();
+      if (day.length == 1) {
+          day = "0" + day;
+      }
+      if (month.length == 1) {
+          month = "0" + month;
+      }
+      var dateTime = year + "-" + month + "-" + day;
+      return dateTime;
+    }
+
   render() {
+    const {date, show} = this.state
     return (
       <Block flex middle>
         <StatusBar hidden />
@@ -107,6 +145,27 @@ class Booking extends React.Component {
                             Confirm
                         </Text>
                       </Button>
+                      <View>
+                        {/* 日期选择器 开始*/}
+                        <View>
+                          <Button onPress={() => {this.setState({show:true})}} title="Choose date">
+                            <Text style= {{fontSize: 18, fontWeight: "bold", color: "#FFFFFF"}}>Booking</Text>
+                            </Button>
+                          {show && (
+                              <DateTimePicker
+                              testID="dateTimePicker"
+                              value={date}
+                              mode="date"
+                              minimumDate={new Date(1950, 0, 1)}
+                              maximumDate={new Date(2032,1,1)}
+                              display="spinner"
+                              onChange={this.handleDateChange}
+                              
+                              />
+                          )}
+                        </View>
+                      {/* 日期选择器 结束*/}
+                      </View>
                     </Block>
                   </KeyboardAvoidingView>
                 </Block>
