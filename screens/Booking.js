@@ -18,7 +18,7 @@ const { width, height } = Dimensions.get("screen");
 class Booking extends React.Component {
   state={
     obj:{
-        bookDay:"",  //生日
+        bookDay:"",  //预约
     },
     date:new Date(),//给日期控件用
     show:false //是否显示时间控件
@@ -119,34 +119,9 @@ class Booking extends React.Component {
                           />
                         }
                       />
-                    </Block>
-                    <Block row width={width * 0.75}>
-                      <Checkbox
-                        checkboxStyle={{
-                          borderWidth: 3
-                        }}
-                        color={argonTheme.COLORS.PRIMARY}
-                        label="I agree with the"
-                      />
-                      <Button
-                        style={{ width: 100 }}
-                        color="transparent"
-                        textStyle={{
-                          color: argonTheme.COLORS.PRIMARY,
-                          fontSize: 14
-                        }}
-                      >
-                        Privacy Policy
-                      </Button>
-                    </Block>
-                    <Block middle>
-                      <Button color="primary" style={styles.createButton}>
-                        <Text bold size={14} color={argonTheme.COLORS.WHITE}>
-                            Confirm
-                        </Text>
-                      </Button>
+                    </Block>                    
+                    <Block middle> 
                       <View>
-                        {/* 日期选择器 开始*/}
                         <View>
                           <Button onPress={() => {this.setState({show:true})}} title="Choose date">
                             <Text style= {{fontSize: 18, fontWeight: "bold", color: "#FFFFFF"}}>Booking</Text>
@@ -156,16 +131,20 @@ class Booking extends React.Component {
                               testID="dateTimePicker"
                               value={date}
                               mode="date"
-                              minimumDate={new Date(1950, 0, 1)}
+                              minimumDate={new Date()}
                               maximumDate={new Date(2032,1,1)}
                               display="spinner"
                               onChange={this.handleDateChange}
-                              
                               />
                           )}
                         </View>
-                      {/* 日期选择器 结束*/}
                       </View>
+                      <Text>{this.dateToString(date)}</Text>
+                      <Button color="primary" style={styles.createButton}>
+                        <Text bold size={14} color={argonTheme.COLORS.WHITE}>
+                            Confirm
+                        </Text>
+                      </Button>
                     </Block>
                   </KeyboardAvoidingView>
                 </Block>
