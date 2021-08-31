@@ -7,8 +7,6 @@ import {
   Dimensions,
   KeyboardAvoidingView,
   Alert,
-  
-
 } from "react-native";
 import { Block, Checkbox, Text, theme,DeckSwiper } from "galio-framework";
 

@@ -1,14 +1,14 @@
 export default [
   {
     title: 'Online Booking',
-    image: 'https://images.unsplash.com/photo-1516559828984-fb3b99548b21?ixlib=rb-1.2.1&auto=format&fit=crop&w=2100&q=80',
+    image: '../assets/imgs/booking.png',
     cta: 'Book Now',
     jump: 'Booking', 
     horizontal: true
   },
   {
     title: 'Emergency Call',
-    image: 'https://images.unsplash.com/photo-1519368358672-25b03afee3bf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2004&q=80',
+    image: '../assets/imgs/NewLogo.png',
     cta: 'Call Now',
     jump: 'Home',
   },

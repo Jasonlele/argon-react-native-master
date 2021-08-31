@@ -10,11 +10,6 @@ import { argonTheme } from '../constants';
 class Card extends React.Component {
   render() {
     const { navigation, item, horizontal, full, style, ctaColor, imageStyle } = this.props;
-    
-    const imageStyles = [
-      full ? styles.fullImage : styles.horizontalImage,
-      imageStyle
-    ];
     const cardContainer = [styles.card, styles.shadow, style];
     const imgContainer = [styles.imageContainer,
       horizontal ? styles.horizontalStyles : styles.verticalStyles,
@@ -24,12 +19,12 @@ class Card extends React.Component {
     return (
       <Block row={horizontal} card flex style={cardContainer}>
         <TouchableWithoutFeedback onPress={() => navigation.navigate('Pro')}>
-          <Block flex style={imgContainer}>
-            <Image source={{uri: item.image}} style={imageStyles} />
+          <Block flex center style={imgContainer}>
+            <Image source={require('../assets/imgs/booking.png')} style={styles.image} />
           </Block>
         </TouchableWithoutFeedback>
         <TouchableWithoutFeedback onPress={() => navigation.navigate('Pro')}>
-          <Block flex space="between" style={styles.cardDescription}>
+          <Block flex space="between" center style={styles.cardDescription}>
             <Text size={16} style={styles.cardTitle}>{item.title}</Text>
             <Button size={16} muted={!ctaColor} color={ctaColor || argonTheme.COLORS.ACTIVE} bold onPress={() => navigation.navigate(item.jump)}>{item.cta}</Button>
           </Block>
@@ -68,9 +63,11 @@ const styles = StyleSheet.create({
     borderRadius: 3,
     elevation: 1,
     overflow: 'hidden',
+    width:120,
   },
   image: {
-    // borderRadius: 3,
+    width:120,
+    height:120,
   },
   horizontalImage: {
     height: 122,
