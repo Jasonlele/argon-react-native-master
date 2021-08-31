@@ -20,7 +20,7 @@ class Card extends React.Component {
       <Block row={horizontal} card flex style={cardContainer}>
         <TouchableWithoutFeedback onPress={() => navigation.navigate('Pro')}>
           <Block flex center style={imgContainer}>
-            <Image source={require('../assets/imgs/Emergency.png')} style={styles.image} />
+            <Image source={{uri: item.image}} style={styles.image} />
           </Block>
         </TouchableWithoutFeedback>
         <TouchableWithoutFeedback onPress={() => navigation.navigate('Pro')}>
