@@ -5,8 +5,6 @@ import {
   Dimensions,
   StatusBar,
   KeyboardAvoidingView,
-  ScrollView,
-  View,
 } from "react-native";
 import DatePicker from 'react-native-date-picker'
 import { Block, Checkbox, Text, theme } from "galio-framework";

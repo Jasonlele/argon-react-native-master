@@ -1,16 +1,17 @@
 export default [
   {
     title: 'Online Booking',
-    image: 'https://github.com/Jasonlele/argon-react-native-master/blob/ddc6a55e9c26df961225d0180b960e3cc7d0721a/assets/imgs/Emergency.png    ',
+    image: 'https://www.flaticon.com/free-icon/emergency-call_2991174?term=emergency&page=1&position=5&page=1&position=5&related_id=2991174&origin=search',
     cta: 'Book Now',
     jump: 'Booking', 
     horizontal: true
   },
   {
     title: 'Emergency Call',
-    image: '../assets/imgs/NewLogo.png',
+    image: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADMAAAAzCAYAAAA6oTAqAAAAEXRFWHRTb2Z0d2FyZQBwbmdjcnVzaEB1SfMAAABQSURBVGje7dSxCQBACARB+2/ab8BEeQNhFi6WSYzYLYudDQYGBgYGBgYGBgYGBgYGBgZmcvDqYGBgmhivGQYGBgYGBgYGBgYGBgYGBgbmQw+P/eMrC5UTVAAAAABJRU5ErkJggg==',
     cta: 'Call Now',
     jump: 'Home',
+
   },
   {
     title: 'My Medicare',

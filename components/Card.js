@@ -20,7 +20,7 @@ class Card extends React.Component {
       <Block row={horizontal} card center flex style={cardContainer}>
         <TouchableWithoutFeedback onPress={() => navigation.navigate('Pro')}>
           <Block flex style={imgContainer}>
-            <Image source={require('../assets/imgs/Emergency.png')} style={styles.image} />
+            <Image source={{uri: item.image}} style={styles.image} />
           </Block>
         </TouchableWithoutFeedback>
         <TouchableWithoutFeedback onPress={() => navigation.navigate('Pro')}>
@@ -66,9 +66,8 @@ const styles = StyleSheet.create({
     width:150,
   },
   image: {
-    width:120,
-    height:120,
-    marginLeft:20,
+    width:150,
+    height:122,
   },
   horizontalImage: {
     height: 122,
