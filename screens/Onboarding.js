@@ -98,10 +98,11 @@ class Onboarding extends React.Component {
         </Block>
         <Block center>
           <Image source={require("../assets/imgs/NewLogo.png")} style={styles.logo} />
+          <Text style = {{fontSize: 35, fontWeight: "bold", marginTop: 20}}>MediHelper</Text>
         </Block>
         <Block flex space="between" style={styles.padded}>
             <Block flex space="around" style={{ zIndex: 10 }}>
-
+              
               <Block>
                      <Input                      
                         placeholder="Phone Nummber"
@@ -121,13 +122,13 @@ class Onboarding extends React.Component {
                         password
                         // borderless
                         placeholder="Password"
-                        leftIcon={{ type: 'font-awesome-5', name: 'key' ,color:"#ccc" ,size:21,marginTop:21,marginLeft:5,}}
-                        style={{marginTop:30}}
+                        leftIcon={{ type: 'font-awesome-5', name: 'key' ,color:"#ccc" ,size:21,marginTop:10,marginLeft:5,}}
+                        style={{marginTop:10}}
                         value={Password}
                         onChangeText={this.PasswordChangeText}
                       />
                 
-                        <Text style={{marginLeft:180,marginBottom:40, fontSize:16}}>
+                        <Text style={{marginLeft:180,marginBottom:30, fontSize:16}}>
                           Forgot password
                         </Text>        
                   </Block> 
@@ -141,7 +142,6 @@ class Onboarding extends React.Component {
                 
                 <Button
                   onPress={() => navigation.navigate('Pro')}
-                 
                 >
                   <Text style = {styles.buttonText}>SIGN IN</Text>
                 </Button>
