@@ -17,14 +17,14 @@ class Card extends React.Component {
     ];
 
     return (
-      <Block row={horizontal} card flex style={cardContainer}>
+      <Block row={horizontal} card center flex style={cardContainer}>
         <TouchableWithoutFeedback onPress={() => navigation.navigate('Pro')}>
-          <Block flex center style={imgContainer}>
-            <Image source={{uri: item.image}} style={styles.image} />
+          <Block flex style={imgContainer}>
+            <Image source={require('../assets/imgs/Emergency.png')} style={styles.image} />
           </Block>
         </TouchableWithoutFeedback>
         <TouchableWithoutFeedback onPress={() => navigation.navigate('Pro')}>
-          <Block flex space="between" center style={styles.cardDescription}>
+          <Block flex space="between" style={styles.cardDescription}>
             <Text size={16} style={styles.cardTitle}>{item.title}</Text>
             <Button size={16} muted={!ctaColor} color={ctaColor || argonTheme.COLORS.ACTIVE} bold onPress={() => navigation.navigate(item.jump)}>{item.cta}</Button>
           </Block>
@@ -63,11 +63,12 @@ const styles = StyleSheet.create({
     borderRadius: 3,
     elevation: 1,
     overflow: 'hidden',
-    width:120,
+    width:150,
   },
   image: {
     width:120,
     height:120,
+    marginLeft:20,
   },
   horizontalImage: {
     height: 122,
