@@ -17,6 +17,7 @@ import { Input } from 'react-native-elements';
 import { Images, argonTheme } from "../constants";
 import validator from "../constants/validator";
 import login from "../constants/login";
+import { color } from "react-native-elements/dist/helpers";
 
 const { width, height } = Dimensions.get("screen");
 
@@ -94,10 +95,6 @@ class Onboarding extends React.Component {
       <Block flex style={styles.container}>
         <StatusBar hidden />
         <Block flex center>
-        {/* <ImageBackground
-            source={Images.Onboarding}
-            style={{ height, width, zIndex: 1 }}
-          /> */}
         </Block>
         <Block center>
           <Image source={require("../assets/imgs/NewLogo.png")} style={styles.logo} />
@@ -106,19 +103,13 @@ class Onboarding extends React.Component {
             <Block flex space="around" style={{ zIndex: 10 }}>
 
               <Block>
-                     <Input
-                        
-                        // borderless
-                        
-                        placeholder="  Phone Nummber"
-                        leftIcon={{type:'font-awesome', name:'phone',color:"#ccc",size:25,marginTop:20}}
+                     <Input                      
+                        placeholder="Phone Nummber"
+                        leftIcon={{type:'FontAwesome', name:'smartphone',color:"#ccc",size:25,marginTop:20}}
                         maxLength={11}
                         keyboardType="phone-pad"
                         value={Email}
                         onChangeText={this.EmailChangeText}
-                        //errorMessage={phoneValid ? "":"Invalid mobile phone number"}
-                       
-                        // style={{marginb:20}}
                         onSubmitEditing={this.EmailonSubmitEditing}
                         inputStyle={{color:"#333"}}
                         style={{marginTop:30}}
@@ -129,57 +120,47 @@ class Onboarding extends React.Component {
                       <Input
                         password
                         // borderless
-                        placeholder="  Password"
-                        leftIcon={{ type: 'font-awesome-5', name: 'key' ,color:"#ccc" ,size:21,marginTop:20}}
+                        placeholder="Password"
+                        leftIcon={{ type: 'font-awesome-5', name: 'key' ,color:"#ccc" ,size:21,marginTop:21,marginLeft:5,}}
                         style={{marginTop:30}}
                         value={Password}
                         onChangeText={this.PasswordChangeText}
-                       // onSubmitEditing={this.PasswordsubmitEditing}
-                        // errorMessage={loginValid ? "":"Invalid mobile phone number"}
-                        // errorMessage={loginValid ? "":"Invalid  password number"}
-                        //errorMessage={loginValid ? "":"Wrong Account or password "}
                       />
-                   
-
-
-                        <Text style={{marginLeft:180,marginBottom:40}}>
-                          Forgot password</Text>
-                         
-                         
-
-                         
+                
+                        <Text style={{marginLeft:180,marginBottom:40, fontSize:16}}>
+                          Forgot password
+                        </Text>        
                   </Block> 
-              <Block center >
+              <Block center>
                 <Button
-                //  onPress={this.testFun.bind(this)}  
-                  //onPress={() => navigation.navigate("App")}
                   onPress={this.PasswordsubmitEditing}
-                  
                 >
-                  LOGIN IN
+                  <Text style = {styles.buttonText}>LOGIN IN</Text>
+                  
                 </Button>
                 
                 <Button
+                  onPress={() => navigation.navigate('Pro')}
                  
-                 onPress={() => navigation.navigate('Pro')}
-                  
                 >
-                  Register
+                  <Text style = {styles.buttonText}>SIGN IN</Text>
                 </Button>
 
-
               </Block>
-              <Block style={{flexDirection: 'row',marginLeft:20,marginTop:20}}>
+              <Block style={{flexDirection: 'row',marginLeft:35,marginTop:30}}>
                 <Text style={{fontSize:20,fontWeight:'bold',marginLeft:20,marginTop:14}}>Setting Language :</Text>
-                <Button onlyIcon icon="tags" iconFamily="antdesign" iconSize={30} color="warning" iconColor="#fff" style={{ width: 40, height: 40 }}>warning</Button>
+                <Button 
+                onlyIcon icon="tags" 
+                iconFamily="antdesign" 
+                iconSize={30} 
+                color="warning" 
+                iconColor="#fff" 
+                style={{ width: 40, height: 40 }}>warning
+                </Button>
               </Block>
-              
-            
           </Block>
         </Block>
-        
       </Block>
-      
     );
   }
 }
@@ -202,8 +183,8 @@ const styles = StyleSheet.create({
     shadowOpacity: 0
   },
   logo: {
-    width: 350,
-    height: 325,
+    width: 325,
+    height: 300,
     zIndex: 2,
     position: 'relative',
     marginTop: '-100%'
@@ -213,6 +194,10 @@ const styles = StyleSheet.create({
   },
   subTitle: {
     marginTop: 20
+  },
+  buttonText: {
+    color: "#FFFFFF",
+    fontSize: 20
   }
 });
 
