@@ -8,7 +8,7 @@ import {
   View,
 } from "react-native";
 import DateTimePicker from "@react-native-community/datetimepicker"
-import { Block, Checkbox, Text, theme } from "galio-framework";
+import { Block, Text} from "galio-framework";
 import { Button, Icon, Input } from "../components";
 import { Images, argonTheme } from "../constants";
 
