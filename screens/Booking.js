@@ -6,6 +6,7 @@ import {
   StatusBar,
   KeyboardAvoidingView,
   View,
+  Alert,
 } from "react-native";
 import DateTimePicker from "@react-native-community/datetimepicker"
 import { Block, Text} from "galio-framework";
@@ -13,7 +14,15 @@ import { Button, Icon, Input } from "../components";
 import { Images, argonTheme } from "../constants";
 
 const { width, height } = Dimensions.get("screen");
-
+const createOneButtonAlert = () =>
+  Alert.alert(
+    "Complete",
+    "Reservation completed",
+    [
+      { text: "OK", onPress: () => console.log("OK Pressed") }
+    ],
+    { cancelable: false }
+);
 
 class Booking extends React.Component {
   state={
@@ -186,7 +195,7 @@ class Booking extends React.Component {
                         </View>
                       </View>
                       <Text bold size={18} style={{marginTop:10}}>{this.dateToString(date)} {this.timeToString(date)}</Text>
-                      <Button color="primary" style={styles.createButton}>
+                      <Button color="primary" onPress={createOneButtonAlert} style={styles.createButton}>
                         <Text bold size={14} color={argonTheme.COLORS.WHITE}>
                             Confirm
                         </Text>

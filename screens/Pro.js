@@ -6,15 +6,14 @@ import {
   StatusBar,
   KeyboardAvoidingView,
   Alert,
-  View
 } from "react-native";
-import { Block, Checkbox, Text, theme } from "galio-framework";
+import { Block, Checkbox, Text} from "galio-framework";
 
 import { Button, Icon, Input } from "../components";
 import { Images, argonTheme } from "../constants";
 
 const { width, height } = Dimensions.get("screen");
-const createTwoButtonAlert = () =>
+const createOneButtonAlert = () =>
   Alert.alert(
     "Complete",
     "Congradulation, account has been created !",
@@ -123,7 +122,7 @@ class Register extends React.Component {
                       </Button>
                     </Block>
                     <Block middle>
-                      <Button onPress={createTwoButtonAlert} color="primary" style={styles.createButton}>
+                      <Button onPress={createOneButtonAlert} color="primary" style={styles.createButton}>
                         <Text bold size={14} color={argonTheme.COLORS.WHITE}>
                           CREATE ACCOUNT
                         </Text>
