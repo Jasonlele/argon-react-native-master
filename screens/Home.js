@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Dimensions, ScrollView, Button } from 'react-native';
+import { StyleSheet, Dimensions, ScrollView} from 'react-native';
 import { Block, theme ,Text} from 'galio-framework';
 
 import { Card } from '../components';
