@@ -1,4 +1,10 @@
-import React, { useState } from 'react';
+// Example to Make a Phone Call in React Native App
+// https://aboutreact.com/example-to-make-a-call-from-the-react-native-app/
+
+// import React in our code
+import React, {useState} from 'react';
+
+// import all the components we are going to use
 import {
   SafeAreaView,
   StyleSheet,
@@ -7,14 +13,16 @@ import {
   TouchableOpacity,
   TextInput,
 } from 'react-native';
+
+// import Call API
 import call from 'react-native-phone-call';
 
 const App = () => {
-  const [inputValue, setInputValue] = useState('13357944269');
+  const [inputValue, setInputValue] = useState('9999999999');
 
   const triggerCall = () => {
     // Check for perfect 10 digit length
-    if (inputValue.length != 11) {
+    if (inputValue.length != 10) {
       alert('Please insert correct contact number');
       return;
     }
@@ -33,10 +41,14 @@ const App = () => {
         <Text style={styles.titleText}>
           Example to Make a Phone Call in React Native App
         </Text>
-        <Text style={styles.titleTextsmall}>Enter Conatct Number to Call</Text>
+        <Text style={styles.titleTextsmall}>
+          Enter Conatct Number to Call
+        </Text>
         <TextInput
           value={inputValue}
-          onChangeText={(inputValue) => setInputValue(inputValue)}
+          onChangeText={
+            (inputValue) => setInputValue(inputValue)
+          }
           placeholder={'Enter Conatct Number to Call'}
           keyboardType="numeric"
           style={styles.textInput}
@@ -45,7 +57,9 @@ const App = () => {
           activeOpacity={0.7}
           style={styles.buttonStyle}
           onPress={triggerCall}>
-          <Text style={styles.buttonTextStyle}>Make a Call</Text>
+          <Text style={styles.buttonTextStyle}>
+            Make a Call
+          </Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
