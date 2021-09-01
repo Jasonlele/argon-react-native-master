@@ -1,26 +1,17 @@
 import React from "react";
 import {
-  ImageBackground,
   Image,
   StyleSheet,
   StatusBar,
   Dimensions,
-  KeyboardAvoidingView,
-  Alert,
 } from "react-native";
-import { Block, Checkbox, Text, theme,DeckSwiper } from "galio-framework";
-
+import { Block, Text, theme } from "galio-framework";
 import { Button } from "../components";
-import Icon from 'react-native-vector-icons/FontAwesome';
 import { Input } from 'react-native-elements';
-
-import { Images, argonTheme } from "../constants";
 import validator from "../constants/validator";
 import login from "../constants/login";
-import { color } from "react-native-elements/dist/helpers";
 
 const { width, height } = Dimensions.get("screen");
-
 
 class Onboarding extends React.Component {
   // state={

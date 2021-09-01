@@ -1,16 +1,16 @@
 export default [
   {
     title: 'Online Booking',
-    image: 'https://www.flaticon.com/free-icon/emergency-call_2991174?term=emergency&page=1&position=5&page=1&position=5&related_id=2991174&origin=search',
+    image: '',
     cta: 'Book Now',
     jump: 'Booking', 
     horizontal: true
   },
   {
     title: 'Emergency Call',
-    image: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADMAAAAzCAYAAAA6oTAqAAAAEXRFWHRTb2Z0d2FyZQBwbmdjcnVzaEB1SfMAAABQSURBVGje7dSxCQBACARB+2/ab8BEeQNhFi6WSYzYLYudDQYGBgYGBgYGBgYGBgYGBgZmcvDqYGBgmhivGQYGBgYGBgYGBgYGBgYGBgbmQw+P/eMrC5UTVAAAAABJRU5ErkJggg==',
+    image: '',
     cta: 'Call Now',
-    jump: 'Home',
+    jump: 'Emergency',
 
   },
   {

@@ -16,6 +16,7 @@ import Profile from "../screens/Profile";
 import Register from "../screens/Register";
 import Elements from "../screens/Elements";
 import Articles from "../screens/Articles";
+import Emergency from "../screens/Emergency";
 // drawer
 import CustomDrawerContent from "./Menu";
 
@@ -177,8 +178,49 @@ export default function OnboardingStack(props) {
         }}
       />
 
+      <Stack.Screen
+              name="Emergency"
+              component={Emergency}
+              options={{
+                header: ({ navigation, scene }) => (
+                  <Header
+                    title=""
+                    back
+                    white
+                    transparent
+                    navigation={navigation}
+                    scene={scene}
+                  />
+                ),
+                headerTransparent: true
+              }}
+            />
 
+    </Stack.Navigator>
+  );
+}
 
+function EmergencyStack(props) {
+  return (
+    <Stack.Navigator initialRouteName="Emergency" mode="card" headerMode="screen">
+      <Stack.Screen
+        name="Emergency"
+        component={Emergency}
+        options={{
+          header: ({ navigation, scene }) => (
+            <Header
+              transparent
+              white
+              title=""
+              navigation={navigation}
+              scene={scene}
+            />
+          ),
+          cardStyle: { backgroundColor: "#FFFFFF" },
+          headerTransparent: true
+        }}
+      />
+      
     </Stack.Navigator>
   );
 }
@@ -207,6 +249,8 @@ function BookingStack(props) {
     </Stack.Navigator>
   );
 }
+
+
 
 function AppStack(props) {
   return (
@@ -243,6 +287,7 @@ function AppStack(props) {
       <Drawer.Screen name="Booking" component={Booking} />
       <Drawer.Screen name="Profile" component={ProfileStack} />
       <Drawer.Screen name="Account" component={Register} />
+      <Drawer.Screen name="Emergency" component={Emergency} />
       <Drawer.Screen name="Elements" component={ElementsStack} />
       <Drawer.Screen name="Articles" component={ArticlesStack} />
     </Drawer.Navigator>
