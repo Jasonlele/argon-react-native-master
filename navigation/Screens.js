@@ -22,7 +22,6 @@ import CustomDrawerContent from "./Menu";
 
 // header for screens
 import { Icon, Header } from "../components";
-import { argonTheme, tabs } from "../constants";
 
 const { width } = Dimensions.get("screen");
 
