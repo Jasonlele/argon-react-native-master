@@ -31,8 +31,7 @@ class Onboarding extends React.Component {
       loginMessage:"",
       
     };
- 
-}
+  }
   //登录框邮箱输入
   EmailChangeText=(Email)=>{
     this.setState({Email})
