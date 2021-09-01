@@ -1,33 +1,36 @@
 import React, {useState} from 'react';
 import {
   StyleSheet,
-  Linking,
   Dimensions,
   ImageBackground,
+  Linking,
 } from 'react-native';
 import { Block, Text} from "galio-framework";
-import { Images, argonTheme } from "../constants"; 
+import { Images } from "../constants"; 
 import { Button } from '../components';
 
 const { width, height } = Dimensions.get("screen");
-const App = () => {
-  return (
-    <Block flex middle>
-      <ImageBackground
-          source={Images.RegisterBackground}
-          style={{ width, height, zIndex: 1 }}
-        >
-      <Block safe flex middle>
-        <Text style = {styles.headerText}>Attention</Text>
-        <Text style = {styles.secondText}>This will call the emergency number for help</Text>
-        <Button color="error" style = {styles.button} onPress={()=>{Linking.openURL('tel:000');}}>
-          <Text style = {styles.buttonText}>000</Text>
-        </Button>
+
+class Emergency extends React.Component{
+  render() {
+    return (
+      <Block flex middle>
+        <ImageBackground
+            source={Images.RegisterBackground}
+            style={{ width, height, zIndex: 1 }}
+          >
+        <Block safe flex middle>
+          <Text style = {styles.headerText}>Attention</Text>
+          <Text style = {styles.secondText}>This will call for help</Text>
+          <Button color="error" style = {styles.button} onPress={()=>{Linking.openURL('tel:000');}}>
+            <Text style = {styles.buttonText}>000</Text>
+          </Button>
+        </Block>
+        </ImageBackground>
       </Block>
-      </ImageBackground>
-    </Block>
-  );
-};
+    );
+  }
+}
 
 const styles = StyleSheet.create({
   button: {
@@ -52,4 +55,5 @@ const styles = StyleSheet.create({
     marginBottom: 50,
   }
 });
-export default App;
+
+export default Emergency;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { withNavigation } from '@react-navigation/compat';
 import PropTypes from 'prop-types';
-import { StyleSheet, Dimensions, Image, TouchableWithoutFeedback } from 'react-native';
+import { StyleSheet, Image, TouchableWithoutFeedback } from 'react-native';
 import { Block, Text, theme, Button} from 'galio-framework';
 
 import { argonTheme } from '../constants';
