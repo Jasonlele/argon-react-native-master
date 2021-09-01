@@ -1,6 +1,5 @@
 import React from 'react';
 import { StyleSheet, Dimensions, ScrollView, Button } from 'react-native';
-import call from 'react-native-phone-call';
 import { Block, theme ,Text} from 'galio-framework';
 
 import { Card } from '../components';

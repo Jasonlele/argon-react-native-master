@@ -2,7 +2,6 @@ import React from "react";
 import {
   ScrollView,
   StyleSheet,
-  Image
 } from "react-native";
 import { Block, Text, theme } from "galio-framework";
 
@@ -24,7 +23,7 @@ function CustomDrawerContent({ drawerPosition, navigation, profile, focused, sta
       forceInset={{ top: 'always', horizontal: 'never' }}
     >
       <Block flex={0.06} style={styles.header}>
-        <Image styles={styles.logo} source={Images.Logo} />
+        <Text h3 style = {styles.menuText}>MediHelper</Text>
       </Block>
       <Block flex style={{ paddingLeft: 8, paddingRight: 14 }}>
         <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false}>
@@ -54,6 +53,10 @@ const styles = StyleSheet.create({
     paddingBottom: theme.SIZES.BASE,
     paddingTop: theme.SIZES.BASE * 3,
     justifyContent: 'center'
+  },
+  menuText: {
+    fontWeight: "bold",
+    marginBottom: 25,
   }
 });
 
