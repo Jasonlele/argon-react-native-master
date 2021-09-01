@@ -9,6 +9,7 @@ class Emergency extends React.Component {
     render() {
         return(
             <Button onPress = {call(args).catch(console.error)}></Button> 
+            
         )
     }
 }
