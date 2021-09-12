@@ -23,7 +23,7 @@ export default [
     title: 'Realtime treanslation',
     image: 'https://images.unsplash.com/photo-1487222477894-8943e31ef7b2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1326&q=80',
     cta: 'Translate Now',
-    jump: 'Pro',
+    jump: 'Translate',
   },
   {
     title: 'Symptom checker',
