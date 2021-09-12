@@ -34,6 +34,7 @@
     "react-native-date-picker": "^3.4.3",
     "react-native-elements": "^3.4.2",
     "react-native-gesture-handler": "~1.10.2",
+    "react-native-maps": "0.28.0",
     "react-native-modal-dropdown": "git+https://github.com/siemiatj/react-native-modal-dropdown.git",
     "react-native-phone-call": "^1.0.9",
     "react-native-reanimated": "~2.2.0",

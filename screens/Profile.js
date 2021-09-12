@@ -33,10 +33,7 @@ class Profile extends React.Component {
             >
               <Block flex style={styles.profileCard}>
                 <Block middle style={styles.avatarContainer}>
-                  <Image
-                    source={require("../assets/imgs/222.jpg")}
-                    style={styles.avatar}
-                  />
+
                 </Block>
                 <Block style={styles.info}>
                   <Block

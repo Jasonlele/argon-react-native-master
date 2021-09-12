@@ -12,6 +12,7 @@ import DateTimePicker from "@react-native-community/datetimepicker"
 import { Block, Text} from "galio-framework";
 import { Button, Icon, Input } from "../components";
 import { Images, argonTheme } from "../constants";
+import MapView from 'react-native-maps';
 
 const { width, height } = Dimensions.get("screen");
 const createOneButtonAlert = () =>
@@ -107,56 +108,10 @@ class Booking extends React.Component {
                   </Text>
                 </Block>
                 <Block flex center>
-                  <KeyboardAvoidingView
-                    style={{ flex: 1 }}
-                    behavior="padding"
-                    enabled
-                  >
-                    <Block width={width * 0.8} style={{ marginBottom: 15 }}>
-                      <Input
-                        borderless
-                        placeholder="Name"
-                        iconContent={
-                          <Icon
-                            size={16}
-                            color={argonTheme.COLORS.ICON}
-                            name="hat-3"
-                            family="ArgonExtra"
-                            style={styles.inputIcons}
-                          />
-                        }
-                      />
-                    </Block>
-                    <Block width={width * 0.8} style={{ marginBottom: 15 }}>
-                      <Input
-                        borderless
-                        placeholder="Email"
-                        iconContent={
-                          <Icon
-                            size={16}
-                            color={argonTheme.COLORS.ICON}
-                            name="ic_mail_24px"
-                            family="ArgonExtra"
-                            style={styles.inputIcons}
-                          />
-                        }
-                      />
-                    </Block>
-                    <Block width={width * 0.8}>
-                      <Input
-                        password
-                        borderless
-                        placeholder="Password"
-                        iconContent={
-                          <Icon
-                            size={16}
-                            color={argonTheme.COLORS.ICON}
-                            name="padlock-unlocked"
-                            family="ArgonExtra"
-                            style={styles.inputIcons}
-                          />
-                        }
-                      />
+                  
+                    <Block>
+                    <MapView style={styles.map} />
+                    </Block>  
                     </Block>                    
                     <Block middle> 
                       <View>
@@ -179,7 +134,7 @@ class Booking extends React.Component {
                       </View>
                       <View>
                         <View>
-                        <Button color= "black" onPress={() => {this.setState({mode:"time",show:true})}} title="Choose time">
+                        <Button style = {{marginBottom: 20}} color= "black" onPress={() => {this.setState({mode:"time",show:true})}} title="Choose time">
                             <Text style= {{fontSize: 18, fontWeight: "bold", color: "#FFFFFF"}}>Booking Time</Text>
                             </Button>
                           {show && (
@@ -194,18 +149,18 @@ class Booking extends React.Component {
                           )}
                         </View>
                       </View>
-                      <Text bold size={18} style={{marginTop:10}}>{this.dateToString(date)} {this.timeToString(date)}</Text>
+                      <Text bold size={18}>{this.dateToString(date)} {this.timeToString(date)}</Text>
                       <Button color="primary" onPress={createOneButtonAlert} style={styles.createButton}>
                         <Text bold size={14} color={argonTheme.COLORS.WHITE}>
                             Confirm
                         </Text>
                       </Button>
                     </Block>
-                  </KeyboardAvoidingView>
+
                 </Block>
               </Block>
             </Block>
-          </Block>
+
         </ImageBackground>
       </Block>
     );
@@ -246,6 +201,10 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     elevation: 1
   },
+  map: {
+    width: Dimensions.get('window').width / 1.5,
+    height: Dimensions.get('window').height / 2.5,
+  },
   socialTextButtons: {
     color: argonTheme.COLORS.PRIMARY,
     fontWeight: "800",
@@ -261,7 +220,7 @@ const styles = StyleSheet.create({
   },
   createButton: {
     width: width * 0.5,
-    marginTop: 25
+    marginBottom: 60
   }
 });
 
