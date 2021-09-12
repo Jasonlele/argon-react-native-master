@@ -1,35 +1,48 @@
 export default [
   {
-    title: 'Online Booking',
-    image: 'https://images.unsplash.com/photo-1500522144261-ea64433bbe27?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2102&q=80',
-    cta: 'Book Now',
-    jump: 'Booking', 
+    title: 'Ice cream is made with carrageenan …',
+    image: 'http://81.68.132.232/wp-content/uploads/2021/09/1.png',
+    cta: 'View article', 
+    horizontal: true
+  },
+  {
+    title: 'Medical Service',
+    image: 'http://81.68.132.232/wp-content/uploads/2021/09/1.png',
+    cta: 'Pro'
+  },
+  {
+    title: 'Sympotom Checker',
+    image: 'http://81.68.132.232/wp-content/uploads/2021/09/2.png',
+    cta: 'Pro' 
+  },
+  {
+    title: 'Onling Booking',
+    image: 'http://81.68.132.232/wp-content/uploads/2021/09/5.png',
+    cta: 'Booking' 
+  },
+  {
+    title: 'My Information',
+    image: 'http://81.68.132.232/wp-content/uploads/2021/09/4.png',
+    cta: 'Profile', 
     horizontal: true
   },
   {
     title: 'Emergency Call',
-    image: 'https://images.unsplash.com/photo-1500522144261-ea64433bbe27?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2102&q=80',
-    cta: 'Call Now',
-    jump: 'Emergency',
-
-  },
-  {
-    title: 'My Medicare',
-    image: 'https://images.unsplash.com/photo-1500522144261-ea64433bbe27?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2102&q=80',
-    cta: 'Check Now',
-    jump: 'Booking',
-  },
-  {
-    title: 'Realtime treanslation',
-    image: 'https://images.unsplash.com/photo-1487222477894-8943e31ef7b2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1326&q=80',
-    cta: 'Translate Now',
-    jump: 'Translate',
-  },
-  {
-    title: 'Symptom checker',
-    image: 'https://images.unsplash.com/photo-1482686115713-0fbcaced6e28?fit=crop&w=1947&q=80',
-    cta: 'Check Now', 
-    jump: 'Pro',
+    image: 'http://81.68.132.232/wp-content/uploads/2021/09/96c35b511969f7c5af8ccdc0f83d75f.png',
+    cta: 'Emergency', 
     horizontal: true
   },
+  {
+    title: 'Instant Translation',
+    image: 'http://81.68.132.232/wp-content/uploads/2021/09/6.png',
+    cta: 'Translate', 
+    horizontal: true
+  },
+  {
+    title: 'Medical Insurance',
+    image: 'http://81.68.132.232/wp-content/uploads/2021/09/3.png',
+    cta: 'Pro', 
+    horizontal: true
+  },
+  
 ];

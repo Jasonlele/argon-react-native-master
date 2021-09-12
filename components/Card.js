@@ -1,34 +1,41 @@
 import React from 'react';
 import { withNavigation } from '@react-navigation/compat';
 import PropTypes from 'prop-types';
-import { StyleSheet, Image, TouchableWithoutFeedback } from 'react-native';
+import { StyleSheet, Dimensions, Image, TouchableWithoutFeedback } from 'react-native';
 import { Block, Text, theme, Button} from 'galio-framework';
-
-import { argonTheme } from '../constants';
-
 
 class Card extends React.Component {
   render() {
     const { navigation, item, horizontal, full, style, ctaColor, imageStyle } = this.props;
+    
+    const imageStyles = [
+      full ? styles.fullImage : styles.horizontalImage,
+      imageStyle
+    ];
     const cardContainer = [styles.card, styles.shadow, style];
     const imgContainer = [styles.imageContainer,
       horizontal ? styles.horizontalStyles : styles.verticalStyles,
       styles.shadow
     ];
-
+      
     return (
-      <Block row={horizontal} card center flex style={cardContainer}>
-        <TouchableWithoutFeedback onPress={() => navigation.navigate('Pro')}>
-          <Block flex style={imgContainer}>
-            <Image source={{uri: item.image}} style={styles.image} />
+      <Block row={horizontal} card flex style={cardContainer}>
+        <TouchableWithoutFeedback onPress={() => navigation.navigate(item.cta)}>
+          <Block flex >
+            <Image source={{uri:item.image}} style={imageStyles} />
+            {/* <Image source={require("../assets/imgs/222.jpg")} style={imageStyles}/> */}
+            
+            
           </Block>
         </TouchableWithoutFeedback>
-        <TouchableWithoutFeedback onPress={() => navigation.navigate('Pro')}>
+        <TouchableWithoutFeedback onPress={() => navigation.navigate(item.cta)}>
           <Block flex space="between" style={styles.cardDescription}>
-            <Text size={16} style={styles.cardTitle}>{item.title}</Text>
-            <Button size={16} muted={!ctaColor} color={ctaColor || argonTheme.COLORS.ACTIVE} bold onPress={() => navigation.navigate(item.jump)}>{item.cta}</Button>
+            <Text size={14} style={styles.cardTitle}>{item.title}</Text>
+            {/* <Button>use</Button> */}
+            {/* <Text size={13} muted={!ctaColor} color={ctaColor || argonTheme.COLORS.ACTIVE} bold>{item.cta}</Text> */}
           </Block>
         </TouchableWithoutFeedback>
+        
       </Block>
     );
   }
@@ -44,34 +51,41 @@ Card.propTypes = {
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: theme.COLORS.WHITE,
+    backgroundColor: "#BEC7EF",
     marginVertical: theme.SIZES.BASE,
+    height:160,
     borderWidth: 0,
-    minHeight: 114,
-    marginBottom: 16,
+    borderRadius: 15,
+    minHeight: 120,
+    marginBottom: 13,
+    
   },
   cardTitle: {
     flex: 1,
-    flexWrap: 'wrap',
-    paddingBottom: 6,
-    paddingLeft:10
+    fontSize:13,
+    flexWrap: 'wrap', 
+    fontWeight:'bold',
+    marginTop:18,
+    textAlign: 'center',
+    textAlignVertical: 'center'
+
   },
   cardDescription: {
     padding: theme.SIZES.BASE / 2,
+   
   },
-  imageContainer: {
-    borderRadius: 3,
-    elevation: 1,
-    overflow: 'hidden',
-    width:150,
-  },
+  // imageContainer: {
+  //   borderRadius: 10,
+  //   elevation: 1,
+  //   overflow: 'hidden',
+  // },
   image: {
-    width:150,
-    height:122,
+    borderRadius: 10,
   },
   horizontalImage: {
-    height: 122,
+    height: 90,
     width: 'auto',
+    marginTop:10
   },
   horizontalStyles: {
     borderTopRightRadius: 0,
@@ -82,14 +96,14 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 0
   },
   fullImage: {
-    height: 215
+    height: 220
   },
   shadow: {
-    shadowColor: theme.COLORS.BLACK,
-    shadowOffset: { width: 0, height: 2 },
-    shadowRadius: 4,
-    shadowOpacity: 0.1,
-    elevation: 2,
+    // shadowColor: theme.COLORS.BLACK,
+    // shadowOffset: { width: 0, height: 2 },
+    // shadowRadius: 4,
+    // shadowOpacity: 0.1,
+    elevation:10,
   },
 });
 
