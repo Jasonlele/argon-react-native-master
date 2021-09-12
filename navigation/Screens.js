@@ -1,11 +1,9 @@
 import React from "react";
-import { Easing, Animated, Dimensions } from "react-native";
+import { Dimensions } from "react-native";
 
 import { createStackNavigator } from "@react-navigation/stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-
-import { Block } from "galio-framework";
 
 // screens
 import Home from "../screens/Home";
@@ -17,11 +15,12 @@ import Register from "../screens/Register";
 import Elements from "../screens/Elements";
 import Articles from "../screens/Articles";
 import Emergency from "../screens/Emergency";
+import Translate from "../screens/Translate";
 // drawer
 import CustomDrawerContent from "./Menu";
 
 // header for screens
-import { Icon, Header } from "../components";
+import { Header } from "../components";
 
 const { width } = Dimensions.get("screen");
 
@@ -193,7 +192,25 @@ export default function OnboardingStack(props) {
                 ),
                 headerTransparent: true
               }}
-            />
+        />
+
+      <Stack.Screen
+              name="Translate"
+              component={Translate}
+              options={{
+                header: ({ navigation, scene }) => (
+                  <Header
+                    title=""
+                    back
+                    white
+                    transparent
+                    navigation={navigation}
+                    scene={scene}
+                  />
+                ),
+                headerTransparent: true
+              }}
+        />
 
     </Stack.Navigator>
   );
@@ -230,6 +247,31 @@ function BookingStack(props) {
       <Stack.Screen
         name="Booking"
         component={Booking}
+        options={{
+          header: ({ navigation, scene }) => (
+            <Header
+              transparent
+              white
+              title=""
+              navigation={navigation}
+              scene={scene}
+            />
+          ),
+          cardStyle: { backgroundColor: "#FFFFFF" },
+          headerTransparent: true
+        }}
+      />
+      
+    </Stack.Navigator>
+  );
+}
+
+function TranslateStack(props) {
+  return (
+    <Stack.Navigator initialRouteName="Translate" mode="card" headerMode="screen">
+      <Stack.Screen
+        name="Translate"
+        component={Translate}
         options={{
           header: ({ navigation, scene }) => (
             <Header
@@ -287,6 +329,7 @@ function AppStack(props) {
       <Drawer.Screen name="Profile" component={ProfileStack} />
       <Drawer.Screen name="Account" component={Register} />
       <Drawer.Screen name="Emergency" component={Emergency} />
+      <Drawer.Screen name="Translate" component={Translate} />
       <Drawer.Screen name="Elements" component={ElementsStack} />
       <Drawer.Screen name="Articles" component={ArticlesStack} />
     </Drawer.Navigator>
