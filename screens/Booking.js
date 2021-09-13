@@ -202,8 +202,8 @@ const styles = StyleSheet.create({
     elevation: 1
   },
   map: {
-    width: Dimensions.get('window').width / 1.5,
-    height: Dimensions.get('window').height / 2.5,
+    width: Dimensions.get('window').width / 1.2,
+    height: Dimensions.get('window').height / 2.2,
   },
   socialTextButtons: {
     color: argonTheme.COLORS.PRIMARY,
