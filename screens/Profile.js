@@ -33,14 +33,11 @@ class Profile extends React.Component {
             >
               <Block flex style={styles.profileCard}>
                 <Block middle style={styles.avatarContainer}>
-<<<<<<< HEAD
-
-=======
                   <Image
                     source={require("../assets/imgs/android.png")}
                     style={styles.avatar}
                   />
->>>>>>> 663a0f51ee4149bbe22fc81f570326744964b29e
+
                 </Block>
                 <Block style={styles.info}>
                   <Block
