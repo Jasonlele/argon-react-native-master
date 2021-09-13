@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     height:160,
     borderWidth: 0,
     borderRadius: 15,
-    minHeight: 120,
+    minHeight: 130,
     marginBottom: 13,
     
   },
@@ -80,12 +80,12 @@ const styles = StyleSheet.create({
   //   overflow: 'hidden',
   // },
   image: {
-    borderRadius: 10,
+    borderRadius: 5,
   },
   horizontalImage: {
-    height: 90,
+    height: 100,
     width: 'auto',
-    marginTop:10
+   
   },
   horizontalStyles: {
     borderTopRightRadius: 0,
