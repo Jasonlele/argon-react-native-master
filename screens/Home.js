@@ -19,15 +19,15 @@ class Home extends React.Component {
           </View>
           <Block flex row>
             <Card item={articles[1]} style={{ marginRight: theme.SIZES.BASE}} />
-            <Card item={articles[2]} style={{marginRight:15}}/>
+            <Card item={articles[2]} style={{marginRight: theme.SIZES.BASE}}/>
             <Card item={articles[3]} />
             
           </Block>
           
           <Block  flex row>
             <Card item={articles[4]} style={{ marginRight: theme.SIZES.BASE}} />
-            <Card item={articles[5]} style={{marginRight:15}}/>
-            <Block style={{width:100}}></Block>
+            <Card item={articles[5]} style={{marginRight: theme.SIZES.BASE}}/>
+            <Block style={{flex:1}}></Block>
           
           </Block>
           <Text style={{fontWeight: 'bold', fontSize:20, marginLeft:10}}>During </Text>
@@ -35,16 +35,16 @@ class Home extends React.Component {
           </View>
           <Block  flex row>
           <Card item={articles[6]} style={{ marginRight: theme.SIZES.BASE }} />
-          <Block style={{width:110}}></Block>
-          <Block style={{width:100}}></Block>
+          <Block style={{flex:1,marginRight: theme.SIZES.BASE}}></Block>
+          <Block style={{flex:1, marginRight: theme.SIZES.BASE}}></Block>
           </Block>
           <Text style={{fontWeight: 'bold', fontSize:20, marginLeft:10}}>After </Text>
           <View style={{ backgroundColor:'black',borderWidth:0.5 }}>
           </View>
           <Block  flex row>
           <Card item={articles[7]} style={{ marginRight: theme.SIZES.BASE }} />
-          <Block style={{width:110}}></Block>
-          <Block style={{width:100}}></Block>
+          <Block style={{flex:1, marginRight: theme.SIZES.BASE}}></Block>
+          <Block style={{flex:1,marginRight: theme.SIZES.BASE}}></Block>
           </Block>
         
       

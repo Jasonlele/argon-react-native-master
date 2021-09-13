@@ -88,7 +88,7 @@ class Onboarding extends React.Component {
         </Block>
         <Block center>
           <Image source={require("../assets/imgs/NewLogo.png")} style={styles.logo} />
-          <Text style = {{fontSize: 35, fontWeight: "bold", marginTop: 20}}>MediHelper</Text>
+          <Text style = {{fontSize: 35, fontWeight: "bold", marginTop: 10}}>MediHelper</Text>
         </Block>
         <Block flex space="between" style={styles.padded}>
             <Block flex space="around" style={{ zIndex: 10 }}>

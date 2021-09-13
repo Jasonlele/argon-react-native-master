@@ -34,7 +34,7 @@ class Profile extends React.Component {
               <Block flex style={styles.profileCard}>
                 <Block middle style={styles.avatarContainer}>
                   <Image
-                    source={require("../assets/imgs/222.jpg")}
+                    source={require("../assets/imgs/android.png")}
                     style={styles.avatar}
                   />
                 </Block>
@@ -97,10 +97,10 @@ class Profile extends React.Component {
                 <Block flex>
                   <Block middle style={styles.nameInfo}>
                     <Text bold size={28} color="#32325D">
-                      大猫咪, 45
+                   kkkkk
                     </Text>
                     <Text size={16} color="#32325D" style={{ marginTop: 10 }}>
-                      江西省，鹰潭市，余江县
+                      aaaaaa
                     </Text>
                   </Block>
                   <Block middle style={{ marginTop: 30, marginBottom: 16 }}>
