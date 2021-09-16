@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "379608916224",
-    "project_id": "medihelper-3d709",
-    "storage_bucket": "medihelper-3d709.appspot.com"
+    "project_number": "898732680883",
+    "project_id": "medihelper-74d69",
+    "storage_bucket": "medihelper-74d69.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:379608916224:android:d011ba7b79fe13b83093e5",
+        "mobilesdk_app_id": "1:898732680883:android:432c9059469d8b4eccf2c6",
         "android_client_info": {
-          "package_name": "com.android.MediHelper"
+          "package_name": "com.android.application"
         }
       },
       "oauth_client": [
         {
-          "client_id": "379608916224-rl9c24q14pld1d7cn7dc4fsfgnon9cnp.apps.googleusercontent.com",
+          "client_id": "898732680883-uqfvv5kvpohc193hienrl68qtbh2fict.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAVJAVHabu3OY_u8EFAWKA5y7UqHN5LSj0"
+          "current_key": "AIzaSyAmWS-2cwt_fqqBgRLklmSwHfGZ0j79SW8"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "379608916224-rl9c24q14pld1d7cn7dc4fsfgnon9cnp.apps.googleusercontent.com",
+              "client_id": "898732680883-uqfvv5kvpohc193hienrl68qtbh2fict.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
