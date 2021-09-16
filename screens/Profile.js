@@ -5,13 +5,21 @@ import {
   ScrollView,
   Image,
   ImageBackground,
-  Platform
-} from "react-native";
-import { Block, Text, theme } from "galio-framework";
+  Platform,
+  TouchableWithoutFeedback
 
-import { Button } from "../components";
-import { Images, argonTheme } from "../constants";
+} from "react-native";
+import { Block, Text, theme,NavBar,Input  } from "galio-framework";
+import { withNavigation } from '@react-navigation/compat';
+import { Header} from "../components";
+import { Images } from "../constants";
 import { HeaderHeight } from "../constants/utils";
+
+import Icon from 'react-native-vector-icons/AntDesign';
+import Icon2 from 'react-native-vector-icons/FontAwesome5';
+import Icon3 from 'react-native-vector-icons/Entypo';
+
+
 
 const { width, height } = Dimensions.get("screen");
 
@@ -19,11 +27,13 @@ const thumbMeasure = (width - 48 - 32) / 3;
 
 class Profile extends React.Component {
   render() {
+    const { navigation } = this.props;
     return (
+      
       <Block flex style={styles.profile}>
         <Block flex>
           <ImageBackground
-            source={Images.ProfileBackground}
+           //source={Images.ProfileBackground}
             style={styles.profileContainer}
             imageStyle={styles.profileBackground}
           >
@@ -31,131 +41,190 @@ class Profile extends React.Component {
               showsVerticalScrollIndicator={false}
               style={{ width, marginTop: '25%' }}
             >
+          <Header
+             
+             
+              title="My information"
+              back
+              optionLeft="Option 1"
+              optionRight="Option 2"
+              style={{marginBottom:2}}
+              navigation={this.props.navigation}
+              titleStyle = {{fontWeight: "bold", fontSize:25, marginLeft:35}} />
+
               <Block flex style={styles.profileCard}>
-                <Block middle style={styles.avatarContainer}>
+             
+
+                <Block style={styles.avatarContainer}>
                   <Image
-                    source={require("../assets/imgs/android.png")}
+                    source={require("../assets/imgs/user.png")}
                     style={styles.avatar}
                   />
 
+                      
                 </Block>
-                <Block style={styles.info}>
-                  <Block
-                    middle
-                    row
-                    space="evenly"
-                    style={{ marginTop: 20, paddingBottom: 24 }}
-                  >
-                    <Button
-                      small
-                      style={{ backgroundColor: argonTheme.COLORS.INFO }}
-                    >
-                      CONNECT
-                    </Button>
-                    <Button
-                      small
-                      style={{ backgroundColor: argonTheme.COLORS.DEFAULT }}
-                    >
-                      MESSAGE
-                    </Button>
-                  </Block>
-                  <Block row space="between">
-                    <Block middle>
-                      <Text
-                        bold
-                        size={18}
-                        color="#525F7F"
-                        style={{ marginBottom: 4 }}
-                      >
-                        2K
-                      </Text>
-                      <Text size={12} color={argonTheme.COLORS.TEXT}>Orders</Text>
-                    </Block>
-                    <Block middle>
-                      <Text
-                        bold
-                        color="#525F7F"
-                        size={18}
-                        style={{ marginBottom: 4 }}
-                      >
-                        10
-                      </Text>
-                      <Text size={12} color={argonTheme.COLORS.TEXT}>Photos</Text>
-                    </Block>
-                    <Block middle>
-                      <Text
-                        bold
-                        color="#525F7F"
-                        size={18}
-                        style={{ marginBottom: 4 }}
-                      >
-                        89
-                      </Text>
-                      <Text size={12} color={argonTheme.COLORS.TEXT}>Comments</Text>
-                    </Block>
-                  </Block>
+                <Block style={{marginLeft:25, marginTop:23}}>
+                  <Text style={{fontSize:18}}>Amy</Text>
+                  <Text style={{fontSize:18,marginTop:5}}>0422 XXX XXX</Text>
+                  
                 </Block>
-                <Block flex>
-                  <Block middle style={styles.nameInfo}>
-                    <Text bold size={28} color="#32325D">
-                   kkkkk
-                    </Text>
-                    <Text size={16} color="#32325D" style={{ marginTop: 10 }}>
-                      aaaaaa
-                    </Text>
-                  </Block>
-                  <Block middle style={{ marginTop: 30, marginBottom: 16 }}>
-                    <Block style={styles.divider} />
-                  </Block>
-                  <Block middle>
-                    <Text
-                      size={16}
-                      color="#525F7F"
-                      style={{ textAlign: "center" }}
-                    >
-                      An artist of considerable range, Jessica name taken by
-                      Melbourne …
-                    </Text>
-                    <Button
-                      color="transparent"
-                      textStyle={{
-                        color: "#233DD2",
-                        fontWeight: "500",
-                        fontSize: 16
-                      }}
-                    >
-                      Show more
-                    </Button>
-                  </Block>
-                  <Block
-                    row
-                    space="between"
-                  >
-                    <Text bold size={16} color="#525F7F" style={{marginTop: 12}}>
-                      Album
-                    </Text>
-                    <Button
-                      small
-                      color="transparent"
-                      textStyle={{ color: "#5E72E4", fontSize: 12, marginLeft: 24 }}
-                    >
-                      View all
-                    </Button>
-                  </Block>
-                  <Block style={{ paddingBottom: -HeaderHeight * 2 }}>
-                    <Block row space="between" style={{ flexWrap: "wrap" }}>
-                      {Images.Viewed.map((img, imgIndex) => (
-                        <Image
-                          source={{ uri: img }}
-                          key={`viewed-${img}`}
-                          resizeMode="cover"
-                          style={styles.thumb}
-                        />
-                      ))}
-                    </Block>
-                  </Block>
+                <Block style ={{marginLeft:20}}>
+                <TouchableWithoutFeedback onPress={() => navigation.navigate('Pro')}>
+                <Icon
+                  name="right"
+                  size={30}
+                  color="black"
+                  style={{ marginTop:30,marginLeft:20}}
+                 />
+                </TouchableWithoutFeedback>
+
                 </Block>
               </Block>
+
+              <Block flex style={styles.appointment}>
+                <Block>
+                <Text style ={{fontSize:20,fontWeight:'bold'}}>My Appointment</Text>
+                </Block>
+                <Block style={{ flexDirection:'row', marginTop:15,marginLeft:17}}>
+                  <Text style = {{fontSize:20}}>06/12/2020</Text>
+                  <Text style = {{marginLeft:30,fontSize:20}}>XX Hosptial</Text>
+                  <Icon
+                  name="right"
+                  size={24}
+                  color="black"
+                  style={{ marginLeft:30}}
+                 />
+                  
+                </Block>
+                <Block style={{ flexDirection:'row', marginTop:15,marginLeft:17}}>
+                  <Text style = {{fontSize:20}}>06/12/2020</Text>
+                  <Text style = {{marginLeft:30,fontSize:20}}>XX Hosptial</Text>
+                  <Icon
+                  name="right"
+                  size={24}
+                  color="black"
+                  style={{ marginLeft:30}}
+                 />
+                  
+                </Block>
+                <Block style={{ flexDirection:'row', marginTop:15,marginLeft:17}}>
+                  <Text style = {{fontSize:20}}>06/12/2020</Text>
+                  <Text style = {{marginLeft:30,fontSize:20}}>XX Hosptial</Text>
+                  <Icon
+                  name="right"
+                  size={24}
+                  color="black"
+                  style={{ marginLeft:30}}
+                 />
+                  
+                </Block>
+              </Block>
+              <Block flex style={styles.information}>
+
+
+                <Block style={{flexDirection:  'row',backgroundColor:"#B9EDC4",height:45, paddingTop:7}}>
+                <Icon
+                  name="pluscircle"
+                  size={30}
+                  color="black"
+                  style={{ marginLeft:10}}
+                 />
+
+                    <Text style ={{fontSize:20,marginLeft:30}}>My Medicare</Text>
+                    <Text style ={{fontSize:20,marginLeft:30}}>Verified</Text>
+                    <Icon
+                  name="right"
+                  size={30}
+                  color="black"
+                  style={{ marginLeft:10}}
+                 />
+
+                </Block>
+
+
+                <Block style={styles.boxUse}>
+                <Icon
+                  name="heart"
+                  size={30}
+                  color="black"
+                  style={{ marginLeft:10}}
+                 />
+
+                    <Text style ={{fontSize:20,marginLeft:30}}>Favortite Doctor</Text>
+                    <Text style ={{fontSize:20,marginLeft:30}}>2</Text>
+                    <Icon
+                  name="right"
+                  size={30}
+                  color="black"
+                  style={{ marginLeft:40}}
+                 />
+
+                </Block>
+
+
+                <Block style={styles.boxUse}>
+                <Icon2
+                  name="capsules"
+                  size={30}
+                  color="black"
+                  style={{ marginLeft:10}}
+                 />
+
+                    <Text style ={{fontSize:20,marginLeft:30}}>My Medicare</Text>
+                    <Text style ={{fontSize:20,marginLeft:30}}>Verified</Text>
+                    <Icon
+                  name="right"
+                  size={30}
+                  color="black"
+                  style={{ marginLeft:10}}
+                 />
+
+                </Block>
+
+
+                <Block style={styles.boxUse}>
+                <Icon2
+                  name="file-medical"
+                  size={30}
+                  color="black"
+                  style={{ marginLeft:10}}
+                 />
+
+                    <Text style ={{fontSize:20,marginLeft:30}}>Basic Information</Text>
+                    
+                    <Icon
+                  name="right"
+                  size={30}
+                  color="black"
+                  style={{ marginLeft:65}}
+                 />
+
+                </Block>
+
+
+                <Block style={styles.boxUse}>
+                <Icon2
+                  name="history"
+                  size={30}
+                  color="black"
+                  style={{ marginLeft:10}}
+                 />
+
+                    <Text style ={{fontSize:20,marginLeft:30}}>Appointment History</Text>
+                 
+                    <Icon
+                  name="right"
+                  size={30}
+                  color="black"
+                  style={{ marginLeft:30}}
+                 />
+
+                </Block>
+
+
+              </Block>
+
+
             </ScrollView>
           </ImageBackground>
         </Block>
@@ -179,32 +248,54 @@ const styles = StyleSheet.create({
   },
   profileBackground: {
     width: width,
-    height: height / 2
+    height: height
   },
   profileCard: {
     // position: "relative",
     padding: theme.SIZES.BASE,
-    marginHorizontal: theme.SIZES.BASE,
-    marginTop: 65,
-    borderTopLeftRadius: 6,
-    borderTopRightRadius: 6,
-    backgroundColor: theme.COLORS.WHITE,
+    //marginHorizontal: theme.SIZES.BASE,
+    width: width,
+  //  marginTop:30,
+    // borderTopLeftRadius: 6,
+    // borderTopRightRadius: 6,
+   
     shadowColor: "black",
     shadowOffset: { width: 0, height: 0 },
     shadowRadius: 8,
     shadowOpacity: 0.2,
-    zIndex: 2
+    zIndex: 0,
+    flexDirection:  'row',
+    backgroundColor:"#D9E6F7"
   },
-  info: {
-    paddingHorizontal: 40
+  appointment: {
+    padding: theme.SIZES.BASE,
+    backgroundColor:"#DCF7F2",
+    marginTop:20,
+    flexDirection:  'column',
   },
+  information:{
+    
+   // backgroundColor:"yellow",
+    marginTop:20,
+    flexDirection:  'column',
+  },
+  boxUse: {
+    flexDirection:  'row', 
+    backgroundColor:"#B9EDC4",
+     marginTop:10,
+     paddingTop:7,
+     height:45
+  },
+
   avatarContainer: {
     position: "relative",
-    marginTop: -80
+    // marginRight:width/2
+    
+    
   },
   avatar: {
-    width: 124,
-    height: 124,
+    width: 104,
+    height: 104,
     borderRadius: 62,
     borderWidth: 0
   },
