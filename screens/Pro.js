@@ -10,6 +10,7 @@ import {
 import { Block, Checkbox, Text} from "galio-framework";
 import { initializeApp } from 'firebase/app';
 import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
+import { getDatabase, ref, set } from "firebase/database";
 import { Button, Icon, Input } from "../components";
 import { Images, argonTheme } from "../constants";
 
@@ -37,7 +38,7 @@ var firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-
+const database = getDatabase();
   // Set the configuration for your app
   // TODO: Replace with your project's config object
   var config = {
@@ -54,6 +55,14 @@ const db = getFirestore(app);
   // Get a reference to the database service
   var database = firebase.database();
   
+  function storeHighScore(userId, score) {
+    firebase
+      .database()
+      .ref('users/' + userId)
+      .set({
+        highscore: score,
+      });
+  }
 class Register extends React.Component {
   render() {
     return (
@@ -153,7 +162,7 @@ class Register extends React.Component {
                       </Button>
                     </Block>
                     <Block middle>
-                      <Button onPress={createOneButtonAlert} color="primary" style={styles.createButton}>
+                      <Button onPress={storeHighScore(s4458147, 85)} color="primary" style={styles.createButton}>
                         <Text bold size={14} color={argonTheme.COLORS.WHITE}>
                           CREATE ACCOUNT
                         </Text>
