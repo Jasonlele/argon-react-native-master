@@ -5,11 +5,9 @@ import { useFonts } from '@use-expo/font';
 import { Asset } from "expo-asset";
 import { Block, GalioProvider } from "galio-framework";
 import { NavigationContainer } from "@react-navigation/native";
-import { initializeApp } from 'firebase/app';
 // Before rendering any navigation stack
 import { enableScreens } from "react-native-screens";
 enableScreens();
-
 import Screens from "./navigation/Screens";
 import { Images, articles, argonTheme } from "./constants";
 
@@ -23,20 +21,6 @@ const assetImages = [
   Images.iOSLogo,
   Images.androidLogo
 ];
-
-// TODO: Replace the following with your app's Firebase project configuration
-const firebaseConfig = {
-  apiKey: "API_KEY",
-  authDomain: "PROJECT_ID.firebaseapp.com",
-  databaseURL: "https://PROJECT_ID.firebaseio.com",
-  projectId: "PROJECT_ID",
-  storageBucket: "PROJECT_ID.appspot.com",
-  messagingSenderId: "SENDER_ID",
-  appId: "APP_ID",
-  measurementId: "G-MEASUREMENT_ID",
-};
-
-const app = initializeApp(firebaseConfig);
 
 // cache product images
 articles.map(article => assetImages.push(article.image));
