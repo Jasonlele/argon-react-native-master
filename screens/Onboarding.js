@@ -10,6 +10,7 @@ import { Button } from "../components";
 import { Input } from 'react-native-elements';
 import validator from "../constants/validator";
 import login from "../constants/login";
+import * as SQLite from "expo-sqlite";
 
 const { width, height } = Dimensions.get("screen");
 
@@ -31,7 +32,12 @@ class Onboarding extends React.Component {
       loginMessage:"",
       
     };
+    db = SQLite.openDatabase("db.DECO3801");
+
   }
+
+
+  
   //登录框邮箱输入
   EmailChangeText=(Email)=>{
     this.setState({Email})
@@ -66,21 +72,69 @@ class Onboarding extends React.Component {
     const{Password} = this.state;
     const loginValid =login.ValidateLogin(Email,Password);
     const { navigation } = this.props;
-    if(!loginValid){
-      //没通过
-      this.setState({loginValid});
-      alert("Wrong account or password")
+  //   if(!loginValid){
+  //     //没通过
+  //     this.setState({loginValid});
+  //     alert("Wrong account or password")
       
-  }else{
-    navigation.navigate("App")
-  }
+  // }else{
+  //   navigation.navigate("App")
+  // }
+  db.transaction((tx) => {
+    
+    tx.executeSql("select * from Users where phone = ? and password = ? ", 
+    [Email, Password],
+     (_, result) =>{
+        var len = result.rows.length;
+      
+        if(len>0){
+          console.log(JSON.stringify(result.rows))
+          //????
+          navigation.navigate("App")
+        } else{
+          alert("Wrong account or password")
+        }
+       
+        
+     }
+       
+
+      );
+      
+  });
 
   }
+
+
+  
 
 
   render() {
     const { navigation } = this.props;
     const{Email,phoneValid,Password,loginMessage} = this.state;
+
+
+
+    const db = SQLite.openDatabase("db.DECO3801");
+    db.transaction((tx) => {
+      tx.executeSql(
+        "create table if not exists Users (id integer primary key not null, phone text, password text);"
+      );
+      // console.log(JSON.stringify(db))
+      
+    });
+    // 执行插值操作，每次刷新都会执行
+    // db.transaction((tx) => {
+    //   tx.executeSql(
+    //     "INSERT INTO Users (phone, password) VALUES('yyf','12345')"
+    //   );
+
+    //   tx.executeSql(
+    //     "INSERT INTO Users (phone, password) VALUES('wxj','12345')"
+    //   );
+      
+    // });
+
     return (
       <Block flex style={styles.container}>
         <StatusBar hidden />

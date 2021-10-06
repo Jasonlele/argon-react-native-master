@@ -27,6 +27,7 @@
     "expo-asset": "~8.3.3",
     "expo-dev-client": "^0.4.7",
     "expo-font": "~9.2.1",
+    "expo-sqlite": "~9.2.1",
     "firebase": "8.2.3",
     "galio-framework": "^0.8.0",
     "prop-types": "^15.7.2",
