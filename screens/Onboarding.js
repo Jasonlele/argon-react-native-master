@@ -32,7 +32,7 @@ class Onboarding extends React.Component {
       loginMessage:"",
       
     };
-  
+    db = SQLite.openDatabase("db.DECO3801");
 
   }
 
