@@ -32,7 +32,7 @@ class Onboarding extends React.Component {
       loginMessage:"",
       
     };
-    db = SQLite.openDatabase("db.DECO3801");
+  
 
   }
 
@@ -72,6 +72,7 @@ class Onboarding extends React.Component {
     const{Password} = this.state;
     const loginValid =login.ValidateLogin(Email,Password);
     const { navigation } = this.props;
+    const db = SQLite.openDatabase("db.DECO3801");
   //   if(!loginValid){
   //     //没通过
   //     this.setState({loginValid});
@@ -86,7 +87,7 @@ class Onboarding extends React.Component {
     [Email, Password],
      (_, result) =>{
         var len = result.rows.length;
-      
+        console.log(JSON.stringify(result.rows))
         if(len>0){
           console.log(JSON.stringify(result.rows))
           //????
@@ -116,24 +117,48 @@ class Onboarding extends React.Component {
 
 
     const db = SQLite.openDatabase("db.DECO3801");
-    db.transaction((tx) => {
-      tx.executeSql(
-        "create table if not exists Users (id integer primary key not null, phone text, password text);"
-      );
-      // console.log(JSON.stringify(db))
-      
-    });
-    // 执行插值操作，每次刷新都会执行
+     //删除表，请一定要注释
     // db.transaction((tx) => {
     //   tx.executeSql(
-    //     "INSERT INTO Users (phone, password) VALUES('yyf','12345')"
+    //     "DROP TABLE Users;"
+    //   );
+    //   // console.log(JSON.stringify(db))
+    
+    // });
+
+
+    //创建users表
+    db.transaction((tx) => {
+      tx.executeSql(
+        "create table if not exists Users (id integer primary key not null, phone text, password text, username text);"
+      );
+      
+    });
+
+
+   // 执行插值操作并打印整个表，每次刷新都会执行，注意不要重复插值
+    // db.transaction((tx) => {
+    //   tx.executeSql(
+    //     "INSERT INTO Users (phone, password, username) VALUES('111','12345','yyf')"
     //   );
 
     //   tx.executeSql(
-    //     "INSERT INTO Users (phone, password) VALUES('wxj','12345')"
+    //     "INSERT INTO Users (phone, password, username) VALUES('222','12345', 'wxj')"
     //   );
+
+    //   tx.executeSql("select * from Users", 
+    //   [],
+    //    (_, result) =>{
+        
+    //     console.log(JSON.stringify(result.rows))
+          
+    //    }
+        
+    //     );
       
     // });
+
+
 
     return (
       <Block flex style={styles.container}>

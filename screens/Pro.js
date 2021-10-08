@@ -10,20 +10,173 @@ import {
 import { Block, Checkbox, Text} from "galio-framework";
 import { Button, Icon, Input } from "../components";
 import { Images, argonTheme } from "../constants";
-
+import validator from "../constants/validator";
+import * as SQLite from "expo-sqlite";
 const { width, height } = Dimensions.get("screen");
-const createOneButtonAlert = () =>
-  Alert.alert(
-    "Complete",
-    "Congradulation, account has been created !",
-    [
-      { text: "OK", onPress: () => console.log("OK Pressed") }
-    ],
-    { cancelable: false }
-);
+
+
+
+
+
+const createOneButtonAlert = () =>{
+  
+
+//   const db = SQLite.openDatabase("db.DECO3801");
+
+//  //创建users表
+//   db.transaction((tx) => {
+//     tx.executeSql(
+//       "create table if not exists Users (id integer primary key not null, phone text, password text, username text);"
+//     );
+    
+//   });
+
+
+// // 执行插值操作并打印整个表，每次刷新都会执行，注意不要重复插值
+//  db.transaction((tx) => {
+//    tx.executeSql(
+//      "INSERT INTO Users (phone, password, username) VALUES(?,?,?)",
+//      [],
+//      (_, result) =>{
+      
+//       console.log(JSON.stringify(result.rows))
+     
+      
+//    }
+
+
+//    );
+   
+//  });
+
+//   Alert.alert(
+//     "Complete",
+//     "Congradulation, account has been created !",
+//     [
+//       { text: "OK", onPress: () => console.log("OK Pressed") }
+//     ],
+//     { cancelable: false }
+// );
+
+
+}
+
   
 class Register extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      name:"",
+      phone:"",
+      password:"",
+      phoneValid:true,
+      loginValid:true,
+      loginMessage:"",
+      
+    };
+   
+
+  }
+
+    //登录框邮箱输入
+    EmailChangeText=(phone)=>{
+      this.setState({phone})
+  
+    }
+    //账号输入点击完成
+    EmailonSubmitEditing=()=>{
+      //console.log("输入完成");
+      const {phone} = this.state;
+      const phoneValid=validator.ValidatePhone(phone);
+      if(!phoneValid){
+          //没通过
+          this.setState({phoneValid});
+          this.setState({loginMessage:"invalid number"})
+          
+      }else{
+          //通过
+          this.setState({phoneValid});
+          this.setState({loginMessage:"valid number"})
+      }
+  
+    }
+
+    //密码输入中
+     PasswordChangeText=(password)=>{
+    this.setState({password})
+
+    }
+
+    //姓名输入中
+    NameChangeText=(name)=>{
+      this.setState({name})
+    }
+
+
+
+    // 邮箱密码输入完成
+  PasswordsubmitEditing=()=>{
+    const {phone} = this.state;
+    const{password} = this.state;
+    const{name} = this.state;
+    const { navigation } = this.props;
+    const phoneValid=validator.ValidatePhone(phone);
+    if(!phoneValid){
+      //手机号无效
+      Alert.alert(
+        "invalid",
+        "Invalid mobile phone number !",
+        [
+          { text: "OK", onPress: () => console.log("OK Pressed") }
+        ],
+        { cancelable: false }
+    );
+
+    }else{
+      //手机号有效,执行插值操作
+      const db = SQLite.openDatabase("db.DECO3801");
+      db.transaction((tx) => {
+    
+        tx.executeSql("INSERT INTO Users (phone, password, username) VALUES(?,?,?) ", 
+        [phone,password,name],
+        
+           
+          );
+          
+      });
+
+      Alert.alert(
+        "congratulate",
+        "Welcome to join us! ! !",
+        [
+          { text: "OK", onPress: () => console.log("OK Pressed") }
+        ],
+        { cancelable: false }
+    );
+
+
+   
+  }
+
+
+  }
+
+
+
+
+
   render() {
+
+    const{phone,password,loginMessage,phoneValid,name} = this.state;
+
+    const db = SQLite.openDatabase("db.DECO3801");
+    db.transaction((tx) => {
+      tx.executeSql(
+        "create table if not exists Users (id integer primary key not null, phone text, password text, username text);"
+      );
+      
+    });
     return (
       <Block flex middle>
         <StatusBar hidden />
@@ -59,6 +212,10 @@ class Register extends React.Component {
                             style={styles.inputIcons}
                           />
                         }
+
+                        value={name}
+                        onChangeText={this.NameChangeText}
+                 
                       />
                     </Block>
                     <Block width={width * 0.8} style={{ marginBottom: 15 }}>
@@ -74,8 +231,13 @@ class Register extends React.Component {
                             style={styles.inputIcons}
                           />
                         }
+
+                        value={phone}
+                        onChangeText={this.EmailChangeText}
+                        onSubmitEditing={this.EmailonSubmitEditing}
                       />
                     </Block>
+              
                     <Block width={width * 0.8}>
                       <Input
                         password
@@ -90,6 +252,9 @@ class Register extends React.Component {
                             style={styles.inputIcons}
                           />
                         }
+
+                        value={password}
+                        onChangeText={this.PasswordChangeText}
                       />
                       <Block row style={styles.passwordCheck}>
                         <Text size={12} color={argonTheme.COLORS.MUTED}>
@@ -99,6 +264,7 @@ class Register extends React.Component {
                           {" "}
                           strong
                         </Text>
+                      
                       </Block>
                     </Block>
                     <Block row width={width * 0.75}>
@@ -121,7 +287,7 @@ class Register extends React.Component {
                       </Button>
                     </Block>
                     <Block middle>
-                      <Button onPress={createOneButtonAlert} color="primary" style={styles.createButton}>
+                      <Button onPress={this.PasswordsubmitEditing} color="primary" style={styles.createButton}>
                         <Text bold size={14} color={argonTheme.COLORS.WHITE}>
                           CREATE ACCOUNT
                         </Text>
