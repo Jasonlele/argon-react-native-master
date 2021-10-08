@@ -13,7 +13,7 @@ export default [
   {
     title: 'Sympotom Checker',
     image: 'http://81.68.132.232/wp-content/uploads/2021/09/2.png',
-    cta: 'Pro' 
+    cta: 'SympotomChecker' 
   },
   {
     title: 'Onling Booking',

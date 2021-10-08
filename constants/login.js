@@ -1,5 +1,3 @@
-
-import * as SQLite from "expo-sqlite";
 export default {
     /**
      * 
@@ -7,6 +5,7 @@ export default {
      * @returns 
      */
     ValidateLogin(phone,password){
+
 
     
     const db = SQLite.openDatabase("db.DECO3801");
@@ -27,41 +26,11 @@ export default {
       // console.log(JSON.stringify(db))
       
     });
-    // 执行插值操作，每次刷新都会执行
-    // db.transaction((tx) => {
-    //   tx.executeSql(
-    //     "INSERT INTO Users (phone, password) VALUES('yyf123','12345')"
-    //   );
-
-    //   tx.executeSql(
-    //     "INSERT INTO Users (phone, password) VALUES('wxj123','12345')"
-    //   );
-      
-    // });
-    
-    // db.transaction((tx) => {
-    
-    //   tx.executeSql("select * from Users where phone = ? and password = ? ", 
-    //   [phone, password],
-    //    (_, result) =>{
-    //       var len = result.rows.length;
-        
-    //       if(len>0){
-    //         console.log(JSON.stringify(result.rows))
-    //         //????
-    //        return true;
-    //       }
-         
-          
-    //    }
-         
-
-
-    //     );
-        
-    // });
+  
         
   
 }
 
+
+      
 }
