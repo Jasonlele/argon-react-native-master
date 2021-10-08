@@ -16,6 +16,7 @@ import Elements from "../screens/Elements";
 import Articles from "../screens/Articles";
 import Emergency from "../screens/Emergency";
 import Translate from "../screens/Translate";
+import SympotomChecker from "../screens/SympotomChecker";
 // drawer
 import CustomDrawerContent from "./Menu";
 
@@ -211,6 +212,23 @@ export default function OnboardingStack(props) {
                 headerTransparent: true
               }}
         />
+      <Stack.Screen
+              name="SympotomChecker"
+              component={SympotomChecker}
+              options={{
+                header: ({ navigation, scene }) => (
+                  <Header
+                    title=""
+                    back
+                    white
+                    transparent
+                    navigation={navigation}
+                    scene={scene}
+                  />
+                ),
+                headerTransparent: true
+              }}
+        />
 
     </Stack.Navigator>
   );
@@ -330,6 +348,7 @@ function AppStack(props) {
       <Drawer.Screen name="Account" component={Register} />
       <Drawer.Screen name="Emergency" component={Emergency} />
       <Drawer.Screen name="Translate" component={Translate} />
+      <Drawer.Screen name="SympotomChecker" component={SympotomChecker} />
       <Drawer.Screen name="Elements" component={ElementsStack} />
       <Drawer.Screen name="Articles" component={ArticlesStack} />
     </Drawer.Navigator>
