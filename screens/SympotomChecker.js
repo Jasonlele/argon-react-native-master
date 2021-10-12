@@ -10,10 +10,10 @@ import { SearchBar } from 'react-native-elements';
 import { NavBar, Block, Text, theme, Button, DeckSwiper, Radio } from "galio-framework";
 import StepIndicator from 'react-native-step-indicator';
 import Swiper from 'react-native-swiper';
-import { ListItem } from 'react-native-material-ui'
+import { ListItem } from 'react-native-material-ui';
+import * as SQLite from "expo-sqlite";
 const { width, height } = Dimensions.get("screen");
 const labels = ["Choose a\n symptom", "Select\n related\nfactors", "View\n possible\n causes"];
-import {fetchAddresses} from '../utils/db/SQLiteManager';
 
 // import { useDbContext } from "../hooks/useDb"
 const customStyles = {
@@ -41,13 +41,7 @@ const customStyles = {
 }
 
 const PAGES = ['Page 1', 'Page 2', 'Page 3'];
-const renderViewPagerPage = (data) => {
-  return (
-    <View key={data} style={styles.page}>
-      <Text>{data}</Text>
-    </View>
-  );
-};
+
 class SympotomChecker extends React.Component {
   constructor(props) {
     super(props);
@@ -58,19 +52,15 @@ class SympotomChecker extends React.Component {
       search: '',
       firstPageData: ["Abdominal pain", "Blood in stool", "Chest pain"],
       firstSearchPageData: ["Abdominal pain", "Blood in stool", "Chest pain"],
-      secondPageData1: ["Burning", "Ongoing"],
-      secondPageData2: ["Middle abdomen", "Low abdomen"],
-      thirdPageData: ["Irritable bowel syndroms"],
+      secondPageData1: ["please choose the symptom"],
+      secondSearchPageData: ["please choose the symptom"],
+      thirdPageData: ["please choose the symptom and factor"],
+      //第一次检索的症状名字
+      symptomCheck:'',
     };
-    fetchAddresses().then(result =>{
-      this.setState({
-        firstSearchPageData:result.rows._array.map(item=>item.painName)
-      })
-      console.log("result",result.rows._array)
-    })
   }
 
-
+  
   onPageChange(position) {
     this.setState({ currentPosition: position });
   }
@@ -84,8 +74,52 @@ class SympotomChecker extends React.Component {
       firstSearchPageData:this.state.firstPageData.filter(item=>item.indexOf(search) >-1)
     })  
   };
+  
 
   render() {
+    const {symptomCheck} = this.state;
+    const db = SQLite.openDatabase("db.DECO3801");
+     //删除表，请一定要注释
+    // db.transaction((tx) => {
+    //   tx.executeSql(
+    //     "DROP TABLE Users;"
+    //   );
+    //   // console.log(JSON.stringify(db))
+    
+    // });
+
+
+    //创建表
+    db.transaction((tx) => {
+      tx.executeSql(
+        "create table if not exists Sympotom (id integer primary key not null, symptomName text, factor text, causes text);"
+      );
+      
+    });
+
+
+   // 执行插值操作并打印整个表，每次刷新都会执行，注意不要重复插值
+    db.transaction((tx) => {
+      // tx.executeSql(
+      //   "INSERT INTO Sympotom (symptomName, factor, causes) VALUES('Abdominal pain','Vomit','Gastroenteritis')"
+      // );
+
+      // tx.executeSql(
+      //   "INSERT INTO Sympotom (symptomName, factor, causes) VALUES('Blood in stool','Burning', 'enteritis')"
+      // );
+
+      // tx.executeSql("select * from Sympotom", 
+      // [],
+      //  (_, result) =>{
+        
+      //   console.log(JSON.stringify(result.rows))
+          
+      //  }
+        
+      //   );
+      
+    });
+
     return (
       <Block flex style={styles.container}>
         <StepIndicator
@@ -122,7 +156,36 @@ class SympotomChecker extends React.Component {
                     primaryText: item,
                   }}
                   onPress={() => { 
-                    // this.setState({ currentPosition: this.state.currentPosition++ });
+
+                    // this.setState({secondSearchPageData :['aaaa',item]})
+
+                    db.transaction((tx) => {
+    
+                      tx.executeSql("select factor from Sympotom where symptomName = ?", 
+                      [item],
+                       (_, result) =>{
+                          var len = result.rows.length;
+                          
+
+                          let result1=[]
+                          for(let i=0; i<len; i++){
+                              result1.push(result.rows.item(i).factor)
+                              console.log(JSON.stringify(result.rows.item(i).factor))
+
+                          }
+                          this.setState({secondSearchPageData :result1})
+
+                          //将这个变量设置为第一次选择的症状
+                          this.setState({symptomCheck:item})
+                          
+                       }
+                         
+                  
+                        );
+                        
+                    });
+
+
                   }}
                 />)
               })}
@@ -130,10 +193,57 @@ class SympotomChecker extends React.Component {
             </Block>
           </View>
           <View key={"page2"} style={styles.page}>
-            <Text>page2</Text>
+          {this.state.secondSearchPageData.map((item) => {
+                return (<ListItem
+                key={item}
+                  divider
+                  centerElement={{
+                    primaryText: item,
+                  }}
+                  onPress={() => { 
+                    // alert(item)
+                    db.transaction((tx) => {
+    
+                      tx.executeSql("select causes from Sympotom where symptomName = ? and factor = ?", 
+                      [symptomCheck,item],
+                       (_, result) =>{
+                          var len = result.rows.length;
+                        
+                          let result2=[]
+                          for(let i=0; i<len; i++){
+                              result2.push(result.rows.item(i).causes)
+                              console.log(JSON.stringify(result.rows.item(i).causes))
+
+                          }
+                          this.setState({ thirdPageData :result2})
+
+                    
+                          
+                       }
+                         
+                  
+                        );
+                        
+                    });
+
+                  }}
+                />)
+              })}
+            {/* <Text>{symptomCheck}</Text> */}
           </View>
           <View key={"page3"} style={styles.page}>
-            <Text>page3</Text>
+          {this.state.thirdPageData.map((item) => {
+                return (<ListItem
+                key={item}
+                  divider
+                  centerElement={{
+                    primaryText: item,
+                  }}
+                  onPress={() => { 
+                    alert(item)
+                  }}
+                />)
+              })}
           </View>
         </Swiper>
 

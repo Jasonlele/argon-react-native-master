@@ -10,7 +10,7 @@ import { enableScreens } from "react-native-screens";
 enableScreens();
 import Screens from "./navigation/Screens";
 import { Images, articles, argonTheme } from "./constants";
-import { DbContextProvider } from "./hooks/useDb"
+
 // cache app images
 const assetImages = [
   Images.Onboarding,
@@ -65,7 +65,7 @@ export default props => {
     );
   } else if(fontsLoaded) {
     return (
-      <DbContextProvider>
+   
       <NavigationContainer>
         <GalioProvider theme={argonTheme}>
           <Block flex>
@@ -73,7 +73,7 @@ export default props => {
           </Block>
         </GalioProvider>
       </NavigationContainer>
-      </DbContextProvider>
+      
     );
   } else {
     return null
