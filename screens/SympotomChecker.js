@@ -12,6 +12,8 @@ import StepIndicator from 'react-native-step-indicator';
 import Swiper from 'react-native-swiper';
 import { ListItem } from 'react-native-material-ui';
 import * as SQLite from "expo-sqlite";
+import { Header} from "../components";
+import { block, color } from "react-native-reanimated";
 const { width, height } = Dimensions.get("screen");
 const labels = ["Choose a\n symptom", "Select\n related\nfactors", "View\n possible\n causes"];
 
@@ -53,7 +55,7 @@ class SympotomChecker extends React.Component {
       firstPageData: ["Abdominal pain", "Blood in stool", "Chest pain"],
       firstSearchPageData: ["Abdominal pain", "Blood in stool", "Chest pain"],
       secondPageData1: ["please choose the symptom"],
-      secondSearchPageData: ["please choose the symptom"],
+      secondSearchPageData: [],
       thirdPageData: ["please choose the symptom and factor"],
       //第一次检索的症状名字
       symptomCheck:'',
@@ -65,7 +67,8 @@ class SympotomChecker extends React.Component {
     this.setState({ currentPosition: position });
   }
   nextStep() {
-    this.onPageChange(this.state.currentPosition + 1)
+    // this.onPageChange(this.state.currentPosition + 1)
+    alert("text")
   }
 
   updateSearch = search => {
@@ -77,12 +80,12 @@ class SympotomChecker extends React.Component {
   
 
   render() {
-    const {symptomCheck} = this.state;
+    const {symptomCheck,currentPosition} = this.state;
     const db = SQLite.openDatabase("db.DECO3801");
      //删除表，请一定要注释
     // db.transaction((tx) => {
     //   tx.executeSql(
-    //     "DROP TABLE Users;"
+    //     "DROP TABLE Sympotom;"
     //   );
     //   // console.log(JSON.stringify(db))
     
@@ -99,44 +102,74 @@ class SympotomChecker extends React.Component {
 
 
    // 执行插值操作并打印整个表，每次刷新都会执行，注意不要重复插值
-    db.transaction((tx) => {
-      // tx.executeSql(
-      //   "INSERT INTO Sympotom (symptomName, factor, causes) VALUES('Abdominal pain','Vomit','Gastroenteritis')"
-      // );
+    // db.transaction((tx) => {
+    //   tx.executeSql(
+    //     "INSERT INTO Sympotom (symptomName, factor, causes) VALUES('Abdominal pain','Vomit','Gastroenteritis')"
+    //   );
 
-      // tx.executeSql(
-      //   "INSERT INTO Sympotom (symptomName, factor, causes) VALUES('Blood in stool','Burning', 'enteritis')"
-      // );
+    //   tx.executeSql(
+    //     "INSERT INTO Sympotom (symptomName, factor, causes) VALUES('Blood in stool','Burning', 'enteritis')"
+    //   );
 
-      // tx.executeSql("select * from Sympotom", 
-      // [],
-      //  (_, result) =>{
+    //     tx.executeSql(
+    //     "INSERT INTO Sympotom (symptomName, factor, causes) VALUES('Abdominal pain','Burning', 'appendicitis')"
+    //   );
+
+    //   tx.executeSql("select * from Sympotom", 
+    //   [],
+    //    (_, result) =>{
         
-      //   console.log(JSON.stringify(result.rows))
+    //     console.log(JSON.stringify(result.rows))
           
-      //  }
+    //    }
         
-      //   );
+    //     );
       
-    });
+    // });
 
     return (
+
+      
       <Block flex style={styles.container}>
+        <Header
+            
+             title="Sympotom Checker"
+             back
+             optionLeft="Option 1"
+             optionRight="Option 2"
+             style={{marginBottom:2}}
+             navigation={this.props.navigation}
+             titleStyle = {{fontWeight: "bold", fontSize:22, marginLeft:35}} />
+        
+
+
+      
+
+        <Block style={{marginTop:10}}>
         <StepIndicator
           stepCount={3}
           customStyles={customStyles}
           currentPosition={this.state.currentPosition}
           labels={labels}
         />
-        <Block style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-around' }}>
+
+
+
+        </Block>
+        
+        <Block style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-around'}}>
           <Radio style={styles.radio} label="Adult Symptom" containerStyle={{ backgroundColor: "#B0C4DE", marginRight: 10 }} labelStyle={{ color: 'black' }} initialValue={this.state.adultInitialValue} name='a' color="primary" />
           <Radio style={styles.radio} label="Child Symptom" containerStyle={{ backgroundColor: "#B0C4DE" }} labelStyle={{ color: 'black' }} initialValue={this.state.childInitialValue} name='a' color="info" />
         </Block>
 
-        <SearchBar
-          lightTheme={true}
-          placeholder="Type Here to Search..." onChangeText={this.updateSearch} value={this.state.search}
-        />
+        <Block>
+          <SearchBar
+          
+            lightTheme={true}
+            placeholder="Type Here to Search..." onChangeText={this.updateSearch} value={this.state.search}
+          />
+        </Block>
+       
         <Swiper
           style={{ flexGrow: 1 }}
           loop={false}
@@ -146,15 +179,22 @@ class SympotomChecker extends React.Component {
             this.setState({ currentPosition: page });
           }}
         >
-          <View key={"page1"} style={styles.page}>
-            <Block  >
+          <View key={"page1"}>
+            <Block  style={{backgroundColor:"#D9E6F7", height:430, flexDirection: 'row',flexWrap: 'wrap'}}>
               {this.state.firstSearchPageData.map((item) => {
-                return (<ListItem
-                key={item}
-                  divider
-                  centerElement={{
-                    primaryText: item,
-                  }}
+                return (
+                
+                <Button
+                
+                  
+                //  key={item}
+                //   divider
+                //   centerElement={{
+                //     primaryText: item,
+                //   }}
+                color="warning"
+                style={{marginLeft:12}}
+                // size="large"
                   onPress={() => { 
 
                     // this.setState({secondSearchPageData :['aaaa',item]})
@@ -178,6 +218,9 @@ class SympotomChecker extends React.Component {
                           //将这个变量设置为第一次选择的症状
                           this.setState({symptomCheck:item})
                           
+                        
+                          
+                          
                        }
                          
                   
@@ -187,14 +230,27 @@ class SympotomChecker extends React.Component {
 
 
                   }}
-                />)
+                
+                >
+                  {item}
+                  </Button>
+                 
+
+                
+                
+                
+                )
               })}
 
             </Block>
           </View>
-          <View key={"page2"} style={styles.page}>
+          <View key={"page2"} style={{backgroundColor:"#D9E6F7", height:430,flexDirection: 'row',flexWrap: 'wrap'}}>
           {this.state.secondSearchPageData.map((item) => {
-                return (<ListItem
+                return (
+                
+                <Button
+                color="#50C7C7"
+                style={{marginLeft:12}}
                 key={item}
                   divider
                   centerElement={{
@@ -227,13 +283,26 @@ class SympotomChecker extends React.Component {
                     });
 
                   }}
-                />)
+                >
+                  {item}
+
+                </Button>
+                
+                
+                
+                
+                )
               })}
             {/* <Text>{symptomCheck}</Text> */}
           </View>
-          <View key={"page3"} style={styles.page}>
+          <View key={"page3"} style={{backgroundColor:"#D9E6F7", height:430}}>
           {this.state.thirdPageData.map((item) => {
-                return (<ListItem
+                return (
+                
+                <Button
+
+                size="large" 
+                color="success"
                 key={item}
                   divider
                   centerElement={{
@@ -242,11 +311,17 @@ class SympotomChecker extends React.Component {
                   onPress={() => { 
                     alert(item)
                   }}
-                />)
+                >
+                  {item}
+                  </Button>
+                
+                
+                
+                )
               })}
           </View>
         </Swiper>
-
+                
       </Block>
     );
   }
