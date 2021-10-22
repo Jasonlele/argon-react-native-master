@@ -14,6 +14,7 @@ import * as SQLite from "expo-sqlite";
 
 const { width, height } = Dimensions.get("screen");
 
+
 class Onboarding extends React.Component {
   // state={
   //   Email:"",
@@ -30,6 +31,7 @@ class Onboarding extends React.Component {
       Password:"",
       loginValid:true,
       loginMessage:"",
+      Username:""
       
     };
     db = SQLite.openDatabase("db.DECO3801");
@@ -68,7 +70,9 @@ class Onboarding extends React.Component {
   }
   // 邮箱密码输入完成
   PasswordsubmitEditing=()=>{
-    const {Email} = this.state;
+    const {Email,Username} = this.state;
+    global.test = Email;
+    // global.testyyf = Username;
     const{Password} = this.state;
     const loginValid =login.ValidateLogin(Email,Password);
     const { navigation } = this.props;
@@ -91,7 +95,7 @@ class Onboarding extends React.Component {
         if(len>0){
           console.log(JSON.stringify(result.rows))
           //????
-          navigation.navigate("App")
+           
         } else{
           alert("Wrong account or password")
         }
@@ -101,6 +105,24 @@ class Onboarding extends React.Component {
        
 
       );
+
+      tx.executeSql("select username from Users where phone = ? and password = ? ", 
+      [Email, Password],
+       (_, result) =>{
+          var len = result.rows.length;
+          if(len>0){
+            console.log(JSON.stringify( result.rows.item(0).username))
+            //????
+            this.setState({Username:result.rows.item(0).username})
+            navigation.navigate("App")
+
+            
+          } 
+          
+       }
+         
+  
+        );
       
   });
 
@@ -112,10 +134,10 @@ class Onboarding extends React.Component {
 
   render() {
     const { navigation } = this.props;
-    const{Email,phoneValid,Password,loginMessage} = this.state;
+    const{Email,phoneValid,Password,loginMessage,Username} = this.state;
 
 
-
+    global.testyyf = Username;
     const db = SQLite.openDatabase("db.DECO3801");
      //删除表，请一定要注释
     // db.transaction((tx) => {

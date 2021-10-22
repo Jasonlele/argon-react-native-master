@@ -64,8 +64,8 @@ class Profile extends React.Component {
                       
                 </Block>
                 <Block style={{marginLeft:25, marginTop:23}}>
-                  <Text style={{fontSize:18}}>Amy</Text>
-                  <Text style={{fontSize:18,marginTop:5}}>0422 XXX XXX</Text>
+                  <Text style={{fontSize:18}}>{testyyf}</Text>
+                  <Text style={{fontSize:18,marginTop:5}}>{test}</Text>
                   
                 </Block>
                 <Block style ={{marginLeft:20}}>
@@ -88,60 +88,60 @@ class Profile extends React.Component {
                 <Block style={{ flexDirection:'row', marginTop:15,marginLeft:17}}>
                   <Text style = {{fontSize:20}}>06/12/2020</Text>
                   <Text style = {{marginLeft:30,fontSize:20}}>XX Hosptial</Text>
-                  <Icon
+                  {/* <Icon
                   name="right"
                   size={24}
                   color="black"
                   style={{ marginLeft:30}}
-                 />
+                 /> */}
                   
                 </Block>
                 <Block style={{ flexDirection:'row', marginTop:15,marginLeft:17}}>
                   <Text style = {{fontSize:20}}>06/12/2020</Text>
                   <Text style = {{marginLeft:30,fontSize:20}}>XX Hosptial</Text>
-                  <Icon
+                  {/* <Icon
                   name="right"
                   size={24}
                   color="black"
                   style={{ marginLeft:30}}
-                 />
+                 /> */}
                   
                 </Block>
                 <Block style={{ flexDirection:'row', marginTop:15,marginLeft:17}}>
                   <Text style = {{fontSize:20}}>06/12/2020</Text>
                   <Text style = {{marginLeft:30,fontSize:20}}>XX Hosptial</Text>
-                  <Icon
+                  {/* <Icon
                   name="right"
                   size={24}
                   color="black"
                   style={{ marginLeft:30}}
-                 />
+                 /> */}
                   
                 </Block>
               </Block>
               <Block flex style={styles.information}>
 
 
-                <Block style={{flexDirection:  'row',backgroundColor:"#B9EDC4",height:45, paddingTop:7}}>
+                <Block style={styles.boxUse}>
                 <Icon
                   name="pluscircle"
                   size={30}
                   color="black"
-                  style={{ marginLeft:10}}
+                  style={{ marginLeft:10,marginTop:10}}
                  />
 
-                    <Text style ={{fontSize:20,marginLeft:30}}>My Medicare</Text>
-                    <Text style ={{fontSize:20,marginLeft:30}}>Verified</Text>
+                    <Text style ={{fontSize:20,marginLeft:30,marginTop:12}}>My Insurance</Text>
+                   
                     <Icon
                   name="right"
                   size={30}
                   color="black"
-                  style={{ marginLeft:10}}
+                  style={{ marginLeft:100,marginTop:10}}
                  />
 
                 </Block>
 
-
+{/* 
                 <Block style={styles.boxUse}>
                 <Icon
                   name="heart"
@@ -159,7 +159,7 @@ class Profile extends React.Component {
                   style={{ marginLeft:40}}
                  />
 
-                </Block>
+                </Block> */}
 
 
                 <Block style={styles.boxUse}>
@@ -167,21 +167,21 @@ class Profile extends React.Component {
                   name="capsules"
                   size={30}
                   color="black"
-                  style={{ marginLeft:10}}
+                  style={{ marginLeft:10,marginTop:10}}
                  />
 
-                    <Text style ={{fontSize:20,marginLeft:30}}>My Medicare</Text>
-                    <Text style ={{fontSize:20,marginLeft:30}}>Verified</Text>
-                    <Icon
+                    <Text style ={{fontSize:20,marginLeft:30,marginTop:12}}>My Medicare</Text>
+                    <Text style ={{fontSize:20,marginLeft:30,marginTop:12}}>Verified</Text>
+                    {/* <Icon
                   name="right"
                   size={30}
                   color="black"
                   style={{ marginLeft:10}}
-                 />
+                 /> */}
 
                 </Block>
 
-
+{/* 
                 <Block style={styles.boxUse}>
                 <Icon2
                   name="file-medical"
@@ -199,7 +199,7 @@ class Profile extends React.Component {
                   style={{ marginLeft:65}}
                  />
 
-                </Block>
+                </Block> */}
 
 
                 <Block style={styles.boxUse}>
@@ -207,16 +207,16 @@ class Profile extends React.Component {
                   name="history"
                   size={30}
                   color="black"
-                  style={{ marginLeft:10}}
+                  style={{ marginLeft:10,marginTop:10}}
                  />
 
-                    <Text style ={{fontSize:20,marginLeft:30}}>Appointment History</Text>
+                    <Text style ={{fontSize:20,marginLeft:30,marginTop:12}}>Appointment History</Text>
                  
                     <Icon
                   name="right"
                   size={30}
                   color="black"
-                  style={{ marginLeft:30}}
+                  style={{ marginLeft:30,marginTop:12}}
                  />
 
                 </Block>
@@ -276,15 +276,15 @@ const styles = StyleSheet.create({
   information:{
     
    // backgroundColor:"yellow",
-    marginTop:20,
+    marginTop:10,
     flexDirection:  'column',
   },
   boxUse: {
     flexDirection:  'row', 
     backgroundColor:"#B9EDC4",
-     marginTop:10,
+     marginTop:15,
      paddingTop:7,
-     height:45
+     height:70
   },
 
   avatarContainer: {
