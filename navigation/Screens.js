@@ -11,6 +11,7 @@ import Onboarding from "../screens/Onboarding";
 import Booking from "../screens/Booking";
 import Pro from "../screens/Pro";
 import Profile from "../screens/Profile";
+import uploadProfile from "../screens/uploadProfile";
 import Register from "../screens/Register";
 import Elements from "../screens/Elements";
 import Articles from "../screens/Articles";
@@ -117,6 +118,26 @@ function ProfileStack(props) {
           headerTransparent: true
         }}
       />
+
+      <Stack.Screen
+        name="uploadProfile"
+        component={uploadProfile}
+        options={{
+          header: ({ navigation, scene }) => (
+            <Header
+              transparent
+              white
+              title=""
+              navigation={navigation}
+              scene={scene}
+            />
+          ),
+          cardStyle: { backgroundColor: "#FFFFFF" },
+          headerTransparent: true
+        }}
+      />
+
+      
       
     </Stack.Navigator>
   );
@@ -290,6 +311,31 @@ function TranslateStack(props) {
       <Stack.Screen
         name="Translate"
         component={Translate}
+        options={{
+          header: ({ navigation, scene }) => (
+            <Header
+              transparent
+              white
+              title=""
+              navigation={navigation}
+              scene={scene}
+            />
+          ),
+          cardStyle: { backgroundColor: "#FFFFFF" },
+          headerTransparent: true
+        }}
+      />
+      
+    </Stack.Navigator>
+  );
+}
+
+function uploadProfileStack(props) {
+  return (
+    <Stack.Navigator initialRouteName="uploadProfile" mode="card" headerMode="screen">
+      <Stack.Screen
+        name="uploadProfile"
+        component={uploadProfile}
         options={{
           header: ({ navigation, scene }) => (
             <Header

@@ -9,7 +9,7 @@ import {
   TouchableWithoutFeedback
 
 } from "react-native";
-import { Block, Text, theme,NavBar,Input  } from "galio-framework";
+import { Block, Text, theme,NavBar,Input,Button  } from "galio-framework";
 import { withNavigation } from '@react-navigation/compat';
 import { Header} from "../components";
 import { Images } from "../constants";
@@ -18,6 +18,8 @@ import { HeaderHeight } from "../constants/utils";
 import Icon from 'react-native-vector-icons/AntDesign';
 import Icon2 from 'react-native-vector-icons/FontAwesome5';
 import Icon3 from 'react-native-vector-icons/Entypo';
+import * as SQLite from "expo-sqlite";
+import  {DeviceEventEmitter} from 'react-native';
 
 
 
@@ -26,8 +28,55 @@ const { width, height } = Dimensions.get("screen");
 const thumbMeasure = (width - 48 - 32) / 3;
 
 class Profile extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+     
+     imageUri:"aaaa", 
+     Refresh:false,
+    };
+    
+
+  }
+
+  RefreshPage=()=>{
+    const{Refresh}=this.state
+    this.setState({Refresh:true})
+  }
+  
   render() {
     const { navigation } = this.props;
+    const{imageUri,Refresh} = this.state;
+    //数据库操作
+    const db = SQLite.openDatabase("db.DECO3801");
+    db.transaction((tx) => {
+      tx.executeSql(
+        "create table if not exists ProfileImage (id integer primary key not null, phone text, uri text);"
+      );
+
+      
+      tx.executeSql("select uri from ProfileImage where phone = ?", 
+      [test],
+       (_, result) =>{
+          var len = result.rows.length;
+          if(len>0){
+           
+            //????
+            this.setState({imageUri:result.rows.item(len-1).uri})
+            
+
+            
+          } 
+          
+       }
+         
+  
+        );
+      
+    });
+
+
     return (
       
       <Block flex style={styles.profile}>
@@ -56,11 +105,13 @@ class Profile extends React.Component {
              
 
                 <Block style={styles.avatarContainer}>
-                  <Image
+                  {/* <Image
                     source={require("../assets/imgs/user.png")}
                     style={styles.avatar}
-                  />
-
+                  /> */}
+                  
+                  <Image source={{ uri: imageUri }} style={styles.avatar} />
+                  {/* <Text>{imageUri}</Text> */}
                       
                 </Block>
                 <Block style={{marginLeft:25, marginTop:23}}>
@@ -69,7 +120,7 @@ class Profile extends React.Component {
                   
                 </Block>
                 <Block style ={{marginLeft:20}}>
-                <TouchableWithoutFeedback onPress={() => navigation.navigate('Pro')}>
+                <TouchableWithoutFeedback onPress={() => navigation.navigate('uploadProfile')}>
                 <Icon
                   name="right"
                   size={30}
@@ -138,7 +189,8 @@ class Profile extends React.Component {
                   color="black"
                   style={{ marginLeft:100,marginTop:10}}
                  />
-
+                
+                
                 </Block>
 
 {/* 
@@ -221,7 +273,9 @@ class Profile extends React.Component {
 
                 </Block>
 
-
+                {/* <Button onPress={this.RefreshPage}>
+                    <Text>refearch page</Text>
+                </Button> */}
               </Block>
 
 

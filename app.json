@@ -7,6 +7,14 @@
       "ios",
       "android"
     ],
+    "plugins": [
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "The app accesses your photos to let you share them with your friends."
+        }
+      ]
+    ],
     "version": "1.7.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -27,3 +35,5 @@
     "description": "Argon React Native, based on Argon Design System. Coded by Creative Tim"
   }
 }
+
+
