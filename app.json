@@ -7,6 +7,12 @@
       "ios",
       "android"
     ],
+    "android": {
+      "package": "com.codingmechanic.mapcuny",
+      "config": {
+         "googleMaps": { "apiKey": "<AIzaSyAfObeXPii5-3IgCnOra0cR_ySd26t-vUQ>" }   
+      }
+   },
     "plugins": [
       [
         "expo-image-picker",
