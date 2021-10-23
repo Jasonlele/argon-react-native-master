@@ -73,7 +73,7 @@ class Register extends React.Component {
       phoneValid:true,
       loginValid:true,
       loginMessage:"",
-      isReapt:false,
+      isReapt:true,
       
     };
    
@@ -147,22 +147,14 @@ class Register extends React.Component {
           var len = result.rows.length;
           
           if(len>0){
-            console.log(JSON.stringify(result.rows))
-            this.setState({isReapt:true})
+         
+            alert("This number is already registered")
              
-          } 
-          
-       }
-        
-           
-          );
-          
-      });
-      
-      //检测是否重复注册手机号
-      if(isReapt){
+          } else{
 
-
+            console.log(JSON.stringify(result.rows))
+            this.setState({isReapt:false})
+            
         db.transaction((tx) => {
             
           tx.executeSql("INSERT INTO Users (phone, password, username) VALUES(?,?,?) ", 
@@ -181,10 +173,51 @@ class Register extends React.Component {
           ],
           { cancelable: false }
         );
-      }else{
 
-          alert("This number is already registered")
-      }
+
+
+
+
+
+
+
+
+
+          }
+          
+       }
+        
+           
+          );
+          
+      });
+      
+      //检测是否重复注册手机号
+      // if(isReapt){
+
+
+      //   db.transaction((tx) => {
+            
+      //     tx.executeSql("INSERT INTO Users (phone, password, username) VALUES(?,?,?) ", 
+      //     [phone,password,name],
+          
+            
+      //       );
+            
+      //   });
+
+      //   Alert.alert(
+      //     "congratulate",
+      //     "Welcome to join us! ! !",
+      //     [
+      //       { text: "OK", onPress: () => console.log("OK Pressed") }
+      //     ],
+      //     { cancelable: false }
+      //   );
+      // }else{
+
+      //     alert("This number is already registered")
+      // }
     
 
    
