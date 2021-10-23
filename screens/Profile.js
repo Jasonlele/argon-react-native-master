@@ -33,7 +33,7 @@ class Profile extends React.Component {
     super(props);
     this.state = {
      
-     imageUri:"aaaa", 
+     imageUri:"1111", 
      Refresh:false,
     };
     
@@ -48,6 +48,7 @@ class Profile extends React.Component {
   render() {
     const { navigation } = this.props;
     const{imageUri,Refresh} = this.state;
+    global.useUri = imageUri;
     //数据库操作
     const db = SQLite.openDatabase("db.DECO3801");
     db.transaction((tx) => {

@@ -9,6 +9,7 @@ export default function ImagePickerExample() {
  
     const [image, setImage] = useState(null);
     
+    
     useEffect(() => {
       (async () => {
         if (Platform.OS !== 'web') {
@@ -64,13 +65,33 @@ export default function ImagePickerExample() {
         setImage(result.uri);
       }
     };
+
+
+    
   
     return (
     
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Button title="Pick an image from camera roll" onPress={pickImage} />
-        {image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
+      
+      {/* {image && <Image source={{ uri: image}} style={{ width: 200, height: 200 }} />} */}
+      <View>
+      <Text>Old View:</Text>
+      <Image source={{ uri: useUri}} style={{ width: 200, height: 200 }} />
+      </View>
+        {/* <Text>{useUri}</Text> */}
+        <View style={{marginTop:20}}>
+        <Text>New View:</Text>
+        <Image source={{ uri: image}} style={{ width: 200, height: 200 }} />
 
+        <View style={{marginTop:20}}>
+
+        <Button title="Upload your avatar" onPress={pickImage} />
+
+
+        </View>
+      
+        
+        </View>
 
       </View>
     );
