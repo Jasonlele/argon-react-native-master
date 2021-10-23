@@ -1,253 +1,177 @@
-import React from "react";
-import {
-  ScrollView,
-  StyleSheet,
-  Image,
-  TouchableWithoutFeedback,
-  ImageBackground,
-  Dimensions
-} from "react-native";
-//galio
-import { Block, Text, theme } from "galio-framework";
-//argon
-import { articles, Images, argonTheme } from "../constants/";
-import { Card } from "../components/";
+import React from 'react';
+import { Dimensions, StyleSheet, Text, View, Image } from 'react-native';
 
-const { width } = Dimensions.get("screen");
+import { MapView, Permissions } from 'expo'
+import Polyline from '@mapbox/polyline'
 
-const thumbMeasure = (width - 48 - 32) / 3;
-const cardWidth = width - theme.SIZES.BASE * 2;
-const categories = [
-  {
-    title: "Music Album",
-    description:
-      "Rock music is a genre of popular music. It developed during and after the 1960s in the United Kingdom.",
-    image:
-      "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?fit=crop&w=840&q=80",
-    price: "$125"
-  },
-  {
-    title: "Events",
-    description:
-      "Rock music is a genre of popular music. It developed during and after the 1960s in the United Kingdom.",
-    image:
-      "https://images.unsplash.com/photo-1543747579-795b9c2c3ada?fit=crop&w=840&q=80",
-    price: "$35"
+import { Marker } from 'react-native-maps'
+
+const locations = require('../assets/map/location.json')
+const { width, height } = Dimensions.get('screen')
+
+export default class App extends React.Component {
+  state = {
+    latitude: null,
+    longitude: null,
+    locations: locations
   }
-];
 
-class Articles extends React.Component {
-  renderProduct = (item, index) => {
-    const { navigation } = this.props;
+  async componentDidMount() {
+    const { status } = await Permissions.getAsync(Permissions.LOCATION)
 
+    if (status !== 'granted') {
+      const response = await Permissions.askAsync(Permissions.LOCATION)
+    }
+    navigator.geolocation.getCurrentPosition(
+      ({ coords: { latitude, longitude } }) => this.setState({ latitude, longitude }, this.mergeCoords),
+      (error) => console.log('Error:', error)
+    )
+
+    const { locations: [ sampleLocation ] } = this.state
+
+    this.setState({
+      desLatitude: sampleLocation.coords.latitude,
+      desLongitude: sampleLocation.coords.longitude
+    }, this.mergeCoords)
+  }
+
+  mergeCoords = () => {
+    const {
+      latitude,
+      longitude,
+      desLatitude,
+      desLongitude
+    } = this.state
+
+    const hasStartAndEnd = latitude !== null && desLatitude !== null
+
+    if (hasStartAndEnd) {
+      const concatStart = `${latitude},${longitude}`
+      const concatEnd = `${desLatitude},${desLongitude}`
+      this.getDirections(concatStart, concatEnd)
+    }
+  }
+
+  async getDirections(startLoc, desLoc) {
+    try {
+      const resp = await fetch(`https://maps.googleapis.com/maps/api/directions/json?origin=${startLoc}&destination=${desLoc}`)
+      const respJson = await resp.json();
+      const response = respJson.routes[0]
+      const distanceTime = response.legs[0]
+      const distance = distanceTime.distance.text
+      const time = distanceTime.duration.text
+      const points = Polyline.decode(respJson.routes[0].overview_polyline.points);
+      const coords = points.map(point => {
+        return {
+          latitude: point[0],
+          longitude: point[1]
+        }
+      })
+      this.setState({ coords, distance, time })
+    } catch(error) {
+      console.log('Error: ', error)
+    }
+  }
+
+  onMarkerPress = location => () => {
+    const { coords: { latitude, longitude } } = location
+    this.setState({
+      destination: location,
+      desLatitude: latitude,
+      desLongitude: longitude
+    }, this.mergeCoords)
+  }
+
+  renderMarkers = () => {
+    const { locations } = this.state
     return (
-      <TouchableWithoutFeedback
-        style={{ zIndex: 3 }}
-        key={`product-${item.title}`}
-        onPress={() => navigation.navigate("Pro", { product: item })}
-      >
-        <Block center style={styles.productItem}>
-          <Image
-            resizeMode="cover"
-            style={styles.productImage}
-            source={{ uri: item.image }}
-          />
-          <Block center style={{ paddingHorizontal: theme.SIZES.BASE }}>
-            <Text
-              center
-              size={16}
-              color={theme.COLORS.MUTED}
-              style={styles.productPrice}
-            >
-              {item.price}
-            </Text>
-            <Text center size={34}>
-              {item.title}
-            </Text>
-            <Text
-              center
-              size={16}
-              color={theme.COLORS.MUTED}
-              style={styles.productDescription}
-            >
-              {item.description}
-            </Text>
-          </Block>
-        </Block>
-      </TouchableWithoutFeedback>
-    );
-  };
-
-  renderCards = () => {
-    return (
-      <Block flex style={styles.group}>
-        <Text bold size={16} style={styles.title}>
-          Cards
-        </Text>
-        <Block flex>
-          <Block style={{ paddingHorizontal: theme.SIZES.BASE }}>
-            <Card item={articles[0]} horizontal />
-            <Block flex row>
-              <Card
-                item={articles[1]}
-                style={{ marginRight: theme.SIZES.BASE }}
+      <View>
+        {
+          locations.map((location, idx) => {
+            const {
+              coords: { latitude, longitude }
+            } = location
+            return (
+              <Marker
+                key={idx}
+                coordinate={{ latitude, longitude }}
+                onPress={this.onMarkerPress(location)}
               />
-              <Card item={articles[2]} />
-            </Block>
-            <Card item={articles[4]} full />
-            <Block flex card shadow style={styles.category}>
-              <ImageBackground
-                source={{ uri: Images.Products["View article"] }}
-                style={[
-                  styles.imageBlock,
-                  { width: width - theme.SIZES.BASE * 2, height: 252 }
-                ]}
-                imageStyle={{
-                  width: width - theme.SIZES.BASE * 2,
-                  height: 252
-                }}
-              >
-                <Block style={styles.categoryTitle}>
-                  <Text size={18} bold color={theme.COLORS.WHITE}>
-                    View article
-                  </Text>
-                </Block>
-              </ImageBackground>
-            </Block>
-          </Block>
-          <Block flex style={{ marginTop: theme.SIZES.BASE / 2 }}>
-            <ScrollView
-              horizontal={true}
-              pagingEnabled={true}
-              decelerationRate={0}
-              scrollEventThrottle={16}
-              snapToAlignment="center"
-              showsHorizontalScrollIndicator={false}
-              snapToInterval={cardWidth + theme.SIZES.BASE * 0.375}
-              contentContainerStyle={{
-                paddingHorizontal: theme.SIZES.BASE / 2
-              }}
-            >
-              {categories &&
-                categories.map((item, index) =>
-                  this.renderProduct(item, index)
-                )}
-            </ScrollView>
-          </Block>
-        </Block>
-      </Block>
-    );
-  };
-
-  renderAlbum = () => {
-    const { navigation } = this.props;
-
-    return (
-      <Block
-        flex
-        style={[styles.group, { paddingBottom: theme.SIZES.BASE * 5 }]}
-      >
-        <Text bold size={16} style={styles.title}>
-          Album
-        </Text>
-        <Block style={{ marginHorizontal: theme.SIZES.BASE * 2 }}>
-          <Block flex right>
-            <Text
-              size={12}
-              color={theme.COLORS.PRIMARY}
-              onPress={() => navigation.navigate("Home")}
-            >
-              View All
-            </Text>
-          </Block>
-          <Block
-            row
-            space="between"
-            style={{ marginTop: theme.SIZES.BASE, flexWrap: "wrap" }}
-          >
-            {Images.Viewed.map((img, index) => (
-              <Block key={`viewed-${img}`} style={styles.shadow}>
-                <Image
-                  resizeMode="cover"
-                  source={{ uri: img }}
-                  style={styles.albumThumb}
-                />
-              </Block>
-            ))}
-          </Block>
-        </Block>
-      </Block>
-    );
-  };
+            )
+          })
+        }
+      </View>
+    )
+  }
 
   render() {
-    return (
-      <Block flex center>
-        <ScrollView
-          showsVerticalScrollIndicator={false}
+    const {
+      time,
+      coords,
+      distance,
+      latitude,
+      longitude,
+      destination
+    } = this.state
+
+    if (latitude) {
+      return (
+        <MapView
+          showsUserLocation
+          style={{ flex: 1 }}
+          initialRegion={{
+            latitude,
+            longitude,
+            latitudeDelta: 0.0922,
+            longitudeDelta: 0.0421
+          }}
         >
-          {this.renderCards()}
-          {this.renderAlbum()}
-        </ScrollView>
-      </Block>
-    );
+        <View
+          style={{
+            width,
+            paddingTop: 10,
+            alignSelf: 'center',
+            alignItems: 'center',
+            height: height * 0.15,
+            backgroundColor: 'white',
+            justifyContent: 'flex-end',
+          }}>
+          <Text style={{ fontWeight: 'bold' }}>Estimated Time: {time}</Text>
+          <Text style={{ fontWeight: 'bold' }}>Estimated Distance: {distance}</Text>
+        </View>
+        {this.renderMarkers()}
+        <MapView.Polyline
+          strokeWidth={2}
+          strokeColor="red"
+          coordinates={coords}
+        />
+        <Image
+          source={{ uri: destination && destination.image_url }}
+          style={{
+            flex: 1,
+            width: width * 0.95,
+            alignSelf: 'center',
+            height: height * 0.15,
+            position: 'absolute',
+            bottom: height * 0.05
+          }}
+        />
+      </MapView>
+      );
+    }
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <Text>We need your permission!</Text>
+      </View>
+    )
   }
 }
 
 const styles = StyleSheet.create({
-  title: {
-    paddingBottom: theme.SIZES.BASE,
-    paddingHorizontal: theme.SIZES.BASE * 2,
-    marginTop: 22,
-    color: argonTheme.COLORS.HEADER
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
-  group: {
-    paddingTop: theme.SIZES.BASE
-  },
-  albumThumb: {
-    borderRadius: 4,
-    marginVertical: 4,
-    alignSelf: "center",
-    width: thumbMeasure,
-    height: thumbMeasure
-  },
-  category: {
-    backgroundColor: theme.COLORS.WHITE,
-    marginVertical: theme.SIZES.BASE / 2,
-    borderWidth: 0
-  },
-  categoryTitle: {
-    height: "100%",
-    paddingHorizontal: theme.SIZES.BASE,
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
-    justifyContent: "center",
-    alignItems: "center"
-  },
-  imageBlock: {
-    overflow: "hidden",
-    borderRadius: 4
-  },
-  productItem: {
-    width: cardWidth - theme.SIZES.BASE * 2,
-    marginHorizontal: theme.SIZES.BASE,
-    shadowColor: "black",
-    shadowOffset: { width: 0, height: 7 },
-    shadowRadius: 10,
-    shadowOpacity: 0.2
-  },
-  productImage: {
-    width: cardWidth - theme.SIZES.BASE,
-    height: cardWidth - theme.SIZES.BASE,
-    borderRadius: 3
-  },
-  productPrice: {
-    paddingTop: theme.SIZES.BASE,
-    paddingBottom: theme.SIZES.BASE / 2
-  },
-  productDescription: {
-    paddingTop: theme.SIZES.BASE
-    // paddingBottom: theme.SIZES.BASE * 2,
-  }
 });
-
-export default Articles;
