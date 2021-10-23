@@ -73,6 +73,7 @@ class Register extends React.Component {
       phoneValid:true,
       loginValid:true,
       loginMessage:"",
+      isReapt:false,
       
     };
    
@@ -120,6 +121,7 @@ class Register extends React.Component {
     const {phone} = this.state;
     const{password} = this.state;
     const{name} = this.state;
+    const{isReapt} = this.state;
     const { navigation } = this.props;
     const phoneValid=validator.ValidatePhone(phone);
     if(!phoneValid){
@@ -136,25 +138,54 @@ class Register extends React.Component {
     }else{
       //手机号有效,执行插值操作
       const db = SQLite.openDatabase("db.DECO3801");
+
       db.transaction((tx) => {
     
-        tx.executeSql("INSERT INTO Users (phone, password, username) VALUES(?,?,?) ", 
-        [phone,password,name],
+        tx.executeSql("select * from Users where phone = ?", 
+        [phone],
+        (_, result) =>{
+          var len = result.rows.length;
+          
+          if(len>0){
+            console.log(JSON.stringify(result.rows))
+            this.setState({isReapt:true})
+             
+          } 
+          
+       }
         
            
           );
           
       });
+      
+      //检测是否重复注册手机号
+      if(isReapt){
 
-      Alert.alert(
-        "congratulate",
-        "Welcome to join us! ! !",
-        [
-          { text: "OK", onPress: () => console.log("OK Pressed") }
-        ],
-        { cancelable: false }
-    );
 
+        db.transaction((tx) => {
+            
+          tx.executeSql("INSERT INTO Users (phone, password, username) VALUES(?,?,?) ", 
+          [phone,password,name],
+          
+            
+            );
+            
+        });
+
+        Alert.alert(
+          "congratulate",
+          "Welcome to join us! ! !",
+          [
+            { text: "OK", onPress: () => console.log("OK Pressed") }
+          ],
+          { cancelable: false }
+        );
+      }else{
+
+          alert("This number is already registered")
+      }
+    
 
    
   }
