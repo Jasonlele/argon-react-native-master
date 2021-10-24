@@ -153,38 +153,40 @@ class Booking extends React.Component {
       
     });
      //删除表，请一定要注释
-    // db.transaction((tx) => {
-    //   tx.executeSql(
-    //     "DROP TABLE Doctor;"
-    //   );
-    //   // console.log(JSON.stringify(db))
+     /*
+     db.transaction((tx) => {
+       tx.executeSql(
+         "DROP TABLE Doctor;"
+       );
+       // console.log(JSON.stringify(db))
     
-    // });
+     });*/
 
     //执行插值操作
-    // db.transaction((tx) => {
-    //   tx.executeSql(
-    //     "INSERT INTO Doctor (name, hostipal, date, time) VALUES('bruce','aaa','2021-10-24', '12:00')"
-    //   );
-    //   tx.executeSql(
-    //     "INSERT INTO Doctor (name, hostipal, date, time) VALUES('Tom','bbb','2021-10-25', '12:00')"
-    //   );
-    //   tx.executeSql(
+    
+    //  db.transaction((tx) => {
+    //    tx.executeSql(
+    //      "INSERT INTO Doctor (name, hostipal, date, time) VALUES('bruce','aaa','2021-10-24', '12:00')"
+    //    );
+    //    tx.executeSql(
+    //      "INSERT INTO Doctor (name, hostipal, date, time) VALUES('Tom','bbb','2021-10-25', '12:00')"
+    //    );
+    //    tx.executeSql(
     //     "INSERT INTO Doctor (name, hostipal, date, time) VALUES('Carlos','ccc','2021-10-26', '12:00')"
-    //   );
+    //    );
 
 
-    //   tx.executeSql("select * from Doctor", 
-    //   [],
-    //    (_, result) =>{
+    //    tx.executeSql("select * from Doctor", 
+    //    [],
+    //     (_, result) =>{
         
-    //     console.log(JSON.stringify(result.rows))
+    //      console.log(JSON.stringify(result.rows))
           
-    //    }
+    //     }
         
-    //     );
+    //      );
       
-    // });
+    //  });
 
 
     return (

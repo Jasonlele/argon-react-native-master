@@ -38,11 +38,5 @@ export default [
     cta: 'Translate', 
     horizontal: true
   },
-  {
-    title: 'Medical Insurance',
-    image: 'http://81.68.132.232/wp-content/uploads/2021/09/3.png',
-    cta: 'Pro', 
-    horizontal: true
-  },
   
 ];

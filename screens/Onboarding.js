@@ -147,6 +147,37 @@ class Onboarding extends React.Component {
       );
       
     });
+
+
+/* HEAD
+
+   // 执行插值操作并打印整个表，每次刷新都会执行，注意不要重复插值
+    // db.transaction((tx) => {
+    //   tx.executeSql(
+    //     "INSERT INTO Users (phone, password, username) VALUES('111','12345','yyf')"
+    //   );
+
+    //   tx.executeSql(
+    //     "INSERT INTO Users (phone, password, username) VALUES('222','12345', 'wxj')"
+    //   );
+
+    //   tx.executeSql("select * from Users", 
+    //   [],
+    //    (_, result) =>{
+        
+    //     console.log(JSON.stringify(result.rows))
+          
+    //    }
+        
+    //     );
+      
+    // });
+
+
+
+
+
+*/
     return (
       <Block flex style={styles.container}>
         <StatusBar hidden />

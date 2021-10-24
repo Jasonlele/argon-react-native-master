@@ -24,23 +24,12 @@ const BellButton = ({isWhite, style, navigation}) => (
 );
 
 const BasketButton = ({isWhite, style, navigation}) => (
-  <TouchableOpacity style={[styles.button, style]} onPress={() => navigation.navigate('Pro')}>
+  <TouchableOpacity style={[styles.button, style]} onPress={() => navigation.navigate('Profile')}>
     <Icon
       family="Feather"
       size={16}
       name="user"
       color={argonTheme.COLORS[isWhite ? 'WHITE' : 'ICON']}
-    />
-  </TouchableOpacity>
-);
-
-const SearchButton = ({isWhite, style, navigation}) => (
-  <TouchableOpacity style={[styles.button, style]} onPress={() => navigation.navigate('Pro')}>
-    <Icon
-      size={16}
-      family="Galio"
-      name="search-zoom-in"
-      color={theme.COLORS[isWhite ? 'WHITE' : 'ICON']}
     />
   </TouchableOpacity>
 );
@@ -107,17 +96,6 @@ class Header extends React.Component {
   }
   renderSearch = () => {
     const { navigation } = this.props;
-    return (
-      <Input
-        right
-        color="black"
-        style={styles.search}
-        placeholder="What are you looking for?"
-        placeholderTextColor={'#8898AA'}
-        onFocus={() => navigation.navigate('Pro')}
-        iconContent={<Icon size={16} color={theme.COLORS.MUTED} name="search-zoom-in" family="ArgonExtra" />}
-      />
-    );
   }
   renderOptions = () => {
     const { navigation, optionLeft, optionRight } = this.props;
