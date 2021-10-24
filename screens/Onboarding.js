@@ -32,7 +32,6 @@ class Onboarding extends React.Component {
       loginValid:true,
       loginMessage:"",
       Username:""
-      
     };
     db = SQLite.openDatabase("db.DECO3801");
 
@@ -98,9 +97,7 @@ class Onboarding extends React.Component {
            
         } else{
           alert("Wrong account or password")
-        }
-       
-        
+        }     
      }
        
 
@@ -115,22 +112,13 @@ class Onboarding extends React.Component {
             //????
             this.setState({Username:result.rows.item(0).username})
             navigation.navigate("App")
-
-            
-          } 
-          
+          }        
        }
-         
-  
         );
       
   });
 
   }
-
-
-  
-
 
   render() {
     const { navigation } = this.props;
@@ -159,6 +147,7 @@ class Onboarding extends React.Component {
       
     });
 
+<<<<<<< HEAD
 
    // 执行插值操作并打印整个表，每次刷新都会执行，注意不要重复插值
     // db.transaction((tx) => {
@@ -186,6 +175,8 @@ class Onboarding extends React.Component {
 
 
 
+=======
+>>>>>>> ff457e6d27e06af2cd18c3ea05d195fa2bc47b66
     return (
       <Block flex style={styles.container}>
         <StatusBar hidden />
