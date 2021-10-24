@@ -27,7 +27,9 @@ class Emergency extends React.Component{
 
         <Block safe flex middle>
           <Text style = {styles.headerText}>Attention</Text>
-          <Text style = {styles.secondText}>This will call for help</Text>
+          <Text style = {styles.secondText}>Press the button </Text>
+          <Text style = {styles.secondText}>will call for help </Text>
+          
           <Button color="error" style = {styles.button} onPress={()=>{Linking.openURL('tel:000');}}>
             <Text style = {styles.buttonText}>000</Text>
           </Button>
@@ -58,7 +60,7 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontWeight: "bold",
     color: "#000000",
-    marginBottom: 50,
+    marginBottom: 20,
   }
 });
 
