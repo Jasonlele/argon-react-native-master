@@ -12,6 +12,7 @@ import Booking from "../screens/Booking";
 import Pro from "../screens/Pro";
 import Profile from "../screens/Profile";
 import uploadProfile from "../screens/uploadProfile";
+import BookingDetail from "../screens/BookingDetail";
 import Register from "../screens/Register";
 import Elements from "../screens/Elements";
 import Articles from "../screens/Articles";
@@ -300,6 +301,24 @@ function BookingStack(props) {
           headerTransparent: true
         }}
       />
+
+    <Stack.Screen
+        name="BookingDetail"
+        component={BookingDetail}
+        options={{
+          header: ({ navigation, scene }) => (
+            <Header
+              transparent
+              white
+              title=""
+              navigation={navigation}
+              scene={scene}
+            />
+          ),
+          cardStyle: { backgroundColor: "#FFFFFF" },
+          headerTransparent: true
+        }}
+      />
       
     </Stack.Navigator>
   );
@@ -357,6 +376,33 @@ function uploadProfileStack(props) {
 
 
 
+function BookingDetailStack(props) {
+  return (
+    <Stack.Navigator initialRouteName="bookingDetail" mode="card" headerMode="screen">
+      <Stack.Screen
+        name="BookingDetail"
+        component={BookingDetail}
+        options={{
+          header: ({ navigation, scene }) => (
+            <Header
+              transparent
+              white
+              title=""
+              navigation={navigation}
+              scene={scene}
+            />
+          ),
+          cardStyle: { backgroundColor: "#FFFFFF" },
+          headerTransparent: true
+        }}
+      />
+      
+    </Stack.Navigator>
+  );
+}
+
+
+
 function AppStack(props) {
   return (
     <Drawer.Navigator
@@ -389,7 +435,7 @@ function AppStack(props) {
       initialRouteName="Home"
     >
       <Drawer.Screen name="Home" component={HomeStack} />
-      <Drawer.Screen name="Booking" component={Booking} />
+      <Drawer.Screen name="Booking" component={BookingStack} />
       <Drawer.Screen name="Profile" component={ProfileStack} />
       <Drawer.Screen name="Account" component={Register} />
       <Drawer.Screen name="Emergency" component={Emergency} />

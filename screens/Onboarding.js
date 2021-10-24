@@ -139,6 +139,8 @@ class Onboarding extends React.Component {
 
     global.testyyf = Username;
     const db = SQLite.openDatabase("db.DECO3801");
+
+    
      //删除表，请一定要注释
     // db.transaction((tx) => {
     //   tx.executeSql(
@@ -179,6 +181,8 @@ class Onboarding extends React.Component {
     //     );
       
     // });
+
+
 
 
 
