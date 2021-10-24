@@ -38,14 +38,8 @@ class Home extends React.Component {
           <Block style={{flex:1,marginRight: theme.SIZES.BASE}}></Block>
           <Block style={{flex:1, marginRight: theme.SIZES.BASE}}></Block>
           </Block>
-          <Text style={{fontWeight: 'bold', fontSize:20, marginLeft:10}}>After </Text>
-          <View style={{ backgroundColor:'black',borderWidth:0.5 }}>
-          </View>
-          <Block  flex row>
-          <Card item={articles[7]} style={{ marginRight: theme.SIZES.BASE }} />
-          <Block style={{flex:1, marginRight: theme.SIZES.BASE}}></Block>
-          <Block style={{flex:1,marginRight: theme.SIZES.BASE}}></Block>
-          </Block>
+
+          
         
       
         </Block>
