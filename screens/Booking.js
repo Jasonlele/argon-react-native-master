@@ -15,6 +15,8 @@ import { Button, Icon, Input } from "../components";
 import { Images, argonTheme } from "../constants";
 import MapView from 'react-native-maps';
 import * as SQLite from "expo-sqlite";
+import { Header} from "../components";
+import { HeaderHeight } from "../constants/utils";
 
 const { width, height } = Dimensions.get("screen");
 const createOneButtonAlert = () =>
@@ -26,6 +28,11 @@ const createOneButtonAlert = () =>
     ],
     { cancelable: false }
 );
+
+var data = require('../assets/map/stations.json');
+for(var i = 0; i < data.length; i++) {
+  var obj = data[i];
+  }
 
 class Booking extends React.Component {
   // state={
@@ -51,7 +58,8 @@ class Booking extends React.Component {
     link:"",
     dateUse:"",
     firstSearchPageData: [],
-     
+    isLoading: true,
+      markers: data,
     };
   }
 
@@ -201,47 +209,49 @@ class Booking extends React.Component {
               <Block flex>
            
                 <Block>
-                  
-              <Block  style={{backgroundColor:"#D9E6F7", height:430, flexDirection: 'row',flexWrap: 'wrap'}}>
-              {firstSearchPageData.map((item) => {
-
-              
-          
-                return (
-                <Block>
-
-                  <Button
-                  
-                  color="warning"
-                  // style={{marginLeft:12}}
-                  size="large"
-                  onPress={() => navigation.navigate('BookingDetail', {jjw:item})}
-                  
-                  >
-                    {item}
-                    </Button>
-                   {/* <Text>{link}</Text> */}
-                    {/* <Image source={{uri:link}}style={{width:40,height:40}} /> */}
-                   
-                </Block>
-           
-                 
-                  
-                    
-                
-                )
-              })}
-
-            </Block>
-
-
-
-
-
-
-                
+                <Header
+ 
+             title="Booking"
+             back
+             optionLeft="Option 1"
+             optionRight="Option 2"
+             style={{marginBottom:2}}
+             navigation={this.props.navigation}
+             titleStyle = {{fontWeight: "bold", fontSize:30, marginLeft:35}} />
                     </Block>                    
                     <Block middle> 
+                    <MapView
+        style={{
+          marginTop: 20,
+          marginBottom:20,
+          width: width * 0.8,
+          height: height * 0.5
+        }}
+        initialRegion={{
+          latitude: -27.497,
+          longitude: 153.0025,
+          latitudeDelta: 0.0922,
+          longitudeDelta: 0.0421
+        }}
+      >
+        {this.state.markers.map((marker, index) => {
+     const coords = {
+         latitude: marker.latitude,
+         longitude: marker.longitude,
+     };
+
+     const metadata = `Status: ${marker.statusValue}`;
+
+     return (
+         <MapView.Marker
+            key={index}
+            coordinate={coords}
+            title={marker.HospitalName}
+            description={metadata}
+         />
+     );
+  })}
+      </MapView>
                       <View>
                         <View>
                           <Button color= "black" onPress={() => {this.setState({mode:"date",show:true})}} title="Choose date">
@@ -297,8 +307,8 @@ class Booking extends React.Component {
 
 const styles = StyleSheet.create({
   registerContainer: {
-    width: width * 0.9,
-    height: height * 0.875,
+    width: width ,
+    height: height * 0.95 ,
     backgroundColor: "#F4F5F7",
     borderRadius: 4,
     shadowColor: argonTheme.COLORS.BLACK,
