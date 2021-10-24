@@ -91,13 +91,13 @@ class Onboarding extends React.Component {
      (_, result) =>{
         var len = result.rows.length;
         console.log(JSON.stringify(result.rows))
-        if(len>0){
-          console.log(JSON.stringify(result.rows))
-          //????
+        // if(len>0){
+        //   console.log(JSON.stringify(result.rows))
+        //   //????
            
-        } else{
-          alert("Wrong account or password")
-        }     
+        // } else{
+        //   alert("Wrong account or password")
+        // }     
      }
        
 
@@ -112,7 +112,8 @@ class Onboarding extends React.Component {
             //????
             this.setState({Username:result.rows.item(0).username})
             navigation.navigate("App")
-          }        
+          }  
+          navigation.navigate("App")      
        }
         );
       
@@ -146,37 +147,6 @@ class Onboarding extends React.Component {
       );
       
     });
-
-<<<<<<< HEAD
-
-   // 执行插值操作并打印整个表，每次刷新都会执行，注意不要重复插值
-    // db.transaction((tx) => {
-    //   tx.executeSql(
-    //     "INSERT INTO Users (phone, password, username) VALUES('111','12345','yyf')"
-    //   );
-
-    //   tx.executeSql(
-    //     "INSERT INTO Users (phone, password, username) VALUES('222','12345', 'wxj')"
-    //   );
-
-    //   tx.executeSql("select * from Users", 
-    //   [],
-    //    (_, result) =>{
-        
-    //     console.log(JSON.stringify(result.rows))
-          
-    //    }
-        
-    //     );
-      
-    // });
-
-
-
-
-
-=======
->>>>>>> ff457e6d27e06af2cd18c3ea05d195fa2bc47b66
     return (
       <Block flex style={styles.container}>
         <StatusBar hidden />

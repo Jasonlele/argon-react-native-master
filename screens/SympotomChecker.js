@@ -4,7 +4,8 @@ import {
   StatusBar,
   Dimensions,
   ImageBackground,
-  View
+  View,
+  ScrollView
 } from "react-native";
 import { SearchBar } from 'react-native-elements';
 import { NavBar, Block, Text, theme, Button, DeckSwiper, Radio } from "galio-framework";
@@ -42,18 +43,60 @@ const customStyles = {
   currentStepLabelColor: '#fe7013'
 }
 
+
+const cold = ["Stuffed nose", "Runny nose", "Fever"]
+const Gastroenteritis = ["Diarrhea", "Vomiting", "Abdominal pain"]
+const Hypoglycemia = ["Hungry", "Sweating", "Feeling weak"]
+const Asthma = ["Hungry", "Chest tightness", "Chest tightness","Difficulty breathing"]
+const Rhinitis = ["Runny nose", "Stuffy nose", "Sneezing, Allergies"]
+const Pharyngitis = ["Sore throat", "Fever"]
+const Gastritis = ["Nausea, Vomiting", "Abdominal Distension","Loss of appetite", "Heartburn"]
+const Pneumonia = ["Hungry", "Sweating", "Feeling weak"]
+const Nephritis = ["Hematuria, Proteinuria", "Edema", "High blood pressure"]
+const Diabetes = ["Polyphagia", "Polydipsia", "Frequent urination",  "Weight loss"]
+const Meningitis = ["Fever", "Headache", "Stiff neck"]
+const Prostatitis = ["High fever", "Frequent urination", "Urgency", "Painful urination"]
+const Dermatitis = ["Itching", "Red skin","Rash"]
+const Conjunctivitis = ["Red eyes", "Pain", "Burning", "Itching"]
+const Foodpoisoning =["Abdominal pain", "Vomiting", "Diarrhea"]
 const PAGES = ['Page 1', 'Page 2', 'Page 3'];
+
+
+function unique(arr) {
+  if (!Array.isArray(arr)) {
+      console.log('type error!')
+      return
+  }
+  let res = []
+  for (let i = 0; i < arr.length; i++) {
+      if (res.indexOf(arr[i]) === -1) {
+          res.push(arr[i])
+      }
+  }
+  return res
+}
+const swiper = React.createRef();
 
 class SympotomChecker extends React.Component {
   constructor(props) {
     super(props);
+   const allItem =  unique(cold.concat([
+      ...Gastroenteritis,...Hypoglycemia,
+      ...Asthma,...Rhinitis,...Pharyngitis,...Gastritis,...Pneumonia,...Nephritis,...Diabetes,...Meningitis,...Prostatitis,...Dermatitis,...Conjunctivitis,...
+      Foodpoisoning
+   ]))
     this.state = {
+      result:[],
+      firsrPageSelected:'',
+      secondPageSelected:'',
+      allItem:allItem,
       currentPosition: 0,
+      pageIndex:0,
       adultInitialValue: true,
       childInitialValue: false,
       search: '',
-      firstPageData: ["Abdominal pain", "Blood in stool", "Chest pain"],
-      firstSearchPageData: ["Abdominal pain", "Blood in stool", "Chest pain"],
+      firstPageData: allItem,
+      firstSearchPageData: allItem,
       secondPageData1: ["please choose the symptom"],
       secondSearchPageData: [],
       thirdPageData: ["please choose the symptom and factor"],
@@ -79,6 +122,31 @@ class SympotomChecker extends React.Component {
   };
   
 
+   clickButton = (item)=>{
+     this.setState({firsrPageSelected:item})
+  }
+  secondClickButton = (item)=>{
+    this.setState({secondPageSelected:item})
+    let judge = [cold,Gastroenteritis,Hypoglycemia,
+      Asthma,Rhinitis,Pharyngitis,Gastritis,Pneumonia,Nephritis,Diabetes,Meningitis,Prostatitis,Dermatitis,Conjunctivitis,
+      Foodpoisoning]
+      const name = ["cold","Gastroenteritis","Hypoglycemia",
+      "Asthma","Rhinitis","Pharyngitis","Gastritis","Pneumonia","Nephritis","Diabetes","Meningitis","Prostatitis","Dermatitis","Conjunctivitis",
+      "Foodpoisoning"]
+      let tmp = []
+      for (let index = 0; index < judge.length; index++) {
+        const element = judge[index];
+        console.log(element);
+        console.log(this.state.firsrPageSelected,item);
+        console.log(element.includes(this.state.firsrPageSelected));
+
+        if(element.includes(this.state.firsrPageSelected) && element.includes(item)){
+          tmp.push(name[index])
+        }
+        
+      }
+      this.setState({result:tmp})
+ }
   render() {
     const {symptomCheck,currentPosition} = this.state;
     const db = SQLite.openDatabase("db.DECO3801");
@@ -127,6 +195,7 @@ class SympotomChecker extends React.Component {
       
     // });
 
+  
     return (
 
       
@@ -159,7 +228,7 @@ class SympotomChecker extends React.Component {
         
         <Block style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-around'}}>
           <Radio style={styles.radio} label="Adult Symptom" containerStyle={{ backgroundColor: "#B0C4DE", marginRight: 10 }} labelStyle={{ color: 'black' }} initialValue={this.state.adultInitialValue} name='a' color="primary" />
-          <Radio style={styles.radio} label="Child Symptom" containerStyle={{ backgroundColor: "#B0C4DE" }} labelStyle={{ color: 'black' }} initialValue={this.state.childInitialValue} name='a' color="info" />
+          <Radio style={styles.radio} label="Adult Symptom" containerStyle={{ backgroundColor: "#B0C4DE" }} labelStyle={{ color: 'black' }} initialValue={this.state.childInitialValue} name='a' color="info" />
         </Block>
 
         <Block>
@@ -171,22 +240,23 @@ class SympotomChecker extends React.Component {
         </Block>
        
         <Swiper
+           ref={swiper}
           style={{ flexGrow: 1 }}
           loop={false}
-          index={this.state.currentPosition}
+          index={this.state.pageIndex}
           autoplay={false}
           onIndexChanged={(page) => {
-            this.setState({ currentPosition: page });
+            // swiper.current.scrollTo(page);
+            this.setState({ currentPosition: page});
           }}
         >
           <View key={"page1"}>
-            <Block  style={{backgroundColor:"#D9E6F7", height:430, flexDirection: 'row',flexWrap: 'wrap'}}>
+          <ScrollView contentContainerStyle={{ paddingBottom: 30 }}>
+            <Block  style={{backgroundColor:"#D9E6F7", flexDirection: 'row',flexWrap: 'wrap'}}>
               {this.state.firstSearchPageData.map((item) => {
                 return (
                 
                 <Button
-                
-                  
                 //  key={item}
                 //   divider
                 //   centerElement={{
@@ -195,108 +265,45 @@ class SympotomChecker extends React.Component {
                 color="warning"
                 style={{marginLeft:12}}
                 // size="large"
-                  onPress={() => { 
-
-                    // this.setState({secondSearchPageData :['aaaa',item]})
-
-                    db.transaction((tx) => {
-    
-                      tx.executeSql("select factor from Sympotom where symptomName = ?", 
-                      [item],
-                       (_, result) =>{
-                          var len = result.rows.length;
-                          
-
-                          let result1=[]
-                          for(let i=0; i<len; i++){
-                              result1.push(result.rows.item(i).factor)
-                              console.log(JSON.stringify(result.rows.item(i).factor))
-
-                          }
-                          this.setState({secondSearchPageData :result1})
-
-                          //将这个变量设置为第一次选择的症状
-                          this.setState({symptomCheck:item})
-                          
-                        
-                          
-                          
-                       }
-                         
-                  
-                        );
-                        
-                    });
-
-
-                  }}
+                  onPress={this.clickButton.bind(this,item)}
                 
                 >
                   {item}
-                  </Button>
-                 
-
-                
-                
+                  </Button>   
                 
                 )
               })}
-
             </Block>
+            </ScrollView>
           </View>
-          <View key={"page2"} style={{backgroundColor:"#D9E6F7", height:430,flexDirection: 'row',flexWrap: 'wrap'}}>
-          {this.state.secondSearchPageData.map((item) => {
+          <View key={"page2"}>
+          <ScrollView contentContainerStyle={{ paddingBottom: 30 }}>
+            <Block  style={{backgroundColor:"#D9E6F7", flexDirection: 'row',flexWrap: 'wrap'}}>
+              {this.state.firstSearchPageData.map((item) => {
                 return (
                 
                 <Button
-                color="#50C7C7"
+                //  key={item}
+                //   divider
+                //   centerElement={{
+                //     primaryText: item,
+                //   }}
+                disabled={item==this.state.firsrPageSelected}
+                color={item==this.state.firsrPageSelected ? "success":"warning"}
                 style={{marginLeft:12}}
-                key={item}
-                  divider
-                  centerElement={{
-                    primaryText: item,
-                  }}
-                  onPress={() => { 
-                    // alert(item)
-                    db.transaction((tx) => {
-    
-                      tx.executeSql("select causes from Sympotom where symptomName = ? and factor = ?", 
-                      [symptomCheck,item],
-                       (_, result) =>{
-                          var len = result.rows.length;
-                        
-                          let result2=[]
-                          for(let i=0; i<len; i++){
-                              result2.push(result.rows.item(i).causes)
-                              console.log(JSON.stringify(result.rows.item(i).causes))
-
-                          }
-                          this.setState({ thirdPageData :result2})
-
-                    
-                          
-                       }
-                         
-                  
-                        );
-                        
-                    });
-
-                  }}
+                onPress={this.secondClickButton.bind(this,item)}
+                // size="large"
                 >
                   {item}
-
-                </Button>
-                
-                
-                
+                  </Button>   
                 
                 )
               })}
-            {/* <Text>{symptomCheck}</Text> */}
+            </Block>
+            </ScrollView>
           </View>
           <View key={"page3"} style={{backgroundColor:"#D9E6F7", height:430}}>
-          {this.state.thirdPageData.map((item) => {
+          {this.state.result.length>0 ? this.state.result.map((item) => {
                 return (
                 
                 <Button
@@ -304,12 +311,8 @@ class SympotomChecker extends React.Component {
                 size="large" 
                 color="success"
                 key={item}
-                  divider
-                  centerElement={{
-                    primaryText: item,
-                  }}
+        
                   onPress={() => { 
-                    alert(item)
                   }}
                 >
                   {item}
@@ -318,7 +321,28 @@ class SympotomChecker extends React.Component {
                 
                 
                 )
-              })}
+              }) : 
+              <Button
+
+              size="large" 
+              color="success"
+                onPress={() => { 
+                }}
+              >
+               <Text>Please find a doctor for advice</Text>
+                </Button>}
+                <Button
+
+            size="large" 
+            color="danger"
+              onPress={() => {
+                const { navigation } = this.props;
+                navigation.navigate("Booking")
+              }}
+            >
+            <Text>Booking a doctor now!</Text>
+              </Button>
+
           </View>
         </Swiper>
                 
