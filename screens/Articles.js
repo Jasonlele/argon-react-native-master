@@ -7,32 +7,19 @@ import {
 
 import MapView from 'react-native-maps';
 
+var data = require('../assets/map/stations.json');
+for(var i = 0; i < data.length; i++) {
+  var obj = data[i];
+  }
+  
 class Booking extends React.Component {
   constructor(props) {
     super(props);
   
     this.state = {
       isLoading: true,
-      markers: [],
+      markers: data,
     };
-  };
-
-  componentDidMount() {
-    this.fetchMarkerData();
-}
-
-  fetchMarkerData() {
-    fetch('https://feeds.citibikenyc.com/stations/stations.json')
-      .then((response) => response.json())
-      .then((responseJson) => {
-        this.setState({ 
-          isLoading: false,
-          markers: responseJson.stationBeanList, 
-        });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
   };
 
   render() {
@@ -42,13 +29,13 @@ class Booking extends React.Component {
           flex: 1
         }}
         initialRegion={{
-          latitude: 40.76727216,
-          longitude: -73.99392888,
+          latitude: -27.497,
+          longitude: 153.0025,
           latitudeDelta: 0.0922,
           longitudeDelta: 0.0421
         }}
       >
-        {this.state.isLoading ? null : this.state.markers.map((marker, index) => {
+        {this.state.markers.map((marker, index) => {
      const coords = {
          latitude: marker.latitude,
          longitude: marker.longitude,
@@ -60,7 +47,7 @@ class Booking extends React.Component {
          <MapView.Marker
             key={index}
             coordinate={coords}
-            title={marker.stationName}
+            title={marker.HospitalName}
             description={metadata}
          />
      );
