@@ -74,12 +74,7 @@ class Translate extends React.Component {
     const{unTranslateText,translatedText,name,link} = this.state;
 
     const db = SQLite.openDatabase("db.DECO3801");
-    db.transaction((tx) => {
-        tx.executeSql(
-          "create table if not exists DoctorImage (id integer primary key not null, nameuse text, imagelink text);"
-        );
-        
-      });
+   
     
     db.transaction((tx) => {
         tx.executeSql(

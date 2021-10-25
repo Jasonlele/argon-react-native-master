@@ -10,11 +10,12 @@ import {
   Image
 } from "react-native";
 import DateTimePicker from "@react-native-community/datetimepicker"
-import { Block, Text} from "galio-framework";
-import { Button, Icon, Input } from "../components";
+import { Block, Text, Button} from "galio-framework";
+import {Icon, Input } from "../components";
 import { Images, argonTheme } from "../constants";
 import MapView from 'react-native-maps';
 import * as SQLite from "expo-sqlite";
+import { Header} from "../components";
 
 const { width, height } = Dimensions.get("screen");
 const createOneButtonAlert = () =>
@@ -28,15 +29,7 @@ const createOneButtonAlert = () =>
 );
 
 class Booking extends React.Component {
-  // state={
-  //   obj:{
-  //       bookDay:"",
-  //       bookTime:"",  //预约
-  //   },
-  //   date:new Date(),//给日期控件用
-  //   mode:"date",
-  //   show:false //是否显示时间控件
-  // }
+ 
 
   constructor(props) {
     super(props);
@@ -50,7 +43,7 @@ class Booking extends React.Component {
     show:false, //是否显示时间控件
     link:"",
     dateUse:"",
-    firstSearchPageData: [],
+    firstSearchPageData: ['Choose an appointment time'],
      
     };
   }
@@ -114,15 +107,15 @@ class Booking extends React.Component {
     
      db.transaction((tx) => {
       // console.log("bbb")
-                      tx.executeSql("select name, hostipal, date from Doctor where date = ?", 
+                      tx.executeSql("select name, hostipal, date, department from Doctor where date = ?", 
                       [dateTime],
                        (_, result) =>{
                           var len = result.rows.length;                      
                           let result1=[]
                           for(let i=0; i<len; i++){
                               // result1.push(result.rows.item(i).date +"      "+ result.rows.item(i).name +"      "+ result.rows.item(i).hostipal)
-                              // console.log(JSON.stringify(result.rows.item(i).date))
-                              result1.push(result.rows.item(i).date +"      "+ result.rows.item(i).name +"      "+ result.rows.item(i).hostipal)
+                              console.log(JSON.stringify(result.rows.item(i).department))
+                              result1.push(result.rows.item(i).date +"      "+ result.rows.item(i).name +"      "+ result.rows.item(i).hostipal +"      "+ result.rows.item(i).department)
                           }
                           this.setState({firstSearchPageData :result1})
                           
@@ -148,15 +141,15 @@ class Booking extends React.Component {
     const db = SQLite.openDatabase("db.DECO3801");
     db.transaction((tx) => {
       tx.executeSql(
-        "create table if not exists Doctor (id integer primary key not null, name text, hostipal text, date text, time text);"
+        "create table if not exists Doctor (id integer primary key not null, name text, hostipal text, date text, time text, department text);"
       );
 
       tx.executeSql(
-        "create table if not exists ProfileImage (id integer primary key not null, phone text, uri text);"
+        "create table if not exists DoctorImage (id integer primary key not null, nameuse text, imagelink text);"
       );
       
     });
-     //删除表，请一定要注释
+     //删除医生表，请一定要注释
     // db.transaction((tx) => {
     //   tx.executeSql(
     //     "DROP TABLE Doctor;"
@@ -165,16 +158,16 @@ class Booking extends React.Component {
     
     // });
 
-    //执行插值操作
+    //执行医生插值操作
     // db.transaction((tx) => {
     //   tx.executeSql(
-    //     "INSERT INTO Doctor (name, hostipal, date, time) VALUES('bruce','aaa','2021-10-24', '12:00')"
+    //     "INSERT INTO Doctor (name, hostipal, date, time, department) VALUES('bruce','aaa','2021-10-24', '12:00', 'sss')"
     //   );
     //   tx.executeSql(
-    //     "INSERT INTO Doctor (name, hostipal, date, time) VALUES('Tom','bbb','2021-10-25', '12:00')"
+    //     "INSERT INTO Doctor (name, hostipal, date, time, department) VALUES('Tom','bbb','2021-10-25', '12:00', 'bbb')"
     //   );
     //   tx.executeSql(
-    //     "INSERT INTO Doctor (name, hostipal, date, time) VALUES('Carlos','ccc','2021-10-26', '12:00')"
+    //     "INSERT INTO Doctor (name, hostipal, date, time, department) VALUES('Carlos','ccc','2021-10-26', '12:00','mmmmm')"
     //   );
 
 
@@ -191,16 +184,24 @@ class Booking extends React.Component {
     // });
 
     
+       //删除照片表，请一定要注释
+    // db.transaction((tx) => {
+    //   tx.executeSql(
+    //     "DROP TABLE DoctorImage;"
+    //   );
+    //   // console.log(JSON.stringify(db))
+    
+    // });
 
 
     // 执行对照片表的插值操作
     //   db.transaction((tx) => {
     //   tx.executeSql(
-    //     "INSERT INTO DoctorImage (nameuse, imagelink) VALUES('2021-10-25      Tom      bbb', 'http://81.68.132.232/wp-content/uploads/2021/10/1-300x200.jpg')"
+    //     "INSERT INTO DoctorImage (nameuse, imagelink) VALUES('2021-10-25      Tom      bbb      bbb', 'http://81.68.132.232/wp-content/uploads/2021/10/1-300x200.jpg')"
     //   );
 
     //   tx.executeSql(
-    //     "INSERT INTO DoctorImage (nameuse, imagelink) VALUES('2021-10-26      Carlos      ccc', 'http://81.68.132.232/wp-content/uploads/2021/10/2-300x200.jpg')"
+    //     "INSERT INTO DoctorImage (nameuse, imagelink) VALUES('2021-10-26      Carlos      ccc      mmmmm', 'http://81.68.132.232/wp-content/uploads/2021/10/2-300x200.jpg')"
     //   );
 
     //   tx.executeSql("select * from DoctorImage", 
@@ -217,11 +218,20 @@ class Booking extends React.Component {
 
 
     return (
-      <Block flex middle>
-        <StatusBar hidden />
+      <Block>
+            <Header
+            
+            title="Booking"
+            back
+            optionLeft="Option 1"
+            optionRight="Option 2"
+            style={{marginBottom:2}}
+            navigation={this.props.navigation}
+            titleStyle = {{fontWeight: "bold", fontSize:22, marginLeft:35}} />
+       
         <ImageBackground
           source={Images.RegisterBackground}
-          style={{ width, height, zIndex: 1 }}
+          style={{ width, height }}
         >
           <Block safe flex middle>
             <Block style={styles.registerContainer}>
@@ -229,7 +239,7 @@ class Booking extends React.Component {
            
                 <Block>
                   
-              <Block  style={{backgroundColor:"#D9E6F7", height:430, flexDirection: 'row',flexWrap: 'wrap'}}>
+              <Block  style={{backgroundColor:"#D9E6F7", height:500, flexDirection: 'row',flexWrap: 'wrap'}}>
               {firstSearchPageData.map((item) => {
 
               
@@ -238,14 +248,18 @@ class Booking extends React.Component {
                 <Block key={item}>
 
                   <Button
-                  
-                  color="warning"
+                  style={{height:60}}
+                  color="info"
                   // style={{marginLeft:12}}
                   size="large"
                   onPress={() => navigation.navigate('BookingDetail', {jjw:item})}
                   key={item}
                   >
+                    <Text style={{color:'black',fontSize:16,fontWeight:'bold'}}>
+
                     {item}
+                    </Text>
+                   
                     </Button>
                    {/* <Text>{link}</Text> */}
                     {/* <Image source={{uri:link}}style={{width:40,height:40}} /> */}
@@ -271,8 +285,8 @@ class Booking extends React.Component {
                     <Block middle> 
                       <View>
                         <View>
-                          <Button color= "black" onPress={() => {this.setState({mode:"date",show:true})}} title="Choose date">
-                            <Text style= {{fontSize: 18, fontWeight: "bold", color: "#FFFFFF"}}>Booking Date</Text>
+                          <Button color= "black" onPress={() => {this.setState({mode:"date",show:true})}} title="Choose date" style ={{width:200,marginTop:30}}>
+                            <Text style= {{fontSize: 18, fontWeight: "bold", color: "#FFFFFF"}}>Choose Booking Date</Text>
                             </Button>
                           {show && (
                               <DateTimePicker
@@ -287,29 +301,9 @@ class Booking extends React.Component {
                           )}
                         </View>
                       </View>
-                      <View>
-                        {/* <View>
-                        <Button style = {{marginBottom: 20}} color= "black" onPress={() => {this.setState({mode:"time",show:true})}} title="Choose time">
-                            <Text style= {{fontSize: 18, fontWeight: "bold", color: "#FFFFFF"}}>Booking Time</Text>
-                            </Button>
-                          {show && (
-                              <DateTimePicker
-                              testID="dateTimePicker"
-                              value={date}
-                              mode= {mode}
-                              is24Hour={true}
-                              display="default"
-                              onChange={this.handleTimeChange}
-                              />
-                          )}
-                        </View> */}
-                      </View>
-                      {/* <Text bold size={18}>{this.dateToString(date)} {this.timeToString(date)}</Text> */}
-                      <Button color="primary" onPress={createOneButtonAlert} style={styles.createButton}>
-                        <Text bold size={14} color={argonTheme.COLORS.WHITE}>
-                            Confirm
-                        </Text>
-                      </Button>
+                     {/* 插值前一定要把这行注释掉 */}
+                      <Text bold size={18} style={{marginTop:20}}>{this.dateToString(date)} {this.timeToString(date)}</Text>
+                     
                     </Block>
 
                 </Block>
@@ -324,8 +318,8 @@ class Booking extends React.Component {
 
 const styles = StyleSheet.create({
   registerContainer: {
-    width: width * 0.9,
-    height: height * 0.875,
+    width: width * 1,
+    height: height * 1,
     backgroundColor: "#F4F5F7",
     borderRadius: 4,
     shadowColor: argonTheme.COLORS.BLACK,
@@ -335,8 +329,7 @@ const styles = StyleSheet.create({
     },
     shadowRadius: 8,
     shadowOpacity: 0.1,
-    elevation: 1,
-    overflow: "hidden"
+   
   },
   socialConnect: {
     backgroundColor: argonTheme.COLORS.WHITE,
