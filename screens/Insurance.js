@@ -113,9 +113,10 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     zIndex: 0,
     flexDirection:  'row',
-    backgroundColor:"#7fffd4",
+    backgroundColor:"rgb(240,248,255)",
     borderWidth: 3,
     borderRadius: 20,
+    elevation:20,
   },
   centerCard: {
     marginTop: 40,
@@ -128,9 +129,10 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     zIndex: 0,
     flexDirection:  'row',
-    backgroundColor:"#7fffd4",
+    backgroundColor:"rgb(240,248,255)",
     borderWidth: 3,
     borderRadius: 20,
+    elevation:20,
   },
   hospitalCard: {
     marginTop: 40,
@@ -143,9 +145,10 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     zIndex: 0,
     flexDirection:  'row',
-    backgroundColor:"#7fffd4",
+    backgroundColor:"rgb(240,248,255)",
     borderWidth: 3,
     borderRadius: 20,
+    elevation:20,
   },
   
 });
