@@ -12,7 +12,7 @@ for(var i = 0; i < data.length; i++) {
   var obj = data[i];
   }
   
-class Booking extends React.Component {
+class HospitalMap extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -55,4 +55,4 @@ class Booking extends React.Component {
     );
   }
 }
-export default Booking;
+export default HospitalMap;

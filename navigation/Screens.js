@@ -15,7 +15,7 @@ import uploadProfile from "../screens/uploadProfile";
 import BookingDetail from "../screens/BookingDetail";
 import Register from "../screens/Register";
 import Elements from "../screens/Elements";
-import Articles from "../screens/Articles";
+import HospitalMap from "../screens/HospitalMap";
 import Emergency from "../screens/Emergency";
 import Translate from "../screens/Translate";
 import SympotomChecker from "../screens/SympotomChecker";
@@ -73,12 +73,12 @@ function ElementsStack(props) {
   );
 }
 
-function ArticlesStack(props) {
+function HospitalMapStack(props) {
   return (
-    <Stack.Navigator mode="card" headerMode="screen">
+    <Stack.Navigator initialRouteName="HospitalMap"mode="card" headerMode="screen">
       <Stack.Screen
-        name="Articles"
-        component={Articles}
+        name="HospitalMap"
+        component={HospitalMap}
         options={{
           header: ({ navigation, scene }) => (
             <Header title="Articles" navigation={navigation} scene={scene} />
@@ -738,9 +738,9 @@ function AppStack(props) {
       <Drawer.Screen name="Translate" component={Translate} />
       <Drawer.Screen name="SympotomChecker" component={SympotomChecker} />
       <Drawer.Screen name="Elements" component={ElementsStack} />
-      <Drawer.Screen name="Articles" component={ArticlesStack} />
       <Drawer.Screen name="Service" component={ServiceStack} />
       <Drawer.Screen name="Insurance" component={InsuranceStack} />
+      <Drawer.Screen name="HospitalMap" component={HospitalMap} />
     </Drawer.Navigator>
   );
 }

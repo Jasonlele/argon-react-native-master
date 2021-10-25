@@ -1,3 +1,4 @@
+  
 import React from "react";
 import {
   StyleSheet,
@@ -5,7 +6,7 @@ import {
   Dimensions,
   ImageBackground,
   View,
-  ScrollView
+  ScrollView,
 } from "react-native";
 import { SearchBar } from 'react-native-elements';
 import { NavBar, Block, Text, theme, Button, DeckSwiper, Radio } from "galio-framework";
@@ -75,9 +76,9 @@ function unique(arr) {
   }
   return res
 }
-const swiper = React.createRef();
-
+const swipeRef = React.createRef(null);
 class SympotomChecker extends React.Component {
+  
   constructor(props) {
     super(props);
    const allItem =  unique(cold.concat([
@@ -124,6 +125,7 @@ class SympotomChecker extends React.Component {
 
    clickButton = (item)=>{
      this.setState({firsrPageSelected:item})
+     swipeRef.current?.scrollBy(1); // go forward one page
   }
   secondClickButton = (item)=>{
     this.setState({secondPageSelected:item})
@@ -136,16 +138,13 @@ class SympotomChecker extends React.Component {
       let tmp = []
       for (let index = 0; index < judge.length; index++) {
         const element = judge[index];
-        console.log(element);
-        console.log(this.state.firsrPageSelected,item);
-        console.log(element.includes(this.state.firsrPageSelected));
-
         if(element.includes(this.state.firsrPageSelected) && element.includes(item)){
           tmp.push(name[index])
         }
         
       }
       this.setState({result:tmp})
+      swipeRef.current?.scrollBy(2); // go forward one page
  }
   render() {
     const {symptomCheck,currentPosition} = this.state;
@@ -226,11 +225,7 @@ class SympotomChecker extends React.Component {
 
         </Block>
         
-        <Block style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-around'}}>
-          <Radio style={styles.radio} label="Adult Symptom" containerStyle={{ backgroundColor: "#B0C4DE", marginRight: 10 }} labelStyle={{ color: 'black' }} initialValue={this.state.adultInitialValue} name='a' color="primary" />
-          <Radio style={styles.radio} label="Adult Symptom" containerStyle={{ backgroundColor: "#B0C4DE" }} labelStyle={{ color: 'black' }} initialValue={this.state.childInitialValue} name='a' color="info" />
-        </Block>
-
+    
         <Block>
           <SearchBar
           
@@ -240,7 +235,7 @@ class SympotomChecker extends React.Component {
         </Block>
        
         <Swiper
-           ref={swiper}
+           ref={swipeRef}
           style={{ flexGrow: 1 }}
           loop={false}
           index={this.state.pageIndex}
@@ -257,7 +252,7 @@ class SympotomChecker extends React.Component {
                 return (
                 
                 <Button
-                //  key={item}
+                 key={item}
                 //   divider
                 //   centerElement={{
                 //     primaryText: item,
@@ -283,7 +278,7 @@ class SympotomChecker extends React.Component {
                 return (
                 
                 <Button
-                //  key={item}
+                 key={item}
                 //   divider
                 //   centerElement={{
                 //     primaryText: item,
