@@ -169,7 +169,7 @@ function HomeStack(props) {
         }}
       />
    
-   
+  
     </Stack.Navigator>
   );
 }
@@ -223,23 +223,6 @@ export default function OnboardingStack(props) {
               }}
         />
 
-      <Stack.Screen
-              name="Translate"
-              component={Translate}
-              options={{
-                header: ({ navigation, scene }) => (
-                  <Header
-                    title=""
-                    back
-                    white
-                    transparent
-                    navigation={navigation}
-                    scene={scene}
-                  />
-                ),
-                headerTransparent: true
-              }}
-        />
       <Stack.Screen
               name="SympotomChecker"
               component={SympotomChecker}
@@ -399,7 +382,7 @@ function InsuranceStack(props) {
         }}
       />
 
-<Stack.Screen
+      <Stack.Screen
         name="insuranceClinic"
         component={InsuranceClinic}
         options={{
@@ -417,7 +400,7 @@ function InsuranceStack(props) {
         }}
       />
 
-  <Stack.Screen
+    <Stack.Screen
         name="insuranceHospital"
         component={InsuranceHospital}
         options={{

@@ -3,20 +3,14 @@ import {
   StyleSheet,
   Dimensions,
   ScrollView,
-  Image,
-  ImageBackground,
-  Platform,
   TouchableWithoutFeedback
 
 } from "react-native";
-import { Block, Text, theme,NavBar,Input,Button  } from "galio-framework";
-import { withNavigation } from '@react-navigation/compat';
+import { Block, Text, theme,Input,Button } from "galio-framework";
 import { Header} from "../components";
-
 import Icon from 'react-native-vector-icons/AntDesign';
 
 const { width, height } = Dimensions.get("screen");
-const thumbMeasure = (width - 48 - 32) / 3;
 class Insurance extends React.Component {
   constructor(props) {
     super(props);
@@ -26,18 +20,17 @@ class Insurance extends React.Component {
     const { navigation } = this.props;
 
     return (
-      <Block >                  
+      <Block flex>        
+         
                <Header
-                    title="Realtime Translate"
+                    title="Medical Insurance"
                     back
                     optionLeft="Option 1"
                     optionRight="Option 2"
                     style={{marginBottom:2}}
                     navigation={this.props.navigation}
                     titleStyle = {{fontWeight: "bold", fontSize:25, marginLeft:35}} />
-
-
-        <Block flex>
+        <Block flex middle>
               <Block style={styles.clinicCard}>
                 <Block style={{marginLeft:10}}>
                   <Text style={{fontSize:30, fontWeight: "bold", marginLeft:140, marginTop:30}}>Clinic</Text>
@@ -103,7 +96,7 @@ class Insurance extends React.Component {
 const styles = StyleSheet.create({
   
   clinicCard: {
-    marginTop: 50,
+    marginTop: 10,
     marginBottom: 5,
     width: width  ,
     height: 150,

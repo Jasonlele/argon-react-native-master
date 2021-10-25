@@ -15,7 +15,7 @@ import { Header} from "../components";
 
 const { width, height } = Dimensions.get("screen");
 const thumbMeasure = (width - 48 - 32) / 3;
-class Insurance extends React.Component {
+class InsuranceHospital extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -72,7 +72,8 @@ const styles = StyleSheet.create({
     backgroundColor:"rgb(240,248,255)",
     borderWidth: 3,
     borderRadius: 20,
+    elevation:10
   }
 });
 
-export default Insurance;
+export default InsuranceHospital;
