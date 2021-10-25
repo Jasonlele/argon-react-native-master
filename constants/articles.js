@@ -6,11 +6,6 @@ export default [
     horizontal: true
   },
   {
-    title: 'Medical Service',
-    image: 'http://81.68.132.232/wp-content/uploads/2021/09/1.png',
-    cta: 'Pro'
-  },
-  {
     title: 'Sympotom Checker',
     image: 'http://81.68.132.232/wp-content/uploads/2021/09/2.png',
     cta: 'SympotomChecker' 
@@ -41,8 +36,12 @@ export default [
   {
     title: 'Medical Insurance',
     image: 'http://81.68.132.232/wp-content/uploads/2021/09/3.png',
-    cta: 'Pro', 
+    cta: 'Insurance', 
     horizontal: true
   },
-  
+  {
+    title: 'Medical Service',
+    image: 'http://81.68.132.232/wp-content/uploads/2021/09/1.png',
+    cta: 'Service'
+  },
 ];

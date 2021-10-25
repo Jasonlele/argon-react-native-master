@@ -15,7 +15,6 @@ for(var i = 0; i < data.length; i++) {
 class Booking extends React.Component {
   constructor(props) {
     super(props);
-  
     this.state = {
       isLoading: true,
       markers: data,
