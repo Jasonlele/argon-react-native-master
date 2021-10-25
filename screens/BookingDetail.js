@@ -60,11 +60,11 @@ class Translate extends React.Component {
     //执行插值操作并打印整个表，每次刷新都会执行，注意不要重复插值
     // db.transaction((tx) => {
     //   tx.executeSql(
-    //     "INSERT INTO DoctorImage (nameuse, imagelink) VALUES('2021-10-28      Tom      bbb', 'http://81.68.132.232/wp-content/uploads/2021/10/1-300x200.jpg')"
+    //     "INSERT INTO DoctorImage (nameuse, imagelink) VALUES('2021-10-25      Tom      bbb', 'http://81.68.132.232/wp-content/uploads/2021/10/1-300x200.jpg')"
     //   );
 
     //   tx.executeSql(
-    //     "INSERT INTO DoctorImage (nameuse, imagelink) VALUES('2021-10-24      bruce      aaa', 'http://81.68.132.232/wp-content/uploads/2021/10/2-300x200.jpg')"
+    //     "INSERT INTO DoctorImage (nameuse, imagelink) VALUES('2021-10-26      Carlos      ccc', 'http://81.68.132.232/wp-content/uploads/2021/10/2-300x200.jpg')"
     //   );
 
     //   tx.executeSql("select * from DoctorImage", 
@@ -84,14 +84,14 @@ class Translate extends React.Component {
 
       db.transaction((tx) => {
                   // console.log(item)
-                  console.log(name)
+                //   console.log(name)
                   tx.executeSql("select imagelink from DoctorImage where nameuse = ? ", 
                   [name],
                    (_, result) =>{
                    
                     //  console.log(JSON.stringify(result.rows.item(0).date))
                                                                 
-                    console.log(JSON.stringify(result.rows.item(0).imagelink))
+                    // console.log(JSON.stringify(result.rows.item(0).imagelink))
                     this.setState({ link :result.rows.item(0).imagelink})
 
                    }
@@ -100,8 +100,6 @@ class Translate extends React.Component {
                     );
                     
                 });
-
-
 
 
 

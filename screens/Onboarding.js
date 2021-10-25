@@ -11,7 +11,6 @@ import { Input } from 'react-native-elements';
 import validator from "../constants/validator";
 import login from "../constants/login";
 import * as SQLite from "expo-sqlite";
-
 const { width, height } = Dimensions.get("screen");
 
 
@@ -147,7 +146,6 @@ class Onboarding extends React.Component {
       
     });
 
-<<<<<<< HEAD
 
    // 执行插值操作并打印整个表，每次刷新都会执行，注意不要重复插值
     // db.transaction((tx) => {
@@ -175,8 +173,6 @@ class Onboarding extends React.Component {
 
 
 
-=======
->>>>>>> ff457e6d27e06af2cd18c3ea05d195fa2bc47b66
     return (
       <Block flex style={styles.container}>
         <StatusBar hidden />
