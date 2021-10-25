@@ -23,7 +23,7 @@ class Translate extends React.Component {
       unTranslateText:"",
       translatedText:"",
       name:props.route.params.jjw,
-      link:"",
+      link:"testest",
 
     };
     // let yy = navigation.getParam("jjw"); 
@@ -32,18 +32,42 @@ class Translate extends React.Component {
  
   }
 
+ // 
+  submitBookig=()=>{
+    //console.log("输入完成");
+    const {name} = this.state;
+    
 
-  beginTranslate = async()=>{
-    const result = await translate(this.state.unTranslateText, {
-      tld: "cn",
-      to: "en",
+
+
+
+      db.transaction((tx) => {
+      tx.executeSql(
+        "INSERT INTO BookingDetail (bookname, phone, finish) VALUES(?,?,'no')",
+        [name,test]
+
+      );
+
+
+      tx.executeSql("select * from BookingDetail", 
+      [],
+       (_, result) =>{
+        
+        console.log(JSON.stringify(result.rows))
+          
+       }
+        
+        );
+      
     });
-    console.log(result);
-    this.setState({
-      translatedText:result[0]
-    })
-  }
+ 
 
+    
+
+
+
+
+  }
 
   render() {
     const { navigation } = this.props;
@@ -56,28 +80,15 @@ class Translate extends React.Component {
         );
         
       });
-
-    //执行插值操作并打印整个表，每次刷新都会执行，注意不要重复插值
-    // db.transaction((tx) => {
-    //   tx.executeSql(
-    //     "INSERT INTO DoctorImage (nameuse, imagelink) VALUES('2021-10-25      Tom      bbb', 'http://81.68.132.232/wp-content/uploads/2021/10/1-300x200.jpg')"
-    //   );
-
-    //   tx.executeSql(
-    //     "INSERT INTO DoctorImage (nameuse, imagelink) VALUES('2021-10-26      Carlos      ccc', 'http://81.68.132.232/wp-content/uploads/2021/10/2-300x200.jpg')"
-    //   );
-
-    //   tx.executeSql("select * from DoctorImage", 
-    //   [],
-    //    (_, result) =>{
+    
+    db.transaction((tx) => {
+        tx.executeSql(
+          "create table if not exists BookingDetail (id integer primary key not null, bookname text, phone text, finish text);"
+        );
         
-    //     console.log(JSON.stringify(result.rows))
-          
-    //    }
-        
-    //     );
-      
-    // });
+      });
+
+  
 
 
       
@@ -103,15 +114,14 @@ class Translate extends React.Component {
 
 
 
-
-
-
-
     return (
       <Block flex style={styles.container}>
          <Text>{name}</Text>
          <Text>{link}</Text>
+         {/* <Text>{test}</Text> */}
+         
          <Image source={{uri:link}} style={{width:200,height:200}} />
+         <Button onPress={this.submitBookig}>Confirm appointment</Button>
          
       </Block>
     );

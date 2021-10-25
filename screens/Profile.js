@@ -35,26 +35,86 @@ class Profile extends React.Component {
      
      imageUri:"1111", 
      Refresh:false,
+     firstSearchPageData:["aaa"]
     };
     
 
   }
 
   RefreshPage=()=>{
-    const{Refresh}=this.state
-    this.setState({Refresh:true})
+        const{firstSearchPageData}= this.state
+    
+        db.transaction((tx) => {
+   
+    
+            tx.executeSql("select bookname from BookingDetail where phone = ?", 
+            [test],
+             (_, result) =>{
+              var len = result.rows.length;                      
+              let result1=[]
+                if(len>0){
+                 
+                  for(let i=0; i<len; i++){
+                    // result1.push(result.rows.item(i).date +"      "+ result.rows.item(i).name +"      "+ result.rows.item(i).hostipal)
+                    // console.log(JSON.stringify(result.rows.item(i).date))
+                    result1.push(result.rows.item(i).bookname)
+                  }
+                  this.setState({firstSearchPageData :result1})
+                  
+      
+                  
+                } 
+                
+             }
+               
+        
+              );
+      
+    
+    
+    
+    
+    
+          
+        });
+
+
+
+
+
+
+
+
+
+
+
   }
   
   render() {
     const { navigation } = this.props;
-    const{imageUri,Refresh} = this.state;
+    const{imageUri,Refresh, firstSearchPageData} = this.state;
     global.useUri = imageUri;
     //数据库操作
+
+
+
+
+
     const db = SQLite.openDatabase("db.DECO3801");
+
+
+    //删除表，请一定要注释
+    // db.transaction((tx) => {
+    //   tx.executeSql(
+    //     "DROP TABLE BookingDetail;"
+    //   );
+    //   // console.log(JSON.stringify(db))
+    
+    // });
+
+
     db.transaction((tx) => {
-      tx.executeSql(
-        "create table if not exists ProfileImage (id integer primary key not null, phone text, uri text);"
-      );
+    
 
       
       tx.executeSql("select uri from ProfileImage where phone = ?", 
@@ -74,6 +134,37 @@ class Profile extends React.Component {
          
   
         );
+
+
+
+        // tx.executeSql("select bookname from BookingDetail where phone = ?", 
+        // [test],
+        //  (_, result) =>{
+        //   var len = result.rows.length;                      
+        //   let result1=[]
+        //     if(len>0){
+             
+        //       for(let i=0; i<len; i++){
+        //         // result1.push(result.rows.item(i).date +"      "+ result.rows.item(i).name +"      "+ result.rows.item(i).hostipal)
+        //         // console.log(JSON.stringify(result.rows.item(i).date))
+        //         result1.push(result.rows.item(i).bookname)
+        //       }
+        //       this.setState({firstSearchPageData :result1})
+              
+  
+              
+        //     } 
+            
+        //  }
+           
+    
+        //   );
+  
+
+
+
+
+
       
     });
 
@@ -133,44 +224,52 @@ class Profile extends React.Component {
                 </Block>
               </Block>
 
+
+{/* 
+              从数据库里取出的值     */}
+
+          <TouchableWithoutFeedback onPress={this.RefreshPage}>
               <Block flex style={styles.appointment}>
                 <Block>
                 <Text style ={{fontSize:20,fontWeight:'bold'}}>My Appointment</Text>
                 </Block>
-                <Block style={{ flexDirection:'row', marginTop:15,marginLeft:17}}>
-                  <Text style = {{fontSize:20}}>06/12/2020</Text>
-                  <Text style = {{marginLeft:30,fontSize:20}}>XX Hosptial</Text>
-                  {/* <Icon
-                  name="right"
-                  size={24}
-                  color="black"
-                  style={{ marginLeft:30}}
-                 /> */}
-                  
-                </Block>
-                <Block style={{ flexDirection:'row', marginTop:15,marginLeft:17}}>
-                  <Text style = {{fontSize:20}}>06/12/2020</Text>
-                  <Text style = {{marginLeft:30,fontSize:20}}>XX Hosptial</Text>
-                  {/* <Icon
-                  name="right"
-                  size={24}
-                  color="black"
-                  style={{ marginLeft:30}}
-                 /> */}
-                  
-                </Block>
-                <Block style={{ flexDirection:'row', marginTop:15,marginLeft:17}}>
-                  <Text style = {{fontSize:20}}>06/12/2020</Text>
-                  <Text style = {{marginLeft:30,fontSize:20}}>XX Hosptial</Text>
-                  {/* <Icon
-                  name="right"
-                  size={24}
-                  color="black"
-                  style={{ marginLeft:30}}
-                 /> */}
-                  
-                </Block>
+
+
+
+
+                {firstSearchPageData.map((item) => {
+
+              
+          
+                      return (
+                      <Block key={item}>
+
+                       
+                        <Text key={item}>
+                          
+                          
+                          {item}
+                        
+                        
+                        
+                        </Text>
+                        
+                      </Block>
+
+   
+
+                        )
+                })}
+
+            
               </Block>
+
+
+              </TouchableWithoutFeedback>
+
+
+
+
               <Block flex style={styles.information}>
 
 
@@ -256,6 +355,8 @@ class Profile extends React.Component {
 
 
                 <Block style={styles.boxUse}>
+
+          
                 <Icon2
                   name="history"
                   size={30}
@@ -274,11 +375,9 @@ class Profile extends React.Component {
 
                 </Block>
 
-                {/* <Button onPress={this.RefreshPage}>
-                    <Text>refearch page</Text>
-                </Button> */}
+                
               </Block>
-
+                  
 
             </ScrollView>
           </ImageBackground>
@@ -326,6 +425,7 @@ const styles = StyleSheet.create({
     padding: theme.SIZES.BASE,
     backgroundColor:"#DCF7F2",
     marginTop:20,
+    height:200,
     flexDirection:  'column',
   },
   information:{

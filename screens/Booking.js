@@ -150,6 +150,10 @@ class Booking extends React.Component {
       tx.executeSql(
         "create table if not exists Doctor (id integer primary key not null, name text, hostipal text, date text, time text);"
       );
+
+      tx.executeSql(
+        "create table if not exists ProfileImage (id integer primary key not null, phone text, uri text);"
+      );
       
     });
      //删除表，请一定要注释
@@ -186,6 +190,31 @@ class Booking extends React.Component {
       
     // });
 
+    
+
+
+    // 执行对照片表的插值操作
+    //   db.transaction((tx) => {
+    //   tx.executeSql(
+    //     "INSERT INTO DoctorImage (nameuse, imagelink) VALUES('2021-10-25      Tom      bbb', 'http://81.68.132.232/wp-content/uploads/2021/10/1-300x200.jpg')"
+    //   );
+
+    //   tx.executeSql(
+    //     "INSERT INTO DoctorImage (nameuse, imagelink) VALUES('2021-10-26      Carlos      ccc', 'http://81.68.132.232/wp-content/uploads/2021/10/2-300x200.jpg')"
+    //   );
+
+    //   tx.executeSql("select * from DoctorImage", 
+    //   [],
+    //    (_, result) =>{
+        
+    //     console.log(JSON.stringify(result.rows))
+          
+    //    }
+        
+    //     );
+      
+    // });
+
 
     return (
       <Block flex middle>
@@ -206,7 +235,7 @@ class Booking extends React.Component {
               
           
                 return (
-                <Block>
+                <Block key={item}>
 
                   <Button
                   
@@ -214,7 +243,7 @@ class Booking extends React.Component {
                   // style={{marginLeft:12}}
                   size="large"
                   onPress={() => navigation.navigate('BookingDetail', {jjw:item})}
-                  
+                  key={item}
                   >
                     {item}
                     </Button>
