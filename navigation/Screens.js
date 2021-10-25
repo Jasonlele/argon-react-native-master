@@ -19,8 +19,11 @@ import Articles from "../screens/Articles";
 import Emergency from "../screens/Emergency";
 import Translate from "../screens/Translate";
 import SympotomChecker from "../screens/SympotomChecker";
+import Insurance from "../screens/Service";
 import Service from "../screens/Service";
-import Insurance from "../screens/Insurance";
+import ServiceClinic from "../screens/ServiceClinic";
+import ServiceMedicalCenter from "../screens/ServiceMedicalCenter";
+import ServiceHospital from "../screens/ServiceHospital";
 // drawer
 import CustomDrawerContent from "./Menu";
 
@@ -166,6 +169,7 @@ function HomeStack(props) {
         }}
       />
    
+  
     </Stack.Navigator>
   );
 }
@@ -219,23 +223,6 @@ export default function OnboardingStack(props) {
               }}
         />
 
-      <Stack.Screen
-              name="Translate"
-              component={Translate}
-              options={{
-                header: ({ navigation, scene }) => (
-                  <Header
-                    title=""
-                    back
-                    white
-                    transparent
-                    navigation={navigation}
-                    scene={scene}
-                  />
-                ),
-                headerTransparent: true
-              }}
-        />
       <Stack.Screen
               name="SympotomChecker"
               component={SympotomChecker}
@@ -350,6 +337,30 @@ function TranslateStack(props) {
   );
 }
 
+function InsuranceStack(props) {
+  return (
+    <Stack.Navigator initialRouteName="Insurance" mode="card" headerMode="screen">
+      <Stack.Screen
+        name="insurance"
+        component={Insurance}
+        options={{
+          header: ({ navigation, scene }) => (
+            <Header
+              transparent
+              white
+              title=""
+              navigation={navigation}
+              scene={scene}
+            />
+          ),
+          cardStyle: { backgroundColor: "#FFFFFF" },
+          headerTransparent: true
+        }}
+      />
+    </Stack.Navigator>
+  );
+}
+
 function ServiceStack(props) {
   return (
     <Stack.Navigator initialRouteName="Service" mode="card" headerMode="screen">
@@ -370,16 +381,10 @@ function ServiceStack(props) {
           headerTransparent: true
         }}
       />
-    </Stack.Navigator>
-  );
-}
 
-function InsuranceStack(props) {
-  return (
-    <Stack.Navigator initialRouteName="Insurance" mode="card" headerMode="screen">
       <Stack.Screen
-        name="Insurance"
-        component={Insurance}
+        name="ServiceClinic"
+        component={ServiceClinic}
         options={{
           header: ({ navigation, scene }) => (
             <Header
@@ -394,8 +399,44 @@ function InsuranceStack(props) {
           headerTransparent: true
         }}
       />
-    </Stack.Navigator>
-  );
+
+    <Stack.Screen
+        name="ServiceHospital"
+        component={ServiceHospital}
+        options={{
+          header: ({ navigation, scene }) => (
+            <Header
+              transparent
+              white
+              title=""
+              navigation={navigation}
+              scene={scene}
+            />
+          ),
+          cardStyle: { backgroundColor: "#FFFFFF" },
+          headerTransparent: true
+        }}
+      />
+
+    <Stack.Screen
+        name="ServiceMedicalCenter"
+        component={ServiceMedicalCenter}
+        options={{
+          header: ({ navigation, scene }) => (
+            <Header
+              transparent
+              white
+              title=""
+              navigation={navigation}
+              scene={scene}
+            />
+          ),
+          cardStyle: { backgroundColor: "#FFFFFF" },
+          headerTransparent: true
+        }}
+      />
+      </Stack.Navigator>
+      );
 }
 
 function uploadProfileStack(props) {
@@ -423,7 +464,80 @@ function uploadProfileStack(props) {
   );
 }
 
+function ServiceClinicStack(props) {
+  return (
+    <Stack.Navigator initialRouteName="ServiceClinic" mode="card" headerMode="screen">
+      <Stack.Screen
+        name="ServiceClinic"
+        component={ServiceClinic}
+        options={{
+          header: ({ navigation, scene }) => (
+            <Header
+              transparent
+              white
+              title=""
+              navigation={navigation}
+              scene={scene}
+            />
+          ),
+          cardStyle: { backgroundColor: "#FFFFFF" },
+          headerTransparent: true
+        }}
+      />
+      
+    </Stack.Navigator>
+  );
+}
 
+function ServiceMedicalCenterStack(props) {
+  return (
+    <Stack.Navigator initialRouteName="ServiceMedicalCenter" mode="card" headerMode="screen">
+      <Stack.Screen
+        name="ServiceMedicalCenter"
+        component={ServiceMedicalCenter}
+        options={{
+          header: ({ navigation, scene }) => (
+            <Header
+              transparent
+              white
+              title=""
+              navigation={navigation}
+              scene={scene}
+            />
+          ),
+          cardStyle: { backgroundColor: "#FFFFFF" },
+          headerTransparent: true
+        }}
+      />
+      
+    </Stack.Navigator>
+  );
+}
+
+function ServiceHospitalStack(props) {
+  return (
+    <Stack.Navigator initialRouteName="ServiceHospital" mode="card" headerMode="screen">
+      <Stack.Screen
+        name="ServiceHospital"
+        component={ServiceHospital}
+        options={{
+          header: ({ navigation, scene }) => (
+            <Header
+              transparent
+              white
+              title=""
+              navigation={navigation}
+              scene={scene}
+            />
+          ),
+          cardStyle: { backgroundColor: "#FFFFFF" },
+          headerTransparent: true
+        }}
+      />
+      
+    </Stack.Navigator>
+  );
+}
 
 function BookingDetailStack(props) {
   return (
@@ -492,8 +606,8 @@ function AppStack(props) {
       <Drawer.Screen name="SympotomChecker" component={SympotomChecker} />
       <Drawer.Screen name="Elements" component={ElementsStack} />
       <Drawer.Screen name="Articles" component={ArticlesStack} />
-      <Drawer.Screen name="Service" component={Service} />
-      <Drawer.Screen name="Insurance" component={Insurance} />
+      <Drawer.Screen name="Service" component={ServiceStack} />
+      <Drawer.Screen name="Insurance" component={InsuranceStack} />
     </Drawer.Navigator>
   );
 }
