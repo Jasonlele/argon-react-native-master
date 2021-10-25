@@ -111,8 +111,10 @@ class Onboarding extends React.Component {
             //????
             this.setState({Username:result.rows.item(0).username})
             navigation.navigate("App")
+          }else{
+            alert("Wrong account or password")
           }  
-          navigation.navigate("App")      
+           
        }
         );
       
