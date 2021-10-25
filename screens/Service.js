@@ -30,7 +30,11 @@ class Service extends React.Component {
                     style={{marginBottom:2}}
                     navigation={this.props.navigation}
                     titleStyle = {{fontWeight: "bold", fontSize:25, marginLeft:45}} />
+                    
         <Block flex middle>
+        <Block>
+                  <Text style = {{fontSize:25, marginBottom:25}}>Select an option to check</Text>
+                </Block>
               <Block style={styles.clinicCard}>
                 <Block style={{marginLeft:0}}>
                   <Text style={{fontSize:30, fontWeight: "bold", marginLeft:130, marginTop:30}}>Clinic</Text>

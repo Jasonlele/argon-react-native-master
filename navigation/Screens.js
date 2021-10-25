@@ -19,7 +19,10 @@ import Articles from "../screens/Articles";
 import Emergency from "../screens/Emergency";
 import Translate from "../screens/Translate";
 import SympotomChecker from "../screens/SympotomChecker";
-import Insurance from "../screens/Service";
+import Insurance from "../screens/Insurance";
+import StudyingInsurance from "../screens/StudyingInsurance";
+import VisitingInsurance from "../screens/VisitingInsurance";
+import CitizenInsurance from "../screens/CitizenInsurance";
 import Service from "../screens/Service";
 import ServiceClinic from "../screens/ServiceClinic";
 import ServiceMedicalCenter from "../screens/ServiceMedicalCenter";
@@ -341,7 +344,7 @@ function InsuranceStack(props) {
   return (
     <Stack.Navigator initialRouteName="Insurance" mode="card" headerMode="screen">
       <Stack.Screen
-        name="insurance"
+        name="Insurance"
         component={Insurance}
         options={{
           header: ({ navigation, scene }) => (
@@ -357,6 +360,136 @@ function InsuranceStack(props) {
           headerTransparent: true
         }}
       />
+      
+      <Stack.Screen
+        name="StudyingInsurance"
+        component={StudyingInsurance}
+        options={{
+          header: ({ navigation, scene }) => (
+            <Header
+              transparent
+              white
+              title=""
+              navigation={navigation}
+              scene={scene}
+            />
+          ),
+          cardStyle: { backgroundColor: "#FFFFFF" },
+          headerTransparent: true
+        }}
+      />
+
+      <Stack.Screen
+        name="VisitingInsurance"
+        component={VisitingInsurance}
+        options={{
+          header: ({ navigation, scene }) => (
+            <Header
+              transparent
+              white
+              title=""
+              navigation={navigation}
+              scene={scene}
+            />
+          ),
+          cardStyle: { backgroundColor: "#FFFFFF" },
+          headerTransparent: true
+        }}
+      /> 
+
+      <Stack.Screen
+        name="CitizenInsurance"
+        component={CitizenInsurance}
+        options={{
+          header: ({ navigation, scene }) => (
+            <Header
+              transparent
+              white
+              title=""
+              navigation={navigation}
+              scene={scene}
+            />
+          ),
+          cardStyle: { backgroundColor: "#FFFFFF" },
+          headerTransparent: true
+        }}
+      />
+    </Stack.Navigator>
+  );
+}
+
+
+function StudyingInsuranceStack(props) {
+  return (
+    <Stack.Navigator initialRouteName="StudyingInsurance" mode="card" headerMode="screen">
+      <Stack.Screen
+        name="StudyingInsurance"
+        component={StudyingInsurance}
+        options={{
+          header: ({ navigation, scene }) => (
+            <Header
+              transparent
+              white
+              title=""
+              navigation={navigation}
+              scene={scene}
+            />
+          ),
+          cardStyle: { backgroundColor: "#FFFFFF" },
+          headerTransparent: true
+        }}
+      />
+      
+    </Stack.Navigator>
+  );
+}
+
+function VisitingInsuranceStack(props) {
+  return (
+    <Stack.Navigator initialRouteName="VisitingInsurance" mode="card" headerMode="screen">
+      <Stack.Screen
+        name="VisitingInsurance"
+        component={VisitingInsurance}
+        options={{
+          header: ({ navigation, scene }) => (
+            <Header
+              transparent
+              white
+              title=""
+              navigation={navigation}
+              scene={scene}
+            />
+          ),
+          cardStyle: { backgroundColor: "#FFFFFF" },
+          headerTransparent: true
+        }}
+      />
+      
+    </Stack.Navigator>
+  );
+}
+
+function CitizenInsuranceStack(props) {
+  return (
+    <Stack.Navigator initialRouteName="CitizenInsurance" mode="card" headerMode="screen">
+      <Stack.Screen
+        name="CitizenInsurance"
+        component={CitizenInsurance}
+        options={{
+          header: ({ navigation, scene }) => (
+            <Header
+              transparent
+              white
+              title=""
+              navigation={navigation}
+              scene={scene}
+            />
+          ),
+          cardStyle: { backgroundColor: "#FFFFFF" },
+          headerTransparent: true
+        }}
+      />
+      
     </Stack.Navigator>
   );
 }
