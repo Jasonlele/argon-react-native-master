@@ -5,19 +5,19 @@ import {
   ScrollView,
   Image,
   ImageBackground,
-  Platform,
+  View,
   TouchableWithoutFeedback
 
 } from "react-native";
 import { Block, Text, theme,NavBar,Input,Button  } from "galio-framework";
 import { Header} from "../components";
-
+import Icon from 'react-native-vector-icons/AntDesign';
 
 const { width, height } = Dimensions.get("screen");
 
 const thumbMeasure = (width - 48 - 32) / 3;
 
-class InsuranceClinic extends React.Component {
+class ServiceClinic extends React.Component {
 
   constructor(props) {
     super(props);
@@ -45,7 +45,7 @@ class InsuranceClinic extends React.Component {
             </Block>
               <Block style={styles.clinicCard}>
                 <Block style={{marginLeft:10}}>
-                    <Text style={{fontSize:28, marginTop:30}}>If you just have non-emergency 
+                    <Text style={{fontSize:26, marginTop:70}}>If you just have non-emergency 
                         symptoms, visiting general 
                         practitioners (GP) in clinics is 
                         usually the first choice. You may 
@@ -55,9 +55,36 @@ class InsuranceClinic extends React.Component {
                         a specialist.
                     </Text>
                 </Block>
-                
               </Block>
-
+              
+                <View style={ {flexDirection:'row'}}>
+                    <View>
+                        <Text style= {{fontSize:23, marginLeft:25,marginTop: 10}} onPress={() => navigation.navigate('Service')}>Return</Text>
+                    </View>
+                    <View>
+                        <TouchableWithoutFeedback onPress={() => navigation.navigate('Service')}>
+                            <Icon
+                            name="retweet"
+                            size={28}
+                            color="black"
+                            style={{marginTop:12}}
+                            />
+                        </TouchableWithoutFeedback>
+                    </View>
+                    <View>
+                        <Text style= {{fontSize:23, marginLeft:110,marginTop: 10}} onPress={() => navigation.navigate('ServiceMedicalCenter')}>Next Type</Text>
+                    </View>
+                    <View>
+                        <TouchableWithoutFeedback onPress={() => navigation.navigate('ServiceMedicalCenter')}>
+                            <Icon
+                            name="doubleright"
+                            size={26}
+                            color="black"
+                            style={{marginTop:14}}
+                            />
+                        </TouchableWithoutFeedback>
+                    </View>
+                </View>
           </Block>
       </Block>
 
@@ -86,4 +113,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default InsuranceClinic;
+export default ServiceClinic;
