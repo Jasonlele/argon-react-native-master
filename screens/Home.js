@@ -14,29 +14,31 @@ class Home extends React.Component {
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.articles}>
         <Block flex>
-          <Text style={{fontWeight: 'bold', fontSize:20, marginLeft:10}}>Before </Text>
+          <Text style={{fontWeight: 'bold', fontSize:20, marginLeft:10}}>Main Function </Text>
           <View style={{ backgroundColor:'black',borderWidth:0.5 }}>
           </View>
           <Block flex row>
-            <Card item={articles[1]} style={{ marginRight: theme.SIZES.BASE}} />
+            <Card item={articles[3]} style={{ marginRight: theme.SIZES.BASE}} />
             <Card item={articles[2]} style={{marginRight: theme.SIZES.BASE}}/>
-            <Card item={articles[3]} />
+            <Card item={articles[1]} />
             
           </Block>
           
           <Block  flex row>
             <Card item={articles[4]} style={{ marginRight: theme.SIZES.BASE}} />
-            <Card item={articles[5]} style={{marginRight: theme.SIZES.BASE}}/>
+
+
+          <Block style={{flex:1, marginRight: theme.SIZES.BASE}}></Block>
             <Block style={{flex:1}}></Block>
           
           </Block>
-          <Text style={{fontWeight: 'bold', fontSize:20, marginLeft:10}}>During </Text>
+          <Text style={{fontWeight: 'bold', fontSize:20, marginLeft:10}}>Secondary Function </Text>
           <View style={{ backgroundColor:'black',borderWidth:0.5 }}>
           </View>
           <Block  flex row>
-          <Card item={articles[6]} style={{ marginRight: theme.SIZES.BASE }} />
-          <Block style={{flex:1,marginRight: theme.SIZES.BASE}}></Block>
-          <Block style={{flex:1, marginRight: theme.SIZES.BASE}}></Block>
+          <Card item={articles[5]} style={{ marginRight: theme.SIZES.BASE }} />
+          <Card item={articles[6]} style={{marginRight: theme.SIZES.BASE}}/>
+          <Card item={articles[7]} style={{marginRight: theme.SIZES.BASE}}/>
           </Block>
 
           
