@@ -6,7 +6,8 @@ import {
   Image,
   ImageBackground,
   View,
-  TouchableWithoutFeedback
+  TouchableWithoutFeedback,
+  Linking
 
 } from "react-native";
 import { Block, Text, theme,NavBar,Input,Button  } from "galio-framework";
@@ -23,7 +24,10 @@ class StudyingInsurance extends React.Component {
     super(props);
   }
 
-  
+  open=()=>{
+    let url = 'http://www.privatehealth.gov.au/.';
+    Linking.openURL(url) 
+}
   render() {
     const { navigation } = this.props;
 
@@ -46,8 +50,14 @@ class StudyingInsurance extends React.Component {
               <Block style={styles.clinicCard}>
                 <Block style={{marginLeft:10}}>
                 <ScrollView>
-                    <Text style={{fontSize:26, marginTop:10}}>International students undertaking formal studies in Australia, and their dependents (for example, spouses and children under 18 years old), must obtain OSHC. It includes cover for visits to the doctor, some hospital treatment, ambulance cover and limited pharmaceuticals (medicines). OSHC insurers can provide a range of different OSHC products. These may range from a basic product which covers only the compulsory minimum services to comprehensive products which cover, in addition to the compulsory minimum services, extra services as specified under the particular policy. Learn more about OSHC, including a list of the providers at www.privatehealth.gov.au/.
+                    <Text style={{fontSize:26, marginTop:10}}>International students undertaking formal studies in Australia, and their dependents (for example, spouses and children under 18 years old), must obtain OSHC. It includes cover for visits to the doctor, some hospital treatment, ambulance cover and limited pharmaceuticals (medicines). OSHC insurers can provide a range of different OSHC products. These may range from a basic product which covers only the compulsory minimum services to comprehensive products which cover, in addition to the compulsory minimum services, extra services as specified under the particular policy. Learn more about OSHC, including a list of the providers at 
                     </Text>
+	             <TouchableWithoutFeedback onPress={this.open}>
+		             <View>
+	                    <Text style = {{fontSize:26, marginTop:5, color:"red"}}>www.privatehealth.gov.au/.</Text>
+	                 </View>
+                </TouchableWithoutFeedback>
+
                     </ScrollView>
                 </Block>
               </Block>
