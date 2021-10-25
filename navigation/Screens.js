@@ -21,6 +21,9 @@ import Translate from "../screens/Translate";
 import SympotomChecker from "../screens/SympotomChecker";
 import Service from "../screens/Service";
 import Insurance from "../screens/Insurance";
+import InsuranceClinic from "../screens/InsuranceClinic";
+import InsuranceMedicalCenter from "../screens/InsuranceMedicalCenter";
+import InsuranceHospital from "../screens/InsuranceHospital";
 // drawer
 import CustomDrawerContent from "./Menu";
 
@@ -165,6 +168,7 @@ function HomeStack(props) {
           cardStyle: { backgroundColor: "#F8F9FE" }
         }}
       />
+   
    
     </Stack.Navigator>
   );
@@ -394,8 +398,62 @@ function InsuranceStack(props) {
           headerTransparent: true
         }}
       />
-    </Stack.Navigator>
-  );
+
+<Stack.Screen
+        name="insuranceClinic"
+        component={InsuranceClinic}
+        options={{
+          header: ({ navigation, scene }) => (
+            <Header
+              transparent
+              white
+              title=""
+              navigation={navigation}
+              scene={scene}
+            />
+          ),
+          cardStyle: { backgroundColor: "#FFFFFF" },
+          headerTransparent: true
+        }}
+      />
+
+  <Stack.Screen
+        name="insuranceHospital"
+        component={InsuranceHospital}
+        options={{
+          header: ({ navigation, scene }) => (
+            <Header
+              transparent
+              white
+              title=""
+              navigation={navigation}
+              scene={scene}
+            />
+          ),
+          cardStyle: { backgroundColor: "#FFFFFF" },
+          headerTransparent: true
+        }}
+      />
+
+    <Stack.Screen
+        name="insuranceMedicalCenter"
+        component={InsuranceMedicalCenter}
+        options={{
+          header: ({ navigation, scene }) => (
+            <Header
+              transparent
+              white
+              title=""
+              navigation={navigation}
+              scene={scene}
+            />
+          ),
+          cardStyle: { backgroundColor: "#FFFFFF" },
+          headerTransparent: true
+        }}
+      />
+      </Stack.Navigator>
+      );
 }
 
 function uploadProfileStack(props) {
@@ -423,7 +481,80 @@ function uploadProfileStack(props) {
   );
 }
 
+function InsuranceClinicStack(props) {
+  return (
+    <Stack.Navigator initialRouteName="InsuranceClinic" mode="card" headerMode="screen">
+      <Stack.Screen
+        name="insuranceClinic"
+        component={InsuranceClinic}
+        options={{
+          header: ({ navigation, scene }) => (
+            <Header
+              transparent
+              white
+              title=""
+              navigation={navigation}
+              scene={scene}
+            />
+          ),
+          cardStyle: { backgroundColor: "#FFFFFF" },
+          headerTransparent: true
+        }}
+      />
+      
+    </Stack.Navigator>
+  );
+}
 
+function InsuranceMedicalCenterStack(props) {
+  return (
+    <Stack.Navigator initialRouteName="InsuranceMedicalCenter" mode="card" headerMode="screen">
+      <Stack.Screen
+        name="insuranceMedicalCenter"
+        component={InsuranceMedicalCenter}
+        options={{
+          header: ({ navigation, scene }) => (
+            <Header
+              transparent
+              white
+              title=""
+              navigation={navigation}
+              scene={scene}
+            />
+          ),
+          cardStyle: { backgroundColor: "#FFFFFF" },
+          headerTransparent: true
+        }}
+      />
+      
+    </Stack.Navigator>
+  );
+}
+
+function InsuranceHospitalStack(props) {
+  return (
+    <Stack.Navigator initialRouteName="InsuranceHospital" mode="card" headerMode="screen">
+      <Stack.Screen
+        name="insuranceHospital"
+        component={InsuranceHospital}
+        options={{
+          header: ({ navigation, scene }) => (
+            <Header
+              transparent
+              white
+              title=""
+              navigation={navigation}
+              scene={scene}
+            />
+          ),
+          cardStyle: { backgroundColor: "#FFFFFF" },
+          headerTransparent: true
+        }}
+      />
+      
+    </Stack.Navigator>
+  );
+}
 
 function BookingDetailStack(props) {
   return (
@@ -493,7 +624,7 @@ function AppStack(props) {
       <Drawer.Screen name="Elements" component={ElementsStack} />
       <Drawer.Screen name="Articles" component={ArticlesStack} />
       <Drawer.Screen name="Service" component={Service} />
-      <Drawer.Screen name="Insurance" component={Insurance} />
+      <Drawer.Screen name="Insurance" component={InsuranceStack} />
     </Drawer.Navigator>
   );
 }
