@@ -15,8 +15,6 @@ import { Button, Icon, Input } from "../components";
 import { Images, argonTheme } from "../constants";
 import MapView from 'react-native-maps';
 import * as SQLite from "expo-sqlite";
-import { Header} from "../components";
-import { HeaderHeight } from "../constants/utils";
 
 const { width, height } = Dimensions.get("screen");
 const createOneButtonAlert = () =>
@@ -28,11 +26,6 @@ const createOneButtonAlert = () =>
     ],
     { cancelable: false }
 );
-
-var data = require('../assets/map/stations.json');
-for(var i = 0; i < data.length; i++) {
-  var obj = data[i];
-  }
 
 class Booking extends React.Component {
   // state={
@@ -58,8 +51,7 @@ class Booking extends React.Component {
     link:"",
     dateUse:"",
     firstSearchPageData: [],
-    isLoading: true,
-      markers: data,
+     
     };
   }
 
@@ -161,40 +153,38 @@ class Booking extends React.Component {
       
     });
      //删除表，请一定要注释
-     /*
-     db.transaction((tx) => {
-       tx.executeSql(
-         "DROP TABLE Doctor;"
-       );
-       // console.log(JSON.stringify(db))
+    // db.transaction((tx) => {
+    //   tx.executeSql(
+    //     "DROP TABLE Doctor;"
+    //   );
+    //   // console.log(JSON.stringify(db))
     
-     });*/
+    // });
 
     //执行插值操作
-    
-    //  db.transaction((tx) => {
-    //    tx.executeSql(
-    //      "INSERT INTO Doctor (name, hostipal, date, time) VALUES('bruce','aaa','2021-10-24', '12:00')"
-    //    );
-    //    tx.executeSql(
-    //      "INSERT INTO Doctor (name, hostipal, date, time) VALUES('Tom','bbb','2021-10-25', '12:00')"
-    //    );
-    //    tx.executeSql(
+    // db.transaction((tx) => {
+    //   tx.executeSql(
+    //     "INSERT INTO Doctor (name, hostipal, date, time) VALUES('bruce','aaa','2021-10-24', '12:00')"
+    //   );
+    //   tx.executeSql(
+    //     "INSERT INTO Doctor (name, hostipal, date, time) VALUES('Tom','bbb','2021-10-25', '12:00')"
+    //   );
+    //   tx.executeSql(
     //     "INSERT INTO Doctor (name, hostipal, date, time) VALUES('Carlos','ccc','2021-10-26', '12:00')"
-    //    );
+    //   );
 
 
-    //    tx.executeSql("select * from Doctor", 
-    //    [],
-    //     (_, result) =>{
+    //   tx.executeSql("select * from Doctor", 
+    //   [],
+    //    (_, result) =>{
         
-    //      console.log(JSON.stringify(result.rows))
+    //     console.log(JSON.stringify(result.rows))
           
-    //     }
+    //    }
         
-    //      );
+    //     );
       
-    //  });
+    // });
 
 
     return (
@@ -209,50 +199,47 @@ class Booking extends React.Component {
               <Block flex>
            
                 <Block>
-                <Header
-                    title="Booking"
-                    back
-                    optionLeft="Option 1"
-                    optionRight="Option 2"
-                    style={{marginBottom:2}}
-                    navigation={this.props.navigation}
-                    titleStyle = {{fontWeight: "bold", fontSize:30, marginLeft:35}} />
-                    </Block>
+                  
+              <Block  style={{backgroundColor:"#D9E6F7", height:430, flexDirection: 'row',flexWrap: 'wrap'}}>
+              {firstSearchPageData.map((item) => {
 
-                    <Block middle> 
-                    
-                    <MapView
-                    style={{
-                      marginTop: 20,
-                      marginBottom:20,
-                      width: width * 0.8,
-                      height: height * 0.5
-                    }}
-                    initialRegion={{
-                      latitude: -27.497,
-                      longitude: 153.0025,
-                      latitudeDelta: 0.0922,
-                      longitudeDelta: 0.0421
-                    }}
-                  >
-                    {this.state.markers.map((marker, index) => {
-                const coords = {
-                    latitude: marker.latitude,
-                    longitude: marker.longitude,
-                };
-
-                const metadata = `Status: ${marker.statusValue}`;
-
+              
+          
                 return (
-                    <MapView.Marker
-                        key={index}
-                        coordinate={coords}
-                        title={marker.HospitalName}
-                        description={metadata}
-                    />
-                );
+                <Block>
+
+                  <Button
+                  
+                  color="warning"
+                  // style={{marginLeft:12}}
+                  size="large"
+                  onPress={() => navigation.navigate('BookingDetail', {jjw:item})}
+                  
+                  >
+                    {item}
+                    </Button>
+                   {/* <Text>{link}</Text> */}
+                    {/* <Image source={{uri:link}}style={{width:40,height:40}} /> */}
+                   
+                </Block>
+           
+                 
+                  
+                    
+                
+                )
               })}
-      </MapView>
+
+            </Block>
+
+
+
+
+
+
+                
+                    </Block>                    
+                    <Block middle> 
                       <View>
                         <View>
                           <Button color= "black" onPress={() => {this.setState({mode:"date",show:true})}} title="Choose date">
@@ -308,8 +295,8 @@ class Booking extends React.Component {
 
 const styles = StyleSheet.create({
   registerContainer: {
-    width: width ,
-    height: height * 0.95 ,
+    width: width * 0.9,
+    height: height * 0.875,
     backgroundColor: "#F4F5F7",
     borderRadius: 4,
     shadowColor: argonTheme.COLORS.BLACK,
