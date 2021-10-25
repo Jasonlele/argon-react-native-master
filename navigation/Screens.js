@@ -19,6 +19,8 @@ import Articles from "../screens/Articles";
 import Emergency from "../screens/Emergency";
 import Translate from "../screens/Translate";
 import SympotomChecker from "../screens/SympotomChecker";
+import Service from "../screens/Service";
+import Insurance from "../screens/Insurance";
 // drawer
 import CustomDrawerContent from "./Menu";
 
@@ -344,7 +346,54 @@ function TranslateStack(props) {
           headerTransparent: true
         }}
       />
-      
+    </Stack.Navigator>
+  );
+}
+
+function ServiceStack(props) {
+  return (
+    <Stack.Navigator initialRouteName="Service" mode="card" headerMode="screen">
+      <Stack.Screen
+        name="Service"
+        component={Service}
+        options={{
+          header: ({ navigation, scene }) => (
+            <Header
+              transparent
+              white
+              title=""
+              navigation={navigation}
+              scene={scene}
+            />
+          ),
+          cardStyle: { backgroundColor: "#FFFFFF" },
+          headerTransparent: true
+        }}
+      />
+    </Stack.Navigator>
+  );
+}
+
+function InsuranceStack(props) {
+  return (
+    <Stack.Navigator initialRouteName="Insurance" mode="card" headerMode="screen">
+      <Stack.Screen
+        name="Insurance"
+        component={Insurance}
+        options={{
+          header: ({ navigation, scene }) => (
+            <Header
+              transparent
+              white
+              title=""
+              navigation={navigation}
+              scene={scene}
+            />
+          ),
+          cardStyle: { backgroundColor: "#FFFFFF" },
+          headerTransparent: true
+        }}
+      />
     </Stack.Navigator>
   );
 }
@@ -443,6 +492,8 @@ function AppStack(props) {
       <Drawer.Screen name="SympotomChecker" component={SympotomChecker} />
       <Drawer.Screen name="Elements" component={ElementsStack} />
       <Drawer.Screen name="Articles" component={ArticlesStack} />
+      <Drawer.Screen name="Service" component={Service} />
+      <Drawer.Screen name="Insurance" component={Insurance} />
     </Drawer.Navigator>
   );
 }

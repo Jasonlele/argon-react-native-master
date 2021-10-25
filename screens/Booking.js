@@ -210,47 +210,48 @@ class Booking extends React.Component {
            
                 <Block>
                 <Header
- 
-             title="Booking"
-             back
-             optionLeft="Option 1"
-             optionRight="Option 2"
-             style={{marginBottom:2}}
-             navigation={this.props.navigation}
-             titleStyle = {{fontWeight: "bold", fontSize:30, marginLeft:35}} />
-                    </Block>                    
+                    title="Booking"
+                    back
+                    optionLeft="Option 1"
+                    optionRight="Option 2"
+                    style={{marginBottom:2}}
+                    navigation={this.props.navigation}
+                    titleStyle = {{fontWeight: "bold", fontSize:30, marginLeft:35}} />
+                    </Block>
+
                     <Block middle> 
+                    
                     <MapView
-        style={{
-          marginTop: 20,
-          marginBottom:20,
-          width: width * 0.8,
-          height: height * 0.5
-        }}
-        initialRegion={{
-          latitude: -27.497,
-          longitude: 153.0025,
-          latitudeDelta: 0.0922,
-          longitudeDelta: 0.0421
-        }}
-      >
-        {this.state.markers.map((marker, index) => {
-     const coords = {
-         latitude: marker.latitude,
-         longitude: marker.longitude,
-     };
+                    style={{
+                      marginTop: 20,
+                      marginBottom:20,
+                      width: width * 0.8,
+                      height: height * 0.5
+                    }}
+                    initialRegion={{
+                      latitude: -27.497,
+                      longitude: 153.0025,
+                      latitudeDelta: 0.0922,
+                      longitudeDelta: 0.0421
+                    }}
+                  >
+                    {this.state.markers.map((marker, index) => {
+                const coords = {
+                    latitude: marker.latitude,
+                    longitude: marker.longitude,
+                };
 
-     const metadata = `Status: ${marker.statusValue}`;
+                const metadata = `Status: ${marker.statusValue}`;
 
-     return (
-         <MapView.Marker
-            key={index}
-            coordinate={coords}
-            title={marker.HospitalName}
-            description={metadata}
-         />
-     );
-  })}
+                return (
+                    <MapView.Marker
+                        key={index}
+                        coordinate={coords}
+                        title={marker.HospitalName}
+                        description={metadata}
+                    />
+                );
+              })}
       </MapView>
                       <View>
                         <View>
