@@ -692,6 +692,24 @@ function BookingDetailStack(props) {
           headerTransparent: true
         }}
       />
+
+      <Stack.Screen
+        name="Booking"
+        component={Booking}
+        options={{
+          header: ({ navigation, scene }) => (
+            <Header
+              transparent
+              white
+              title=""
+              navigation={navigation}
+              scene={scene}
+            />
+          ),
+          cardStyle: { backgroundColor: "#FFFFFF" },
+          headerTransparent: true
+        }}
+      />
       
     </Stack.Navigator>
   );
@@ -732,6 +750,7 @@ function AppStack(props) {
     >
       <Drawer.Screen name="Home" component={HomeStack} />
       <Drawer.Screen name="Booking" component={BookingStack} />
+      <Drawer.Screen name="BookingDetail" component={BookingDetailStack} />
       <Drawer.Screen name="Profile" component={ProfileStack} />
       <Drawer.Screen name="Account" component={Register} />
       <Drawer.Screen name="Emergency" component={Emergency} />
