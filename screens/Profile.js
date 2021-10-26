@@ -233,6 +233,8 @@ class Profile extends React.Component {
                   
 
               <Block style={styles.apphisCard}>
+
+              <TouchableWithoutFeedback onPress={() => navigation.navigate('History')}>
               <View style={ {flexDirection:'row', marginTop:15, marginLeft:18}}>
                       <View>
                       
@@ -249,7 +251,7 @@ class Profile extends React.Component {
                       <Text style ={{fontSize:25, fontWeight:"bold", marginLeft:10, marginTop:7}}>Appointment History</Text>
                       </View>
                   </View>
-               
+                </TouchableWithoutFeedback>
 
                     
                  

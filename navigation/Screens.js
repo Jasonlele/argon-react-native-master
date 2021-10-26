@@ -26,6 +26,7 @@ import Service from "../screens/Service";
 import ServiceClinic from "../screens/ServiceClinic";
 import ServiceMedicalCenter from "../screens/ServiceMedicalCenter";
 import ServiceHospital from "../screens/ServiceHospital";
+import History from "../screens/History";
 // drawer
 import CustomDrawerContent from "./Menu";
 
@@ -131,6 +132,24 @@ function ProfileStack(props) {
       <Stack.Screen
         name="uploadProfile"
         component={uploadProfile}
+        options={{
+          header: ({ navigation, scene }) => (
+            <Header
+              transparent
+              white
+              title=""
+              navigation={navigation}
+              scene={scene}
+            />
+          ),
+          cardStyle: { backgroundColor: "#FFFFFF" },
+          headerTransparent: true
+        }}
+      />
+
+      <Stack.Screen
+        name="HistoryStack"
+        component={HistoryStack}
         options={{
           header: ({ navigation, scene }) => (
             <Header
@@ -744,6 +763,34 @@ function BookingDetailStack(props) {
 }
 
 
+function HistoryStack(props) {
+  return (
+    <Stack.Navigator initialRouteName="bookingDetail" mode="card" headerMode="screen">
+      <Stack.Screen
+        name="HistoryStack"
+        component={HistoryStack}
+        options={{
+          header: ({ navigation, scene }) => (
+            <Header
+              transparent
+              white
+              title=""
+              navigation={navigation}
+              scene={scene}
+            />
+          ),
+          cardStyle: { backgroundColor: "#FFFFFF" },
+          headerTransparent: true
+        }}
+      />
+
+
+      
+    </Stack.Navigator>
+  );
+}
+
+
 
 function AppStack(props) {
   return (
@@ -787,6 +834,7 @@ function AppStack(props) {
       <Drawer.Screen name="Elements" component={ElementsStack} />
       <Drawer.Screen name="Service" component={ServiceStack} />
       <Drawer.Screen name="Insurance" component={InsuranceStack} />
+      <Drawer.Screen name="History" component={HistoryStack} />
       <Drawer.Screen name="HospitalMap" component={HospitalMap} />
     </Drawer.Navigator>
   );
