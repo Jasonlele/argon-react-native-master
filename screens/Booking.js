@@ -158,7 +158,7 @@ class Booking extends React.Component {
     
     // });
 
-    //执行医生插值操作
+    //执行医生插值操作,（老郑 161-184）
     // db.transaction((tx) => {
     //   tx.executeSql(
     //     "INSERT INTO Doctor (name, hostipal, date, time, department) VALUES('bruce','aaa','2021-10-24', '12:00', 'sss')"
@@ -184,6 +184,9 @@ class Booking extends React.Component {
     // });
 
     
+
+
+
        //删除照片表，请一定要注释
     // db.transaction((tx) => {
     //   tx.executeSql(
@@ -302,7 +305,7 @@ class Booking extends React.Component {
                         </View>
                       </View>
                      {/* 插值前一定要把这行注释掉 */}
-                      <Text bold size={18} style={{marginTop:20}}>{this.dateToString(date)} {this.timeToString(date)}</Text>
+                      {/* <Text bold size={18} style={{marginTop:20}}>{this.dateToString(date)} {this.timeToString(date)}</Text> */}
                      
                     </Block>
 
