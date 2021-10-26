@@ -11,7 +11,7 @@ import { Button } from '../components';
 import { Header} from "../components";
 const { width, height } = Dimensions.get("screen");
 
-class Emergency extends React.Component{
+class Account extends React.Component{
   constructor(props) {
     super(props);
   }
@@ -22,7 +22,7 @@ class Emergency extends React.Component{
       <Block flex >
         <Header
  
-             title="Emergency Call"
+             title="Account"
              back
              optionLeft="Option 1"
              optionRight="Option 2"
@@ -107,4 +107,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Emergency;
+export default Account;
