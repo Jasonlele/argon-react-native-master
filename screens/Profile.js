@@ -35,7 +35,7 @@ class Profile extends React.Component {
      insurance:"StudyingInsurance",
      imageUri:"1111", 
      Refresh:false,
-     firstSearchPageData:["      Click here to check"]
+     firstSearchPageData:["                  Click here to check"]
     };
     
 
