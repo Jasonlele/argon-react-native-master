@@ -6,21 +6,22 @@ import {
   Image,
   ImageBackground,
   Platform,
-  TouchableWithoutFeedback,
-  View,
+  TouchableWithoutFeedback
+
 } from "react-native";
 import { Block, Text, theme,NavBar,Input,Button  } from "galio-framework";
+import { withNavigation } from '@react-navigation/compat';
 import { Header} from "../components";
 import { Images } from "../constants";
 import { HeaderHeight } from "../constants/utils";
+
 import Icon from 'react-native-vector-icons/AntDesign';
 import Icon2 from 'react-native-vector-icons/FontAwesome5';
-import { Ionicons } from '@expo/vector-icons';
-import { MaterialIcons } from '@expo/vector-icons';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { FontAwesome5 } from '@expo/vector-icons';
-import { Fontisto } from '@expo/vector-icons';
+import Icon3 from 'react-native-vector-icons/Entypo';
 import * as SQLite from "expo-sqlite";
+import  {DeviceEventEmitter} from 'react-native';
+
+
 
 const { width, height } = Dimensions.get("screen");
 
@@ -58,12 +59,35 @@ class Profile extends React.Component {
                     // console.log(JSON.stringify(result.rows.item(i).date))
                     result1.push(result.rows.item(i).bookname)
                   }
-                  this.setState({firstSearchPageData :result1})        
+                  this.setState({firstSearchPageData :result1})
+                  
+      
+                  
                 } 
-              
+                
              }
+               
+        
               );
+      
+    
+    
+    
+    
+    
+          
         });
+
+
+
+
+
+
+
+
+
+
+
   }
   
   render() {
@@ -72,7 +96,12 @@ class Profile extends React.Component {
     global.useUri = imageUri;
     //数据库操作
 
+
+
+
+
     const db = SQLite.openDatabase("db.DECO3801");
+
 
     //删除表，请一定要注释
     // db.transaction((tx) => {
@@ -85,6 +114,9 @@ class Profile extends React.Component {
 
 
     db.transaction((tx) => {
+    
+
+      
       tx.executeSql("select uri from ProfileImage where phone = ?", 
       [test],
        (_, result) =>{
@@ -99,7 +131,39 @@ class Profile extends React.Component {
           } 
           
        }
+         
+  
         );
+
+
+
+        // tx.executeSql("select bookname from BookingDetail where phone = ?", 
+        // [test],
+        //  (_, result) =>{
+        //   var len = result.rows.length;                      
+        //   let result1=[]
+        //     if(len>0){
+             
+        //       for(let i=0; i<len; i++){
+        //         // result1.push(result.rows.item(i).date +"      "+ result.rows.item(i).name +"      "+ result.rows.item(i).hostipal)
+        //         // console.log(JSON.stringify(result.rows.item(i).date))
+        //         result1.push(result.rows.item(i).bookname)
+        //       }
+        //       this.setState({firstSearchPageData :result1})
+              
+  
+              
+        //     } 
+            
+        //  }
+           
+    
+        //   );
+  
+
+
+
+
 
       
     });
@@ -110,6 +174,7 @@ class Profile extends React.Component {
       <Block flex style={styles.profile}>
         <Block flex>
           <ImageBackground
+           //source={Images.ProfileBackground}
             style={styles.profileContainer}
             imageStyle={styles.profileBackground}
           >
@@ -118,6 +183,8 @@ class Profile extends React.Component {
               style={{ width, marginTop: '25%' }}
             >
           <Header
+             
+             
               title="My information"
               back
               optionLeft="Option 1"
@@ -130,75 +197,82 @@ class Profile extends React.Component {
              
 
                 <Block style={styles.avatarContainer}>
+                  {/* <Image
+                    source={require("../assets/imgs/user.png")}
+                    style={styles.avatar}
+                  /> */}
                   
                   <Image source={{ uri: imageUri }} style={styles.avatar} />
-
-                  <Block style ={{marginLeft:40}}>
-                    <TouchableWithoutFeedback onPress={() => navigation.navigate('uploadProfile')}>
-                    <FontAwesome5 
-                    name="arrow-circle-right" 
-                    size={25} 
-                    color="black"
-                    style={{marginTop:5}} 
-                    />
-                    </TouchableWithoutFeedback>
-                  </Block>
+                  {/* <Text>{imageUri}</Text> */}
+                      
                 </Block>
+                <Block style={{marginLeft:25, marginTop:23}}>
+                  <Text style={{fontSize:18}}>{testyyf}</Text>
+                  <Text style={{fontSize:18,marginTop:5}}>{test}</Text>
+                  
+                </Block>
+                <Block style ={{marginLeft:20}}>
+                <TouchableWithoutFeedback onPress={() => navigation.navigate('uploadProfile')}>
+                <Icon
+                  name="right"
+                  size={30}
+                  color="black"
+                  style={{ marginTop:30,marginLeft:20}}
+                 />
+                </TouchableWithoutFeedback>
 
-                <Block style={{marginLeft:15, marginTop:5}}>
-                  <View style={ {flexDirection:'row', marginTop:25}}>
-                      <View>
-                      <MaterialIcons style={{marginTop:5}} name="account-circle" size={30} color="black" />
-                      </View>
-                      <View>
-                      <Text style={{marginLeft:12,fontSize:28}}>{testyyf}</Text>
-                      </View>
-                  </View>
-
-                  <View style={ {flexDirection:'row', marginTop:20}}>
-                    <View>
-                    <Ionicons name="phone-portrait" size={30} color="black" />
-                    </View>
-                    <View>
-                      <Text style={{fontSize:25,marginLeft:10}}>{test}</Text>
-                    </View>
-                  </View>
                 </Block>
               </Block>
 
 
 {/* 
               从数据库里取出的值     */}
-          <Block style={styles.appCard}>
+
           <TouchableWithoutFeedback onPress={this.RefreshPage}>
               <Block flex style={styles.appointment}>
                 <Block>
-                <View style={ {flexDirection:'row', marginTop:1, marginLeft:30}}>
-                      <View>
-                      <TouchableWithoutFeedback onPress={() => navigation.navigate('Booking')}>
-                      <MaterialCommunityIcons style={{marginTop:2}} name="timeline-plus" size={30} color="black" />
-                      </TouchableWithoutFeedback>  
-                      
-                      </View>
-                      <View>
-                      <Text style ={{fontSize:25, marginLeft:10, fontWeight:'bold', marginBottom:2}}>My Appointment</Text>
-                      </View>
-                  </View>
+                <Text style ={{fontSize:20,fontWeight:'bold'}}>My Appointment</Text>
                 </Block>
+
+
+
+
                 {firstSearchPageData.map((item) => {
+
+              
+          
                       return (
-                      <Block key={item}>                       
-                        <Text key={item} style ={{marginTop:5, fontSize:23}}>                                                 
-                          {item}                   
+                      <Block key={item}>
+
+                       
+                        <Text key={item}>
+                          
+                          
+                          {item}
+                        
+                        
+                        
                         </Text>
+                        
                       </Block>
+
+   
+
                         )
                 })}
+
+            
               </Block>
+
+
               </TouchableWithoutFeedback>
-              </Block>   
+
+
+
 
               <Block flex style={styles.information}>
+
+
                 <Block style={styles.boxUse}>
                 <Icon
                   name="pluscircle"
@@ -214,7 +288,9 @@ class Profile extends React.Component {
                   size={30}
                   color="black"
                   style={{ marginLeft:100,marginTop:10}}
-                 /> 
+                 />
+                
+                
                 </Block>
 
 {/* 
@@ -319,7 +395,7 @@ const styles = StyleSheet.create({
     flex: 1
   },
   profileContainer: {
-    width: width* 0.9,
+    width: width,
     height: height,
     padding: 0,
     zIndex: 1
@@ -329,43 +405,32 @@ const styles = StyleSheet.create({
     height: height
   },
   profileCard: {
-    width: width * 0.9,
-    marginLeft: 20,
-    height: height * 0.2,
+    // position: "relative",
+    padding: theme.SIZES.BASE,
+    //marginHorizontal: theme.SIZES.BASE,
+    width: width,
+  //  marginTop:30,
+    // borderTopLeftRadius: 6,
+    // borderTopRightRadius: 6,
+   
     shadowColor: "black",
-    marginTop:40,
-    marginBottom:40,
     shadowOffset: { width: 0, height: 0 },
     shadowRadius: 8,
     shadowOpacity: 0.2,
-    backgroundColor:"rgb(240,248,255)",
-    borderWidth: 3,
-    borderRadius: 20,
-    elevation:20,
+    zIndex: 0,
     flexDirection:  'row',
-  },
-  appCard: {
-    width: width * 0.9,
-    marginLeft: 20,
-    height: height * 0.2,
-    shadowColor: "black",
-    marginTop:0,
-    marginBottom:0,
-    shadowOffset: { width: 0, height: 0 },
-    shadowRadius: 8,
-    shadowOpacity: 0.2,
-    backgroundColor:"rgb(230,240,255)",
-    borderWidth: 3,
-    borderRadius: 20,
-    elevation:20,
-    flexDirection:  'row',
+    backgroundColor:"#D9E6F7"
   },
   appointment: {
     padding: theme.SIZES.BASE,
-    marginLeft:10,
+    backgroundColor:"#DCF7F2",
+    marginTop:20,
+    height:200,
     flexDirection:  'column',
   },
   information:{
+    
+   // backgroundColor:"yellow",
     marginTop:10,
     flexDirection:  'column',
   },
@@ -378,10 +443,9 @@ const styles = StyleSheet.create({
   },
 
   avatarContainer: {
-    marginTop:25,
     position: "relative",
     // marginRight:width/2
-    marginLeft:20,
+    
     
   },
   avatar: {

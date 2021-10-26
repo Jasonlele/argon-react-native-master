@@ -161,7 +161,7 @@ class Translate extends React.Component {
                 style={styles.container}>
       
           
-          <Text style={{marginLeft:235, fontSize:22,marginTop:100,fontWeight:'bold'}}>Dr. {doctorName}</Text>
+          <Text style={{marginLeft:235, fontSize:25,marginTop:100,fontWeight:'bold'}}>Dr. {doctorName}</Text>
 
           
 
