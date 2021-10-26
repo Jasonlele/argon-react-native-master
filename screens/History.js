@@ -15,16 +15,23 @@ import { HeaderHeight } from "../constants/utils";
 import ModalDropdown from 'react-native-modal-dropdown';
 import { argonTheme, tabs } from "../constants/";
 import { MaterialIcons, FontAwesome5 } from '@expo/vector-icons'; 
+import * as SQLite from "expo-sqlite";
 const { width, height } = Dimensions.get("screen");
 
-class Translate extends React.Component {
+
+class History extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      motherLanguage:"",
-      unTranslateText:"",
-      translatedText:"",
-      motherLanguageOptions:['中文', '한어', "しろうと", "Deutsch", "français", "русский язык", "español"]
+        unTranslateText:"",
+        translatedText:"",
+        link:"testest",
+        doctorName:"",
+        introduction:"",
+        hospital:"",
+        date:"",
+        time:"",
+        firstSearchPageData: ['1'],
     };
   }
 
@@ -51,50 +58,90 @@ EmailChangeText=(unTranslateText)=>{
 
   render() {
     const { navigation } = this.props;
-    const{unTranslateText,translatedText} = this.state;
+    const{unTranslateText,translatedText, link,doctorName,hospital,date,time,firstSearchPageData} = this.state;
+
+    const db = SQLite.openDatabase("db.DECO3801");
+    db.transaction((tx) => {
+        // console.log(item)
+      //   console.log(name)
+        tx.executeSql("select bookname  from BookingDetail where phone = ? ", 
+        [test],
+         (_, result) =>{
+         
+          //  console.log(JSON.stringify(result.rows.item(0).date))
+                                                      
+        //   console.log(JSON.stringify(result.rows.item(0).imagelink))
+          var len = result.rows.length;                      
+          let result1=[]
+          console.log('result',result);
+          for(let i=0; i<len; i++){
+              // result1.push(result.rows.item(i).date +"      "+ result.rows.item(i).name +"      "+ result.rows.item(i).hostipal)
+              console.log(JSON.stringify(result.rows.item(i).department))
+              result1.push(result.rows.item(i).bookname)
+          }
+          this.setState({firstSearchPageData :result1})
+          
+          
+
+         }
+           
+    
+          );
+          
+      });
+
+
+
+
+
+
+
+
+
     return (
       <Block flex style={styles.container}>
         <StatusBar hidden/>
 
         <Block flex>
         <Header
-                    title="Realtime Translate"
+                    title="Booking History"
                     back
                     optionLeft="Option 1"
                     optionRight="Option 2"
                     style={{marginBottom:2}}
                     navigation={this.props.navigation}
                     titleStyle = {{fontWeight: "bold", fontSize:25, marginLeft:35}} />
-        <Block flex middle style={styles.card}>
-        
-        <Text style = {{fontSize:40, color: "#000000", fontWeight:"bold"}}>Translate</Text>
-        <ModalDropdown defaultValue="Click Here" 
-        dropdownStyle= {{marginLeft:0}} 
-        dropdownTextStyle={{fontSize:30}} 
-        textStyle={{fontSize:30, fontWeight:"bold", marginTop: 20,}} 
-        options={this.state.motherLanguageOptions}
-        onSelect = {(value) => this.setState({motherLanguage:(String(this.state.motherLanguageOptions[value]))})}
-        />
-          
-      
-        <Input style={{marginTop:40, fontSize:25, color:"#000000", borderRadius: 4,
-              backgroundColor: "#F8F8FF", borderColor:"#ffffff"}}  
-        onChangeText={this.EmailChangeText} 
-        value={unTranslateText} 
-        placeholder="Please input words" 
-        />
-        <Text>{this.translateLanguage}</Text>
-        <Input style={{marginTop:20, fontSize:25, color:"#000000", borderRadius: 4,
-              backgroundColor: "#F8F8FF", borderColor:"#ffffff"}} value={translatedText} />
-        <Text style = {{fontSize:25, color: "#000000", marginTop: 10}}>{this.state.motherLanguage} to English</Text>
-        <Button 
-          onPress={this.beginTranslate}
+        <Block flex  style={styles.card}>
+            
+        <Button
           iconFamily="antdesign" 
           color="warning" 
           iconColor="#fff" 
-          style={{ width: 120, height: 50,marginTop:20 }}> 
-          <Icon name="g-translate" family="MaterialIcons" color={"#ffffff"} size={50} />
+          style={{ width: 300, borderRadius:10 }}> 
+          <Icon name="history" family="MaterialIcons" color={"#ffffff"} size={50} />
         </Button>
+        
+        {firstSearchPageData.map((item) => {
+
+              
+                        
+                return (
+                <Block key={item}>
+
+                    
+                    <Text style={{color:'black',fontSize:16,fontWeight:'bold'}}>
+
+                    {item}
+                    </Text>
+                
+            
+                
+                </Block>
+
+                )
+                })}
+
+        
         </Block>
         </Block>
       </Block>
@@ -108,12 +155,12 @@ const styles = StyleSheet.create({
   },
   card:
   {
-    width: width * 0.8,
-    marginLeft: 40,
-    height: height * 0.8,
+    width: width * 0.9,
+    marginLeft: 20,
+    height: height * 1,
     shadowColor: "black",
-    marginTop:80,
-    marginBottom:120,
+    marginTop:20,
+    marginBottom:50,
     shadowOffset: { width: 0, height: 0 },
     shadowRadius: 8,
     shadowOpacity: 0.2,
@@ -124,4 +171,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Translate;
+export default History;

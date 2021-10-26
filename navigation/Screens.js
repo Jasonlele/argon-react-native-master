@@ -147,15 +147,15 @@ function ProfileStack(props) {
         }}
       />
 
-      <Stack.Screen
-        name="HistoryStack"
-        component={HistoryStack}
+    <Stack.Screen
+        name="History"
+        component={History}
         options={{
           header: ({ navigation, scene }) => (
             <Header
               transparent
               white
-              title=""
+              title="History"
               navigation={navigation}
               scene={scene}
             />
@@ -168,6 +168,40 @@ function ProfileStack(props) {
       
       
     </Stack.Navigator>
+  );
+}
+
+function HistoryStack(props) {
+  return (
+    
+      <Stack.Navigator initialRouteName="History" mode="card" headerMode="screen">
+      <Stack.Screen
+        name="History"
+        component={History}
+        options={{
+          header: ({ navigation, scene }) => (
+            <Header
+              transparent
+              white
+              title="History"
+              navigation={navigation}
+              scene={scene}
+            />
+          ),
+          cardStyle: { backgroundColor: "#FFFFFF" },
+          headerTransparent: true
+        }}
+      />
+
+   
+
+    
+      
+      
+    </Stack.Navigator>
+
+
+      
   );
 }
 
@@ -763,32 +797,7 @@ function BookingDetailStack(props) {
 }
 
 
-function HistoryStack(props) {
-  return (
-    <Stack.Navigator initialRouteName="bookingDetail" mode="card" headerMode="screen">
-      <Stack.Screen
-        name="HistoryStack"
-        component={HistoryStack}
-        options={{
-          header: ({ navigation, scene }) => (
-            <Header
-              transparent
-              white
-              title=""
-              navigation={navigation}
-              scene={scene}
-            />
-          ),
-          cardStyle: { backgroundColor: "#FFFFFF" },
-          headerTransparent: true
-        }}
-      />
 
-
-      
-    </Stack.Navigator>
-  );
-}
 
 
 
@@ -834,7 +843,6 @@ function AppStack(props) {
       <Drawer.Screen name="Elements" component={ElementsStack} />
       <Drawer.Screen name="Service" component={ServiceStack} />
       <Drawer.Screen name="Insurance" component={InsuranceStack} />
-      <Drawer.Screen name="History" component={HistoryStack} />
       <Drawer.Screen name="HospitalMap" component={HospitalMap} />
     </Drawer.Navigator>
   );
