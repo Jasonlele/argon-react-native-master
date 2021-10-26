@@ -9,9 +9,11 @@ import { Block, Text, theme} from "galio-framework";
 import { Button } from "../components";
 import { Input } from 'react-native-elements';
 import translate from 'translate-google-api';
-import { Header, Select } from "../components";
+import { Header, Select,Icon } from "../components";
 import { HeaderHeight } from "../constants/utils";
 import ModalDropdown from 'react-native-modal-dropdown';
+import { argonTheme, tabs } from "../constants/";
+import { MaterialIcons } from '@expo/vector-icons'; 
 const { width, height } = Dimensions.get("screen");
 
 class Translate extends React.Component {
@@ -21,7 +23,7 @@ class Translate extends React.Component {
       motherLanguage:"",
       unTranslateText:"",
       translatedText:"",
-      motherLanguageOptions:['中文', '한어', "しろうと", "Deutsch", "français", "русский язык", "língua portuguesa", "español"]
+      motherLanguageOptions:['中文', '한어', "しろうと", "Deutsch", "français", "русский язык", "español"]
     };
   }
 
@@ -62,10 +64,10 @@ EmailChangeText=(unTranslateText)=>{
                     style={{marginBottom:2}}
                     navigation={this.props.navigation}
                     titleStyle = {{fontWeight: "bold", fontSize:25, marginLeft:35}} />
-        <Block flex middle>
+        <Block flex middle style={styles.card}>
         
-        <Text style = {{fontSize:33, color: "#000000"}}>Real-Time Translate</Text>
-        <ModalDropdown defaultValue="Click to select language" 
+        <Text style = {{fontSize:33, color: "#000000"}}>Translate</Text>
+        <ModalDropdown defaultValue="Click Here" 
         dropdownStyle= {{marginLeft:0}} 
         dropdownTextStyle={{fontSize:30}} 
         textStyle={{fontSize:30, fontWeight:"bold", marginTop: 20,}} 
@@ -74,17 +76,25 @@ EmailChangeText=(unTranslateText)=>{
         >
           
         </ModalDropdown> 
-        <Input style={{marginTop:100, fontSize:25, color:"#000000"}}  onChangeText={this.EmailChangeText} value={unTranslateText} placeholder="please input some words" />
+
+      
+        <Input style={{marginTop:40, fontSize:25, color:"#000000", borderRadius: 4,
+              backgroundColor: "#fff", borderColor:"#ffffff"}}  
+        onChangeText={this.EmailChangeText} 
+        value={unTranslateText} 
+        placeholder="please input words" 
+        />
         <Text>{this.translateLanguage}</Text>
-        <Input style={{marginTop:100, fontSize:25, color:"#000000"}} value={translatedText} />
-        <Text style = {{fontSize:25, color: "#000000", marginTop: 30}}>{this.state.motherLanguage} to English</Text>
+        <Input style={{marginTop:20, fontSize:25, color:"#000000", borderRadius: 4,
+              backgroundColor: "#fff", borderColor:"#ffffff"}} value={translatedText} />
+        <Text style = {{fontSize:25, color: "#000000", marginTop: 10}}>{this.state.motherLanguage} to English</Text>
         <Button 
           onPress={this.beginTranslate}
           iconFamily="antdesign" 
           color="warning" 
           iconColor="#fff" 
-          style={{ width: 120, height: 50,marginTop:30 }}> 
-          <Text style = {{fontSize:25, color: "#000000"}}>Translate</Text>
+          style={{ width: 120, height: 50,marginTop:20 }}> 
+          <Icon name="g-translate" family="MaterialIcons" color={"#ffffff"} size={50} />
         </Button>
         </Block>
         </Block>
@@ -96,6 +106,22 @@ EmailChangeText=(unTranslateText)=>{
 const styles = StyleSheet.create({
   container: {
     backgroundColor: theme.COLORS.WHITE
+  },
+  card:
+  {
+    width: width * 0.8,
+    marginLeft: 40,
+    height: height * 0.8,
+    shadowColor: "black",
+    marginTop:80,
+    marginBottom:120,
+    shadowOffset: { width: 0, height: 0 },
+    shadowRadius: 8,
+    shadowOpacity: 0.2,
+    backgroundColor:"rgb(240,248,255)",
+    borderWidth: 3,
+    borderRadius: 20,
+    elevation:20,
   }
 });
 
