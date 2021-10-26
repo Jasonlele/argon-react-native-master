@@ -129,9 +129,6 @@ class Booking extends React.Component {
                     });
  
                     
-
-
-
     return dateTime;
   }
 
@@ -144,10 +141,7 @@ class Booking extends React.Component {
         "create table if not exists Doctor (id integer primary key not null, name text, hostipal text, date text, time text, department text);"
       );
 
-      tx.executeSql(
-        "create table if not exists DoctorImage (id integer primary key not null, nameuse text, imagelink text);"
-      );
-      
+
     });
      //删除医生表，请一定要注释
     // db.transaction((tx) => {
@@ -158,16 +152,39 @@ class Booking extends React.Component {
     
     // });
 
-    //执行医生插值操作,（老郑 161-184）
+    // 执行医生插值操作,（老郑 161-184）
+
+
     // db.transaction((tx) => {
-    //   tx.executeSql(
-    //     "INSERT INTO Doctor (name, hostipal, date, time, department) VALUES('bruce','aaa','2021-10-24', '12:00', 'sss')"
+    //           tx.executeSql(
+    //     "INSERT INTO Doctor (name, hostipal, date, time, department) VALUES('Yifan','Royal Hospital','2021-10-29', '12:00', 'Pediatrics')"
     //   );
     //   tx.executeSql(
-    //     "INSERT INTO Doctor (name, hostipal, date, time, department) VALUES('Tom','bbb','2021-10-25', '12:00', 'bbb')"
+    //     "INSERT INTO Doctor (name, hostipal, date, time,department) VALUES('Yuanbo','Royal Hospital','2021-10-30', '13:00','Oncology')"
     //   );
     //   tx.executeSql(
-    //     "INSERT INTO Doctor (name, hostipal, date, time, department) VALUES('Carlos','ccc','2021-10-26', '12:00','mmmmm')"
+    //     "INSERT INTO Doctor (name, hostipal, date, time, department) VALUES('Carlos','UQ Medical Centre','2021-10-29', '14:00', 'Cardiac Surgery')"
+    //   );
+    //   tx.executeSql(
+    //     "INSERT INTO Doctor (name, hostipal, date, time, department) VALUES('Jimmy','UQ Medical Centre','2021-10-30', '13:00', 'Respiratory')"
+    //   );
+    //   tx.executeSql(
+    //     "INSERT INTO Doctor (name, hostipal, date, time, department) VALUES('Yifan','Wesley Hospital','2021-10-29', '9:00', 'Pediatrics')"
+    //   );
+    //   tx.executeSql(
+    //     "INSERT INTO Doctor (name, hostipal, date, time, department) VALUES('Jiale','Wesley Hospital','2021-10-30', '12:00', 'ophthalmology')"
+    //   );
+    //   tx.executeSql(
+    //     "INSERT INTO Doctor (name, hostipal, date, time, department) VALUES('Yuanbo','Meter Hospital','2021-10-29', '12:00', 'Oncology')"
+    //   );
+    //   tx.executeSql(
+    //     "INSERT INTO Doctor (name, hostipal, date, time, department) VALUES('Jimmy','Meter Hospital','2021-10-30', '12:00', 'Respiratory')"
+    //   );
+    //   tx.executeSql(
+    //     "INSERT INTO Doctor (name, hostipal, date, time, department) VALUES('Yundong','Private Hospital','2021-10-29', '12:00', 'Pediatrics')"
+    //   );
+    //   tx.executeSql(
+    //     "INSERT INTO Doctor (name, hostipal, date, time, department) VALUES('Jiale','Private Hospital','2021-10-30', '12:00', 'Oncology')"
     //   );
 
 
@@ -184,7 +201,7 @@ class Booking extends React.Component {
     // });
 
     
-
+    
 
 
        //删除照片表，请一定要注释
@@ -196,28 +213,43 @@ class Booking extends React.Component {
     
     // });
 
-
+                                                                                                
     // 执行对照片表的插值操作
-    //   db.transaction((tx) => {
-    //   tx.executeSql(
-    //     "INSERT INTO DoctorImage (nameuse, imagelink) VALUES('2021-10-25      Tom      bbb      bbb', 'http://81.68.132.232/wp-content/uploads/2021/10/1-300x200.jpg')"
-    //   );
 
-    //   tx.executeSql(
-    //     "INSERT INTO DoctorImage (nameuse, imagelink) VALUES('2021-10-26      Carlos      ccc      mmmmm', 'http://81.68.132.232/wp-content/uploads/2021/10/2-300x200.jpg')"
-    //   );
 
-    //   tx.executeSql("select * from DoctorImage", 
-    //   [],
-    //    (_, result) =>{
-        
-    //     console.log(JSON.stringify(result.rows))
-          
-    //    }
-        
-    //     );
+    db.transaction((tx) => {
+     
+      tx.executeSql(
+        "create table if not exists DoctorImage (id integer primary key not null, nameuse text, imagelink text, doctorname text, introduction text, hospital text, date text, time text);"
+      );
       
-    // });
+    });
+    
+    
+    
+    db.transaction((tx) => {
+
+
+
+        tx.executeSql(
+        "INSERT INTO DoctorImage (nameuse, imagelink, doctorname, introduction,  hospital, date,  time) VALUES('2021-10-29      Yifan      Royal Hospital      Pediatrics',  'http://81.68.132.232/wp-content/uploads/2021/10/yuanbo.png', 'Yifan', 'Doctor of Pediatrics good at various intractable diseases in pediatrics Has won many awards', 'Royal Hospital', '2021-10-29', '13:00')"
+      );
+
+  
+      tx.executeSql("select * from DoctorImage", 
+      [],
+       (_, result) =>{
+        
+        console.log(JSON.stringify(result.rows))
+          
+       }
+        
+        );
+      
+    });
+
+
+
 
 
     return (

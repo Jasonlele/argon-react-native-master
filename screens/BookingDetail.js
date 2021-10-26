@@ -31,6 +31,11 @@ class Translate extends React.Component {
       translatedText:"",
       name:props.route.params.jjw,
       link:"testest",
+      doctorName:"",
+      introduction:"",
+      hospital:"",
+      date:"",
+      time:""
 
     };
     // let yy = navigation.getParam("jjw"); 
@@ -99,7 +104,7 @@ class Translate extends React.Component {
 
   render() {
     const { navigation } = this.props;
-    const{unTranslateText,translatedText,name,link} = this.state;
+    const{unTranslateText,translatedText,name,link,doctorName,introduction,date,time,hospital} = this.state;
 
     const db = SQLite.openDatabase("db.DECO3801");
    
@@ -119,14 +124,22 @@ class Translate extends React.Component {
       db.transaction((tx) => {
                   // console.log(item)
                 //   console.log(name)
-                  tx.executeSql("select imagelink from DoctorImage where nameuse = ? ", 
+                  tx.executeSql("select imagelink, doctorname, introduction,hospital, date, time  from DoctorImage where nameuse = ? ", 
                   [name],
                    (_, result) =>{
                    
                     //  console.log(JSON.stringify(result.rows.item(0).date))
                                                                 
                     // console.log(JSON.stringify(result.rows.item(0).imagelink))
-                    this.setState({ link :result.rows.item(0).imagelink})
+                    this.setState({ 
+                      link :result.rows.item(0).imagelink, 
+                      doctorName :result.rows.item(0).doctorname,
+                      introduction :result.rows.item(0).introduction,
+                      hospital:result.rows.item(0).hospital,
+                      date:result.rows.item(0).date,
+                      time:result.rows.item(0).time
+                      })
+                    
 
                    }
                      
@@ -148,7 +161,7 @@ class Translate extends React.Component {
                 style={styles.container}>
       
           
-          <Text style={{marginLeft:220, fontSize:25,marginTop:50,fontWeight:'bold'}}>Dr. Carlos</Text>
+          <Text style={{marginLeft:135, fontSize:25,marginTop:150,fontWeight:'bold'}}>Dr. {doctorName}</Text>
 
           
 
@@ -163,14 +176,14 @@ class Translate extends React.Component {
                   color="black"
                   style={{ marginTop:6,marginLeft:10}}
                  />
-           <Text style={{fontWeight:'bold',fontSize:17,marginLeft:8,color:"#6D6F70"}}>introduction</Text>
+           <Text style={{fontWeight:'bold',fontSize:20,marginLeft:8,color:"#6D6F70",fontStyle:'italic'}}>introduction</Text>
 
 
            </Block>
   
            
            <Text style={{width:280,marginLeft:30,marginTop:10}}>
-              I Department to provide a secure computing framework to support the federated AI.</Text>
+              {introduction}</Text>
         
 
 
@@ -188,7 +201,7 @@ class Translate extends React.Component {
          <Text style={{fontWeight:'bold',fontSize:17,marginLeft:8, color:"#6D6F70"}}>Visiting hospital</Text>
          </Block>
 
-         <Text style={{fontWeight:'bold',fontSize:23,marginLeft:88,marginTop:6}}>Brisbane hospital</Text>
+         <Text style={{fontWeight:'bold',fontSize:23,marginLeft:88,marginTop:6}}>{hospital}</Text>
 
 
          </Block>
@@ -206,7 +219,7 @@ class Translate extends React.Component {
          <Text style={{fontWeight:'bold',fontSize:17,marginLeft:8,marginTop:5,color:"#6D6F70"}}>Next visit time  (subject to change)</Text>
          </Block>
          <Block style={{backgroundColor:"rgb(240,248,255)",marginTop:15,height:70,width:315,marginLeft:20}}>
-         <Text style={styles.timeStyle}>2021-10-28     10:30</Text>
+         <Text style={styles.timeStyle}>{date}     {time}</Text>
 
          </Block>
 
