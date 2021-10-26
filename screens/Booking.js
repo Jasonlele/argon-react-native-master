@@ -112,6 +112,7 @@ class Booking extends React.Component {
                        (_, result) =>{
                           var len = result.rows.length;                      
                           let result1=[]
+                          console.log('result',result);
                           for(let i=0; i<len; i++){
                               // result1.push(result.rows.item(i).date +"      "+ result.rows.item(i).name +"      "+ result.rows.item(i).hostipal)
                               console.log(JSON.stringify(result.rows.item(i).department))
@@ -323,13 +324,12 @@ class Booking extends React.Component {
             style={{marginBottom:2}}
             navigation={this.props.navigation}
             titleStyle = {{fontWeight: "bold", fontSize:22, marginLeft:35}} />
-       
         <ImageBackground
-          source={Images.RegisterBackground}
+          // source={Images.RegisterBackground}
           style={{ width, height }}
         >
-          <Block safe flex middle>
-            <Block style={styles.registerContainer}>
+          <Block safe flex middle style={styles.card}>
+            <Block >
               <Block flex>
            
                 <Block>
@@ -343,7 +343,7 @@ class Booking extends React.Component {
                 <Block key={item}>
 
                   <Button
-                  style={{height:60}}
+                  style={{height:60,width:400}}
                   color="info"
                   // style={{marginLeft:12}}
                   size="large"
@@ -380,7 +380,8 @@ class Booking extends React.Component {
                     <Block middle> 
                       <View>
                         <View>
-                          <Button color= "black" onPress={() => {this.setState({mode:"date",show:true})}} title="Choose date" style ={{width:200,marginTop:30}}>
+                          <Button color= "black" onPress={() => {this.setState({mode:"date",show:true})}} 
+                          title="Choose date" style ={{width:300,marginTop:30}}>
                             <Text style= {{fontSize: 18, fontWeight: "bold", color: "#FFFFFF"}}>Choose Booking Date</Text>
                             </Button>
                           {show && (
@@ -406,12 +407,29 @@ class Booking extends React.Component {
             </Block>
 
         </ImageBackground>
-      </Block>
+        </Block>
     );
   }
 }
 
 const styles = StyleSheet.create({
+  card:
+  {
+    padding:6,
+    width: width * 0.9,
+    marginLeft: 20,
+    height: height * 0.7,
+    shadowColor: "black",
+    marginTop:40,
+    marginBottom:100,
+    shadowOffset: { width: 0, height: 0 },
+    shadowRadius: 8,
+    shadowOpacity: 0.2,
+    backgroundColor:"rgb(240,248,255)",
+    borderWidth: 3,
+    borderRadius: 20,
+    elevation:20,
+  },
   registerContainer: {
     width: width * 1,
     height: height * 1,
