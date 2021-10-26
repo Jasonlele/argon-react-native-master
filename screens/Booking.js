@@ -205,13 +205,13 @@ class Booking extends React.Component {
 
 
        //删除照片表，请一定要注释
-    // db.transaction((tx) => {
-    //   tx.executeSql(
-    //     "DROP TABLE DoctorImage;"
-    //   );
-    //   // console.log(JSON.stringify(db))
+    db.transaction((tx) => {
+      tx.executeSql(
+        "DROP TABLE DoctorImage;"
+      );
+      // console.log(JSON.stringify(db))
     
-    // });
+    });
 
                                                                                                 
     // 执行对照片表的插值操作
@@ -234,13 +234,17 @@ class Booking extends React.Component {
         tx.executeSql(
         "INSERT INTO DoctorImage (nameuse, imagelink, doctorname, introduction,  hospital, date,  time) VALUES('2021-10-29      Yifan      Royal Hospital      Pediatrics',  'http://81.68.132.232/wp-content/uploads/2021/10/yuanbo.png', 'Yifan', 'Doctor of Pediatrics good at various intractable diseases in pediatrics Has won many awards', 'Royal Hospital', '2021-10-29', '13:00')"
       );
+                                                                                                                                                                                                                                                                                                                      
+      tx.executeSql(
+        "INSERT INTO DoctorImage (nameuse, imagelink, doctorname, introduction,  hospital, date,  time) VALUES('2021-10-30      Yuanbo      Royal Hospital      Oncology',  'http://81.68.132.232/wp-content/uploads/2021/10/1-300x200.jpg', 'Yuanbo', 'Doctor of Medicine An international oncology leader and a well-known surgical oncologist', 'Royal Hospital', '2021-10-30', '13:00')"
+      );
 
   
       tx.executeSql("select * from DoctorImage", 
       [],
        (_, result) =>{
         
-        console.log(JSON.stringify(result.rows))
+        console.log(JSON.stringify(result.rows))    
           
        }
         
