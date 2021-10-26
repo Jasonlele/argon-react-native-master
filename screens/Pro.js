@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   StyleSheet,
   ImageBackground,
@@ -6,17 +6,23 @@ import {
   StatusBar,
   KeyboardAvoidingView,
   Alert,
+  TextInput,
+  View,
 } from "react-native";
 import { Block, Checkbox, Text} from "galio-framework";
 import { Button, Icon, Input } from "../components";
 import { Images, argonTheme } from "../constants";
 import validator from "../constants/validator";
 import * as SQLite from "expo-sqlite";
+import RNPasswordStrengthMeter, {
+  BarPasswordStrengthDisplay,
+  BoxPasswordStrengthDisplay,
+  CircularPasswordStrengthDisplay,
+  TextPasswordStrengthDisplay,
+} from 'react-native-password-strength-meter';
+
+
 const { width, height } = Dimensions.get("screen");
-
-
-
-
 
 const createOneButtonAlert = () =>{
   
@@ -64,6 +70,7 @@ const createOneButtonAlert = () =>{
   
 class Register extends React.Component {
 
+  onChange = password => this.setState({ password })
   constructor(props) {
     super(props);
     this.state = {
@@ -288,6 +295,7 @@ class Register extends React.Component {
                       <Input
                         password
                         borderless
+                        onChangeText={this.onChange}
                         placeholder="Password"
                         iconContent={
                           <Icon
@@ -302,7 +310,12 @@ class Register extends React.Component {
                         value={password}
                         onChangeText={this.PasswordChangeText}
                       />
-                      <Block row style={styles.passwordCheck}>
+                      <BarPasswordStrengthDisplay
+                        password={password}
+                        width = {width * 0.75}
+                        minLength = {6}
+                      />
+                      {/* <Block row style={styles.passwordCheck}>
                         <Text size={12} color={argonTheme.COLORS.MUTED}>
                           password strength:
                         </Text>
@@ -311,7 +324,7 @@ class Register extends React.Component {
                           strong
                         </Text>
                       
-                      </Block>
+                      </Block> */}
                     </Block>
                     <Block row width={width * 0.75}>
                       <Checkbox

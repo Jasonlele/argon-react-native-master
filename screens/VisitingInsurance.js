@@ -1,16 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   StyleSheet,
   Dimensions,
   ScrollView,
-  Image,
-  ImageBackground,
   View,
-  TouchableWithoutFeedback
-
+  TouchableWithoutFeedback,
+  SafeAreaView
 } from "react-native";
-import { Block, Text, theme,NavBar,Input,Button  } from "galio-framework";
-import { withNavigation } from '@react-navigation/compat';
+import { Block, Text,Input,Button  } from "galio-framework";
 import { Header} from "../components";
 import Icon from 'react-native-vector-icons/AntDesign';
 
