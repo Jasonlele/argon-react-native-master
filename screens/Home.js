@@ -14,7 +14,7 @@ class Home extends React.Component {
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.articles}>
         <Block flex>
-          <Text style={{fontWeight: 'bold', fontSize:20, marginLeft:10}}>Main Function </Text>
+          <Text style={{fontWeight: 'bold', fontSize:20, marginLeft:10, fontFamily: 'serif'}}>Main Function </Text>
           <View style={{ backgroundColor:'black',borderWidth:0.5 }}>
           </View>
           <Block flex row>
@@ -32,7 +32,7 @@ class Home extends React.Component {
             <Block style={{flex:1}}></Block>
           
           </Block>
-          <Text style={{fontWeight: 'bold', fontSize:20, marginLeft:10}}>Auxiliary Function </Text>
+          <Text style={{fontWeight: 'bold', fontSize:20, marginLeft:10, fontFamily: 'serif'}}>Auxiliary Function </Text>
           <View style={{ backgroundColor:'black',borderWidth:0.5 }}>
           </View>
           <Block  flex row>

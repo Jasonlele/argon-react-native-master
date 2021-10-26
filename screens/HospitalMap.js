@@ -63,7 +63,7 @@ class HospitalMap extends React.Component {
              optionRight="Option 2"
              style={{marginBottom:2}}
              navigation={this.props.navigation}
-             titleStyle = {{fontWeight: "bold", fontSize:30, marginLeft:35}} />
+             titleStyle = {{fontWeight: "bold", fontSize:30, marginLeft:35, fontFamily: 'serif'}} />
              <Text style={{fontSize:25, fontWeight:'bold', marginLeft:38, marginTop:20}}>Look for a nearby hospital</Text>
                     </Block>                    
                     

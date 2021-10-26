@@ -38,7 +38,7 @@ class VisitingInsurance extends React.Component {
       optionRight="Option 2"
       style={{marginBottom:2}}
       navigation={this.props.navigation}
-      titleStyle = {{fontWeight: "bold", fontSize:28, marginLeft:20}} />
+      titleStyle = {{fontWeight: "bold", fontSize:27, marginLeft: width * 0.04, fontFamily: 'serif'}} />
 
 
         <Block flex>

@@ -64,7 +64,7 @@ EmailChangeText=(unTranslateText)=>{
                     optionRight="Option 2"
                     style={{marginBottom:2}}
                     navigation={this.props.navigation}
-                    titleStyle = {{fontWeight: "bold", fontSize:25, marginLeft:35}} />
+                    titleStyle = {{fontWeight: "bold", fontSize:25, marginLeft:width * 0.06, fontFamily: 'serif'}} />
         <Block flex middle style={styles.card}>
         
         <Text style = {{fontSize:40, color: "#000000", fontWeight:"bold"}}>Translate</Text>
@@ -92,7 +92,7 @@ EmailChangeText=(unTranslateText)=>{
           iconFamily="antdesign" 
           color="warning" 
           iconColor="#fff" 
-          style={{ width: 120, height: 50,marginTop:20 }}> 
+          style={{ width: width * 0.35, height: 50,marginTop:20 }}> 
           <Icon name="g-translate" family="MaterialIcons" color={"#ffffff"} size={50} />
         </Button>
         </Block>
