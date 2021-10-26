@@ -211,7 +211,7 @@ class SympotomChecker extends React.Component {
 
 
       
-
+        <Block  style={styles.card}>
         <Block style={{marginTop:10}}>
         <StepIndicator
           stepCount={3}
@@ -232,7 +232,6 @@ class SympotomChecker extends React.Component {
             placeholder="Type Here to Search..." onChangeText={this.updateSearch} value={this.state.search}
           />
         </Block>
-        <Block safe flex middle style={styles.card}>
         <Swiper
            ref={swipeRef}
           style={{ flexGrow: 1 }}
@@ -354,10 +353,10 @@ const styles = StyleSheet.create({
     padding:6,
     width: width * 0.9,
     marginLeft: 20,
-    height: height * 1.1,
+    height: height * 0.9,
     shadowColor: "black",
     marginTop:10,
-    marginBottom:40,
+    marginBottom:100,
     shadowOffset: { width: 0, height: 0 },
     shadowRadius: 8,
     shadowOpacity: 0.2,
