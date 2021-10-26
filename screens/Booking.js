@@ -314,7 +314,7 @@ class Booking extends React.Component {
 
 
     return (
-      <Block>
+      <Block flex >
             <Header
             
             title="Booking"
@@ -324,17 +324,14 @@ class Booking extends React.Component {
             style={{marginBottom:2}}
             navigation={this.props.navigation}
             titleStyle = {{fontWeight: "bold", fontSize:22, marginLeft:35}} />
-        <ImageBackground
-          // source={Images.RegisterBackground}
-          style={{ width, height }}
-        >
+        
           <Block safe flex middle style={styles.card}>
             <Block >
               <Block flex>
            
                 <Block>
                   
-              <Block  style={{backgroundColor:"#D9E6F7", height:500, flexDirection: 'row',flexWrap: 'wrap'}}>
+              <Block  style={{ height:width *0.9, flexDirection: 'row',flexWrap: 'wrap'}}>
               {firstSearchPageData.map((item) => {
 
               
@@ -343,7 +340,7 @@ class Booking extends React.Component {
                 <Block key={item}>
 
                   <Button
-                  style={{height:60,width:400}}
+                  style={{height:60, width:width  * 0.8}}
                   color="info"
                   // style={{marginLeft:12}}
                   size="large"
@@ -360,28 +357,18 @@ class Booking extends React.Component {
                     {/* <Image source={{uri:link}}style={{width:40,height:40}} /> */}
                    
                 </Block>
-           
-                 
-                  
-                    
-                
+
                 )
               })}
 
             </Block>
 
-
-
-
-
-
-                
                     </Block>                    
-                    <Block middle> 
+                    <Block middle style = {{height: height * 0.2}}> 
                       <View>
                         <View>
                           <Button color= "black" onPress={() => {this.setState({mode:"date",show:true})}} 
-                          title="Choose date" style ={{width:300,marginTop:30}}>
+                          title="Choose date" style ={{width:width * 0.8 ,marginTop:20}}>
                             <Text style= {{fontSize: 18, fontWeight: "bold", color: "#FFFFFF"}}>Choose Booking Date</Text>
                             </Button>
                           {show && (
@@ -406,7 +393,7 @@ class Booking extends React.Component {
               </Block>
             </Block>
 
-        </ImageBackground>
+
         </Block>
     );
   }
@@ -418,10 +405,9 @@ const styles = StyleSheet.create({
     padding:6,
     width: width * 0.9,
     marginLeft: 20,
-    height: height * 0.7,
+    height: height * 0.8,
     shadowColor: "black",
     marginTop:40,
-    marginBottom:100,
     shadowOffset: { width: 0, height: 0 },
     shadowRadius: 8,
     shadowOpacity: 0.2,
@@ -430,59 +416,11 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     elevation:20,
   },
-  registerContainer: {
-    width: width * 1,
-    height: height * 1,
-    backgroundColor: "#F4F5F7",
-    borderRadius: 4,
-    shadowColor: argonTheme.COLORS.BLACK,
-    shadowOffset: {
-      width: 0,
-      height: 4
-    },
-    shadowRadius: 8,
-    shadowOpacity: 0.1,
-   
-  },
-  socialConnect: {
-    backgroundColor: argonTheme.COLORS.WHITE,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderColor: "#8898AA"
-  },
-  socialButtons: {
-    width: 120,
-    height: 40,
-    backgroundColor: "#fff",
-    shadowColor: argonTheme.COLORS.BLACK,
-    shadowOffset: {
-      width: 0,
-      height: 4
-    },
-    shadowRadius: 8,
-    shadowOpacity: 0.1,
-    elevation: 1
-  },
   map: {
     width: Dimensions.get('window').width / 1.2,
     height: Dimensions.get('window').height / 2.2,
   },
-  socialTextButtons: {
-    color: argonTheme.COLORS.PRIMARY,
-    fontWeight: "800",
-    fontSize: 14
-  },
-  inputIcons: {
-    marginRight: 12
-  },
-  passwordCheck: {
-    paddingLeft: 15,
-    paddingTop: 13,
-    paddingBottom: 30
-  },
-  createButton: {
-    width: width * 0.5,
-    marginBottom: 60
-  }
+
 });
 
 export default Booking;
