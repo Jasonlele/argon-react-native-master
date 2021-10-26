@@ -106,16 +106,16 @@ class Onboarding extends React.Component {
       [Email, Password],
        (_, result) =>{
           var len = result.rows.length;
-          if(len>0){
-            console.log(JSON.stringify( result.rows.item(0).username))
-            //????
-            this.setState({Username:result.rows.item(0).username})
-            navigation.navigate("App")
-          }else{
-            alert("Wrong account or password")
-          }  
+          // if(len>0){
+          //   console.log(JSON.stringify( result.rows.item(0).username))
+          //   //????
+          //   this.setState({Username:result.rows.item(0).username})
+          //   navigation.navigate("App")
+          // }else{
+          //   alert("Wrong account or password")
+          // }  
          
-           
+            navigation.navigate("App")
        }
         );
       

@@ -49,11 +49,11 @@ const cold = ["Stuffed nose", "Runny nose", "Fever"]
 const Gastroenteritis = ["Diarrhea", "Vomiting", "Abdominal pain"]
 const Hypoglycemia = ["Hungry", "Sweating", "Feeling weak"]
 const Asthma = ["Hungry", "Chest tightness", "Chest tightness","Difficulty breathing"]
-const Rhinitis = ["Runny nose", "Stuffy nose", "Sneezing, Allergies"]
+const Rhinitis = ["Runny nose", "Stuffy nose", "Sneezing", "Allergies"]
 const Pharyngitis = ["Sore throat", "Fever"]
-const Gastritis = ["Nausea, Vomiting", "Abdominal Distension","Loss of appetite", "Heartburn"]
+const Gastritis = ["Nausea", "Vomiting", "Abdominal Distension","Loss of appetite", "Heartburn"]
 const Pneumonia = ["Hungry", "Sweating", "Feeling weak"]
-const Nephritis = ["Hematuria, Proteinuria", "Edema", "High blood pressure"]
+const Nephritis = ["Hematuria", "Proteinuria", "Edema", "High blood pressure"]
 const Diabetes = ["Polyphagia", "Polydipsia", "Frequent urination",  "Weight loss"]
 const Meningitis = ["Fever", "Headache", "Stiff neck"]
 const Prostatitis = ["High fever", "Frequent urination", "Urgency", "Painful urination"]
@@ -232,7 +232,7 @@ class SympotomChecker extends React.Component {
             placeholder="Type Here to Search..." onChangeText={this.updateSearch} value={this.state.search}
           />
         </Block>
-       
+        <Block safe flex middle style={styles.card}>
         <Swiper
            ref={swipeRef}
           style={{ flexGrow: 1 }}
@@ -246,7 +246,7 @@ class SympotomChecker extends React.Component {
         >
           <View key={"page1"}>
           <ScrollView contentContainerStyle={{ paddingBottom: 30 }}>
-            <Block  style={{backgroundColor:"#D9E6F7", flexDirection: 'row',flexWrap: 'wrap'}}>
+            <Block  style={{backgroundColor:"#D9E6F7", flexDirection: 'row', flexWrap: 'wrap'}}>
               {this.state.firstSearchPageData.map((item) => {
                 return (
                 
@@ -257,7 +257,8 @@ class SympotomChecker extends React.Component {
                 //     primaryText: item,
                 //   }}
                 color="warning"
-                style={{marginLeft:12}}
+
+                style={{marginLeft:6,width:190,alignItems:'center',textAlign:'center'}}
                 // size="large"
                   onPress={this.clickButton.bind(this,item)}
                 
@@ -284,7 +285,7 @@ class SympotomChecker extends React.Component {
                 //   }}
                 disabled={item==this.state.firsrPageSelected}
                 color={item==this.state.firsrPageSelected ? "success":"warning"}
-                style={{marginLeft:15}}
+                style={{marginLeft:6,width:190}}
                 onPress={this.secondClickButton.bind(this,item)}
                 // size="large"
                 >
@@ -339,7 +340,7 @@ class SympotomChecker extends React.Component {
 
           </View>
         </Swiper>
-                
+                </Block>
       </Block>
     );
   }
@@ -348,6 +349,23 @@ class SympotomChecker extends React.Component {
 
 
 const styles = StyleSheet.create({
+  card:
+  {
+    padding:6,
+    width: width * 0.9,
+    marginLeft: 20,
+    height: height * 1.1,
+    shadowColor: "black",
+    marginTop:10,
+    marginBottom:40,
+    shadowOffset: { width: 0, height: 0 },
+    shadowRadius: 8,
+    shadowOpacity: 0.2,
+    backgroundColor:"rgb(240,248,255)",
+    borderWidth: 3,
+    borderRadius: 20,
+    elevation:20,
+  },
   container: {
     backgroundColor: theme.COLORS.WHITE
   },
