@@ -33,6 +33,7 @@
     "expo-location": "~12.1.2",
     "expo-permissions": "~12.1.1",
     "expo-sqlite": "~9.2.1",
+    "expo-updates": "~0.8.2",
     "firebase": "8.2.3",
     "galio-framework": "^0.8.0",
     "prop-types": "^15.7.2",
@@ -42,6 +43,7 @@
     "react-native-elements": "^3.4.2",
     "react-native-fs": "^2.18.0",
     "react-native-gesture-handler": "~1.10.2",
+    "react-native-i18n": "^2.0.15",
     "react-native-maps": "0.28.0",
     "react-native-material-ui": "^1.30.1",
     "react-native-modal-dropdown": "git+https://github.com/siemiatj/react-native-modal-dropdown.git",
@@ -52,8 +54,7 @@
     "react-native-step-indicator": "^1.0.3",
     "react-native-swiper": "^1.6.0",
     "react-native-vector-icons": "^8.1.0",
-    "translate-google-api": "^1.0.4",
-    "expo-updates": "~0.8.2"
+    "translate-google-api": "^1.0.4"
   },
   "devDependencies": {
     "babel-preset-expo": "8.3.0"

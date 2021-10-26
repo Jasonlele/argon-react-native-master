@@ -22,10 +22,13 @@ class HospitalMap extends React.Component {
   };
 
   render() {
+    
     return (
       <MapView
         style={{
-          flex: 1
+          flex: 0.8,
+          marginTop:120
+
         }}
         initialRegion={{
           latitude: -27.497,
@@ -50,7 +53,7 @@ class HospitalMap extends React.Component {
             description={metadata}
          />
      );
-  })}
+    })}
       </MapView>
     );
   }
