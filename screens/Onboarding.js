@@ -180,20 +180,20 @@ class Onboarding extends React.Component {
 
 
     return (
-      <Block flex style={styles.container}>
+      <Block flex  middle style={styles.container}>
         <StatusBar hidden />
         <Block flex center>
         </Block>
         <Block center>
-          <Image source={require("../assets/imgs/NewLogo.png")} style={styles.logo} />
-          <Text style = {{fontSize: 35, fontWeight: "bold", marginTop: 10}}>MediHelper</Text>
+          <Image source={require("../assets/imgs/Logo.png")} style={styles.logo} />
+          <Text style = {{fontSize: 35, fontWeight: "bold", marginTop: 10, fontFamily: 'serif'}}>MediHelper</Text>
         </Block>
         <Block flex space="between" style={styles.padded}>
             <Block flex space="around" style={{ zIndex: 10 }}>
               
               <Block>
                      <Input                      
-                        placeholder="Phone Nummber"
+                        placeholder="Phone"
                         leftIcon={{type:'FontAwesome', name:'smartphone',color:"#ccc",size:25,marginTop:20}}
                         maxLength={11}
                         keyboardType="phone-pad"
@@ -216,9 +216,7 @@ class Onboarding extends React.Component {
                         onChangeText={this.PasswordChangeText}
                       />
                 
-                        <Text style={{marginLeft:180,marginBottom:30, fontSize:16}}>
-                          Forgot password
-                        </Text>        
+                       
                   </Block> 
               <Block center>
                 <Button
@@ -233,18 +231,6 @@ class Onboarding extends React.Component {
                 >
                   <Text style = {styles.buttonText}>SIGN IN</Text>
                 </Button>
-
-              </Block>
-              <Block style={{flexDirection: 'row',marginLeft:35,marginTop:30}}>
-                <Text style={{fontSize:20,fontWeight:'bold',marginLeft:20,marginTop:14}}>Setting Language :</Text>
-                <Button 
-                onlyIcon icon="tags" 
-                iconFamily="antdesign" 
-                iconSize={30} 
-                color="warning" 
-                iconColor="#fff" 
-                style={{ width: 40, height: 40 }}>warning
-                </Button>
               </Block>
           </Block>
         </Block>
@@ -255,7 +241,18 @@ class Onboarding extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: theme.COLORS.WHITE
+    padding:6,
+    width: width * 0.85,
+    marginLeft: width * 0.07,
+    shadowColor: "black",
+    marginTop:width * 0.05,
+    shadowOffset: { width: 0, height: 0 },
+    shadowRadius: 8,
+    shadowOpacity: 0.2,
+    backgroundColor:"rgb(240,248,255)",
+    borderWidth: 3,
+    borderRadius: 20,
+    elevation:20,
   },
   padded: {
     paddingHorizontal: theme.SIZES.BASE * 2,
@@ -271,17 +268,10 @@ const styles = StyleSheet.create({
     shadowOpacity: 0
   },
   logo: {
-    width: 325,
-    height: 300,
-    zIndex: 2,
-    position: 'relative',
-    marginTop: '-100%'
-  },
-  title: {
-    marginTop:'-5%'
-  },
-  subTitle: {
-    marginTop: 20
+    width: width * 0.83,
+    height: width * 0.75,
+    borderRadius: 15,
+    marginTop: height * -0.433,
   },
   buttonText: {
     color: "#FFFFFF",
