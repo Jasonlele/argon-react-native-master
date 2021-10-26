@@ -208,7 +208,7 @@ class Profile extends React.Component {
                 <Block flex style={styles.information}>
                 <View style={ {flexDirection:'row', marginTop:15}}>
                       <View>
-                      <TouchableWithoutFeedback onPress={() => navigation.navigate({insurance})}>
+                      <TouchableWithoutFeedback onPress={() => navigation.navigate('insurance')}>
                       <FontAwesome5 name="hand-sparkles" size={28} color="black" />
                       </TouchableWithoutFeedback>
                       </View>
