@@ -152,7 +152,10 @@ class Booking extends React.Component {
     
     // });
 
-    // 执行医生插值操作,（老郑 161-184）
+
+
+
+    // 执行医生插值操作,（老董 158-204）
 
 
     // db.transaction((tx) => {
@@ -204,6 +207,17 @@ class Booking extends React.Component {
     
 
 
+
+
+
+
+
+
+
+
+
+
+
        //删除照片表，请一定要注释
     db.transaction((tx) => {
       tx.executeSql(
@@ -231,12 +245,22 @@ class Booking extends React.Component {
 
 
 
-        tx.executeSql(
-        "INSERT INTO DoctorImage (nameuse, imagelink, doctorname, introduction,  hospital, date,  time) VALUES('2021-10-29      Yifan      Royal Hospital      Pediatrics',  'http://81.68.132.232/wp-content/uploads/2021/10/yuanbo.png', 'Yifan', 'Doctor of Pediatrics good at various intractable diseases in pediatrics Has won many awards', 'Royal Hospital', '2021-10-29', '13:00')"
+      tx.executeSql(
+        "INSERT INTO DoctorImage (nameuse, imagelink, doctorname, introduction,  hospital, date,  time) VALUES('2021-10-29      Yifan      Royal Hospital      Pediatrics',  'http://81.68.132.232/wp-content/uploads/2021/10/1-1-300x200.jpg', 'Yifan', 'Doctor of Pediatrics good at various intractable diseases in pediatrics Has won many awards', 'Royal Hospital', '2021-10-29', '13:00')"
       );
                                                                                                                                                                                                                                                                                                                       
       tx.executeSql(
-        "INSERT INTO DoctorImage (nameuse, imagelink, doctorname, introduction,  hospital, date,  time) VALUES('2021-10-30      Yuanbo      Royal Hospital      Oncology',  'http://81.68.132.232/wp-content/uploads/2021/10/1-300x200.jpg', 'Yuanbo', 'Doctor of Medicine An international oncology leader and a well-known surgical oncologist', 'Royal Hospital', '2021-10-30', '13:00')"
+        "INSERT INTO DoctorImage (nameuse, imagelink, doctorname, introduction,  hospital, date,  time) VALUES('2021-10-30      Yuanbo      Royal Hospital      Oncology',  'http://81.68.132.232/wp-content/uploads/2021/10/2-1-300x200.jpg', 'Yuanbo', 'Doctor of Medicine An international oncology leader and a well-known surgical oncologist', 'Royal Hospital', '2021-10-30', '13:00')"
+      );
+
+                                                                                                                                                                                                                                                   
+      tx.executeSql(
+        "INSERT INTO DoctorImage (nameuse, imagelink, doctorname, introduction,  hospital, date,  time) VALUES('2021-10-29      Carlos      UQ Medical Centre      Cardiac Surgery',  'http://81.68.132.232/wp-content/uploads/2021/10/3-1-300x200.jpg', 'Carlos', 'Dr Carlos dedicated to solving cardiovascular diseases has many years of experience in the industry', 'UQ Medical Centre', '2021-10-29', '14:00')"
+      );
+
+
+      tx.executeSql(
+        "INSERT INTO DoctorImage (nameuse, imagelink, doctorname, introduction,  hospital, date,  time) VALUES('2021-10-30      Jimmy      UQ Medical Centre      Respiratory',  'http://81.68.132.232/wp-content/uploads/2021/10/4-1-300x200.jpg', 'Jimmy', 'Dr. Jiming specializes in Respiratory and once worked as an attending physician in a famous hospital', 'UQ Medical Centre', '2021-10-30', '13:00')"
       );
 
   
