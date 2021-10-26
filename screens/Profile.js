@@ -125,7 +125,7 @@ class Profile extends React.Component {
               optionRight="Option 2"
               style={{marginBottom:2}}
               navigation={this.props.navigation}
-              titleStyle = {{fontWeight: "bold", fontSize:25, marginLeft:35}} />
+              titleStyle = {{fontWeight: "bold", fontSize:25, marginLeft:35, fontFamily: 'serif'}} />
 
               <Block flex style={styles.profileCard}>
              
@@ -355,10 +355,9 @@ const styles = StyleSheet.create({
     
   },
   avatar: {
-    width: 104,
-    height: 104,
+    width: width * 0.26,
+    height: height * 0.12,
     borderRadius: 62,
-    borderWidth: 0
   },
   nameInfo: {
     marginTop: 35

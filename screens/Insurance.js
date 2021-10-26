@@ -29,7 +29,7 @@ class Service extends React.Component {
                     optionRight="Option 2"
                     style={{marginBottom:2}}
                     navigation={this.props.navigation}
-                    titleStyle = {{fontWeight: "bold", fontSize:25, marginLeft:45}} />
+                    titleStyle = {{fontWeight: "bold", fontSize:26, marginLeft: width * 0.05, fontFamily: 'serif'}} />
         <Block flex middle>
                 <Block>
                   <Text style = {{fontSize:25, marginBottom:15}}>Select an option to check</Text>

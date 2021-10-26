@@ -173,21 +173,10 @@ class Register extends React.Component {
           ],
           { cancelable: false }
         );
-
-
-
-
-
-
-
-
-
-
           }
           
        }
-        
-           
+    
           );
           
       });
@@ -226,10 +215,6 @@ class Register extends React.Component {
 
   }
 
-
-
-
-
   render() {
 
     const{phone,password,loginMessage,phoneValid,name} = this.state;
@@ -244,16 +229,13 @@ class Register extends React.Component {
     return (
       <Block flex middle>
         <StatusBar hidden />
-        <ImageBackground
-          source={Images.RegisterBackground}
-          style={{ width, height, zIndex: 1 }}
-        >
+
           <Block safe flex middle>
             <Block style={styles.registerContainer}>
              
               <Block flex>
                 <Block flex={0.17} middle>
-                  <Text  style ={{fontWeight:'bold'}} size={30} >
+                  <Text  style ={{fontWeight:'bold', fontFamily: 'serif'}} size={30} >
                     Sign Up
                   </Text>
                 </Block>
@@ -362,7 +344,7 @@ class Register extends React.Component {
               </Block>
             </Block>
           </Block>
-        </ImageBackground>
+       
       </Block>
     );
   }
@@ -370,19 +352,20 @@ class Register extends React.Component {
 
 const styles = StyleSheet.create({
   registerContainer: {
-    width: width * 0.9,
-    height: height * 0.875,
-    backgroundColor: "#F4F5F7",
-    borderRadius: 4,
-    shadowColor: argonTheme.COLORS.BLACK,
-    shadowOffset: {
-      width: 0,
-      height: 4
-    },
-    shadowRadius: 8,
-    shadowOpacity: 0.1,
-    elevation: 1,
-    overflow: "hidden"
+      height: height * 0.85,
+      padding:6,
+      width: width * 0.85,
+      marginLeft: width * 0.01,
+      shadowColor: "black",
+      marginTop:width * 0.05,
+      shadowOffset: { width: 0, height: 0 },
+      shadowRadius: 8,
+      shadowOpacity: 0.2,
+      backgroundColor:"rgb(240,248,255)",
+      borderWidth: 3,
+      borderRadius: 20,
+      elevation:20,
+    
   },
   socialConnect: {
     backgroundColor: argonTheme.COLORS.WHITE,

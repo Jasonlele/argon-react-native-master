@@ -323,7 +323,7 @@ class Booking extends React.Component {
             optionRight="Option 2"
             style={{marginBottom:2}}
             navigation={this.props.navigation}
-            titleStyle = {{fontWeight: "bold", fontSize:22, marginLeft:35}} />
+            titleStyle = {{fontWeight: "bold", fontSize:22, marginLeft:35, fontFamily: 'serif'}} />
         
           <Block safe flex middle style={styles.card}>
             <Block >

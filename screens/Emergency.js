@@ -28,7 +28,7 @@ class Emergency extends React.Component{
              optionRight="Option 2"
              style={{marginBottom:2}}
              navigation={this.props.navigation}
-             titleStyle = {{fontWeight: "bold", fontSize:30, marginLeft:35}} />
+             titleStyle = {{fontWeight: "bold", fontSize:28, marginLeft:width *0.08, fontFamily: 'serif'}} />
 
         <Block safe flex middle style={styles.card}>
           <Text style = {styles.headerText}>Attention</Text>
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
   card:
   {
     width: width * 0.8,
-    marginLeft: 40,
+    marginLeft: width * 0.10,
     height: height * 0.9,
     shadowColor: "black",
     marginTop:80,
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
     elevation:20,
   },
   callbutton: {
-    width: 160, 
+    width: width * 0.4, 
     height:120,
     marginBottom:25
   },
@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
     marginBottom: 40,
   },
   button: {
-    width: 160, 
+    width: width * 0.41, 
     height:50,
     marginBottom:10
   },

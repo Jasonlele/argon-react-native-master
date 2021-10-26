@@ -38,7 +38,7 @@ class ServiceMedicalCenter extends React.Component {
       optionRight="Option 2"
       style={{marginBottom:2}}
       navigation={this.props.navigation}
-      titleStyle = {{fontWeight: "bold", fontSize:30, marginLeft:45}} />
+      titleStyle = {{fontWeight: "bold", fontSize:30, marginLeft:width * 0.1, fontFamily: 'serif'}} />
 
 
         <Block flex>
