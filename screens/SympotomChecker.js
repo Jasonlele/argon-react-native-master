@@ -285,7 +285,7 @@ class SympotomChecker extends React.Component {
                 //   }}
                 disabled={item==this.state.firsrPageSelected}
                 color={item==this.state.firsrPageSelected ? "success":"warning"}
-                style={{marginLeft:12}}
+                style={{marginLeft:15}}
                 onPress={this.secondClickButton.bind(this,item)}
                 // size="large"
                 >
@@ -297,7 +297,7 @@ class SympotomChecker extends React.Component {
             </Block>
             </ScrollView>
           </View>
-          <View key={"page3"} style={{backgroundColor:"#D9E6F7", height:430}}>
+          <View key={"page3"} style={{backgroundColor:"#D9E6F7", height:600}}>
           {this.state.result.length>0 ? this.state.result.map((item) => {
                 return (
                 

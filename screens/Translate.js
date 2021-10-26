@@ -4,6 +4,7 @@ import {
   StatusBar,
   Dimensions,
   ImageBackground,
+  View,
 } from "react-native";
 import { Block, Text, theme} from "galio-framework";
 import { Button } from "../components";
@@ -13,7 +14,7 @@ import { Header, Select,Icon } from "../components";
 import { HeaderHeight } from "../constants/utils";
 import ModalDropdown from 'react-native-modal-dropdown';
 import { argonTheme, tabs } from "../constants/";
-import { MaterialIcons } from '@expo/vector-icons'; 
+import { MaterialIcons, FontAwesome5 } from '@expo/vector-icons'; 
 const { width, height } = Dimensions.get("screen");
 
 class Translate extends React.Component {
@@ -66,27 +67,25 @@ EmailChangeText=(unTranslateText)=>{
                     titleStyle = {{fontWeight: "bold", fontSize:25, marginLeft:35}} />
         <Block flex middle style={styles.card}>
         
-        <Text style = {{fontSize:33, color: "#000000"}}>Translate</Text>
+        <Text style = {{fontSize:40, color: "#000000", fontWeight:"bold"}}>Translate</Text>
         <ModalDropdown defaultValue="Click Here" 
         dropdownStyle= {{marginLeft:0}} 
         dropdownTextStyle={{fontSize:30}} 
         textStyle={{fontSize:30, fontWeight:"bold", marginTop: 20,}} 
         options={this.state.motherLanguageOptions}
         onSelect = {(value) => this.setState({motherLanguage:(String(this.state.motherLanguageOptions[value]))})}
-        >
+        />
           
-        </ModalDropdown> 
-
       
         <Input style={{marginTop:40, fontSize:25, color:"#000000", borderRadius: 4,
-              backgroundColor: "#fff", borderColor:"#ffffff"}}  
+              backgroundColor: "#F8F8FF", borderColor:"#ffffff"}}  
         onChangeText={this.EmailChangeText} 
         value={unTranslateText} 
-        placeholder="please input words" 
+        placeholder="Please input words" 
         />
         <Text>{this.translateLanguage}</Text>
         <Input style={{marginTop:20, fontSize:25, color:"#000000", borderRadius: 4,
-              backgroundColor: "#fff", borderColor:"#ffffff"}} value={translatedText} />
+              backgroundColor: "#F8F8FF", borderColor:"#ffffff"}} value={translatedText} />
         <Text style = {{fontSize:25, color: "#000000", marginTop: 10}}>{this.state.motherLanguage} to English</Text>
         <Button 
           onPress={this.beginTranslate}
