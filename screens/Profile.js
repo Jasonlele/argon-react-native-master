@@ -6,22 +6,22 @@ import {
   Image,
   ImageBackground,
   Platform,
-  TouchableWithoutFeedback
-
+  TouchableWithoutFeedback,
+  View,
 } from "react-native";
 import { Block, Text, theme,NavBar,Input,Button  } from "galio-framework";
-import { withNavigation } from '@react-navigation/compat';
 import { Header} from "../components";
 import { Images } from "../constants";
 import { HeaderHeight } from "../constants/utils";
-
 import Icon from 'react-native-vector-icons/AntDesign';
 import Icon2 from 'react-native-vector-icons/FontAwesome5';
-import Icon3 from 'react-native-vector-icons/Entypo';
+import { Ionicons } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { FontAwesome5 } from '@expo/vector-icons';
+import { Fontisto } from '@expo/vector-icons';
 import * as SQLite from "expo-sqlite";
-import  {DeviceEventEmitter} from 'react-native';
-
-
+import ModalDropdown from 'react-native-modal-dropdown';
 
 const { width, height } = Dimensions.get("screen");
 
@@ -32,10 +32,10 @@ class Profile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-     
+     insurance:"StudyingInsurance",
      imageUri:"1111", 
      Refresh:false,
-     firstSearchPageData:["aaa"]
+     firstSearchPageData:["                  Click here to check"]
     };
     
 
@@ -59,49 +59,21 @@ class Profile extends React.Component {
                     // console.log(JSON.stringify(result.rows.item(i).date))
                     result1.push(result.rows.item(i).bookname)
                   }
-                  this.setState({firstSearchPageData :result1})
-                  
-      
-                  
+                  this.setState({firstSearchPageData :result1})        
                 } 
-                
+              
              }
-               
-        
               );
-      
-    
-    
-    
-    
-    
-          
         });
-
-
-
-
-
-
-
-
-
-
-
   }
   
   render() {
     const { navigation } = this.props;
-    const{imageUri,Refresh, firstSearchPageData} = this.state;
+    const{imageUri, insurance, firstSearchPageData} = this.state;
     global.useUri = imageUri;
     //数据库操作
 
-
-
-
-
     const db = SQLite.openDatabase("db.DECO3801");
-
 
     //删除表，请一定要注释
     // db.transaction((tx) => {
@@ -114,9 +86,6 @@ class Profile extends React.Component {
 
 
     db.transaction((tx) => {
-    
-
-      
       tx.executeSql("select uri from ProfileImage where phone = ?", 
       [test],
        (_, result) =>{
@@ -131,39 +100,7 @@ class Profile extends React.Component {
           } 
           
        }
-         
-  
         );
-
-
-
-        // tx.executeSql("select bookname from BookingDetail where phone = ?", 
-        // [test],
-        //  (_, result) =>{
-        //   var len = result.rows.length;                      
-        //   let result1=[]
-        //     if(len>0){
-             
-        //       for(let i=0; i<len; i++){
-        //         // result1.push(result.rows.item(i).date +"      "+ result.rows.item(i).name +"      "+ result.rows.item(i).hostipal)
-        //         // console.log(JSON.stringify(result.rows.item(i).date))
-        //         result1.push(result.rows.item(i).bookname)
-        //       }
-        //       this.setState({firstSearchPageData :result1})
-              
-  
-              
-        //     } 
-            
-        //  }
-           
-    
-        //   );
-  
-
-
-
-
 
       
     });
@@ -174,7 +111,6 @@ class Profile extends React.Component {
       <Block flex style={styles.profile}>
         <Block flex>
           <ImageBackground
-           //source={Images.ProfileBackground}
             style={styles.profileContainer}
             imageStyle={styles.profileBackground}
           >
@@ -183,8 +119,6 @@ class Profile extends React.Component {
               style={{ width, marginTop: '25%' }}
             >
           <Header
-             
-             
               title="My information"
               back
               optionLeft="Option 1"
@@ -197,187 +131,131 @@ class Profile extends React.Component {
              
 
                 <Block style={styles.avatarContainer}>
-                  {/* <Image
-                    source={require("../assets/imgs/user.png")}
-                    style={styles.avatar}
-                  /> */}
                   
                   <Image source={{ uri: imageUri }} style={styles.avatar} />
-                  {/* <Text>{imageUri}</Text> */}
-                      
-                </Block>
-                <Block style={{marginLeft:25, marginTop:23}}>
-                  <Text style={{fontSize:18}}>{testyyf}</Text>
-                  <Text style={{fontSize:18,marginTop:5}}>{test}</Text>
-                  
-                </Block>
-                <Block style ={{marginLeft:20}}>
-                <TouchableWithoutFeedback onPress={() => navigation.navigate('uploadProfile')}>
-                <Icon
-                  name="right"
-                  size={30}
-                  color="black"
-                  style={{ marginTop:30,marginLeft:20}}
-                 />
-                </TouchableWithoutFeedback>
 
+                  <Block style ={{marginLeft:40}}>
+                    <TouchableWithoutFeedback onPress={() => navigation.navigate('uploadProfile')}>
+                    <FontAwesome5 
+                    name="arrow-circle-right" 
+                    size={25} 
+                    color="black"
+                    style={{marginTop:5}} 
+                    />
+                    </TouchableWithoutFeedback>
+                  </Block>
+                </Block>
+
+                <Block style={{marginLeft:15, marginTop:5}}>
+                  <View style={ {flexDirection:'row', marginTop:25}}>
+                      <View>
+                      <MaterialIcons style={{marginTop:5}} name="account-circle" size={30} color="black" />
+                      </View>
+                      <View>
+                      <Text style={{marginLeft:12,fontSize:28}}>{testyyf}</Text>
+                      </View>
+                  </View>
+
+                  <View style={ {flexDirection:'row', marginTop:20}}>
+                    <View>
+                    <Ionicons name="phone-portrait" size={30} color="black" />
+                    </View>
+                    <View>
+                      <Text style={{fontSize:25,marginLeft:10}}>{test}</Text>
+                    </View>
+                  </View>
                 </Block>
               </Block>
 
 
 {/* 
               从数据库里取出的值     */}
-
+          <Block style={styles.appCard}>
           <TouchableWithoutFeedback onPress={this.RefreshPage}>
               <Block flex style={styles.appointment}>
                 <Block>
-                <Text style ={{fontSize:20,fontWeight:'bold'}}>My Appointment</Text>
-                </Block>
-
-
-
-
-                {firstSearchPageData.map((item) => {
-
-              
-          
-                      return (
-                      <Block key={item}>
-
+                <View style={ {flexDirection:'row', marginTop:1, marginLeft:20}}>
+                      <View>
+                      <TouchableWithoutFeedback onPress={() => navigation.navigate('Booking')}>
+                      <MaterialCommunityIcons style={{marginTop:2}} name="timeline-plus" size={32} color="black" />
                        
-                        <Text key={item}>
-                          
-                          
-                          {item}
-                        
-                        
-                        
+                      </TouchableWithoutFeedback> 
+                      </View>
+                      <View>
+                      <TouchableWithoutFeedback onPress={() => navigation.navigate('Booking')}>
+                      <Text style ={{fontSize:25, marginLeft:20, fontWeight:'bold', marginBottom:2}}>My Appointment</Text>
+                      </TouchableWithoutFeedback> 
+                      </View>
+                      
+                  </View>
+                </Block>
+                <ScrollView>
+                {firstSearchPageData.map((item) => {
+                      return (
+                      <Block key={item}>                       
+                        <Text key={item} style ={{marginTop:5, fontSize:15}}>                                                 
+                          {item}                   
                         </Text>
-                        
                       </Block>
-
-   
-
                         )
                 })}
-
-            
+                </ScrollView>
               </Block>
-
-
               </TouchableWithoutFeedback>
+              </Block>   
 
-
-
-
-              <Block flex style={styles.information}>
-
-
-                <Block style={styles.boxUse}>
-                <Icon
-                  name="pluscircle"
-                  size={30}
-                  color="black"
-                  style={{ marginLeft:10,marginTop:10}}
-                 />
-
-                    <Text style ={{fontSize:20,marginLeft:30,marginTop:12}}>My Insurance</Text>
-                   
-                    <Icon
-                  name="right"
-                  size={30}
-                  color="black"
-                  style={{ marginLeft:100,marginTop:10}}
-                 />
-                
-                
+              <Block style={styles.insuranceCard}>
+                <Block flex style={styles.information}>
+                <View style={ {flexDirection:'row', marginTop:15}}>
+                      <View>
+                      <TouchableWithoutFeedback onPress={() => navigation.navigate({insurance})}>
+                      <FontAwesome5 name="hand-sparkles" size={28} color="black" />
+                      </TouchableWithoutFeedback>
+                      </View>
+                      <View>
+                      <TouchableWithoutFeedback onPress={() => navigation.navigate('insurance')}>
+                      <Text style ={{fontSize:25, fontWeight:"bold", marginLeft:30,marginTop: 0}}>My Insurance</Text>
+                      </TouchableWithoutFeedback>
+                      </View>
+                  </View>
+                  
+                  <ModalDropdown defaultValue=" Choose Types" 
+                      dropdownStyle= {{marginLeft:0}} 
+                      dropdownTextStyle={{fontSize:25}} 
+                      textStyle={{fontSize:25, fontWeight:"bold", marginTop: 20, marginLeft: 15}} 
+                      options={["StudyingInsurance", "VisitingInsurance", "CitizenInsurance"]}
+                      onSelect = {(value) => this.setState({insurance:(String(this.state.insurance[value]))})}
+                      />
+                        
+                       
                 </Block>
-
-{/* 
-                <Block style={styles.boxUse}>
-                <Icon
-                  name="heart"
-                  size={30}
-                  color="black"
-                  style={{ marginLeft:10}}
-                 />
-
-                    <Text style ={{fontSize:20,marginLeft:30}}>Favortite Doctor</Text>
-                    <Text style ={{fontSize:20,marginLeft:30}}>2</Text>
-                    <Icon
-                  name="right"
-                  size={30}
-                  color="black"
-                  style={{ marginLeft:40}}
-                 />
-
-                </Block> */}
-
-
-                <Block style={styles.boxUse}>
-                <Icon2
-                  name="capsules"
-                  size={30}
-                  color="black"
-                  style={{ marginLeft:10,marginTop:10}}
-                 />
-
-                    <Text style ={{fontSize:20,marginLeft:30,marginTop:12}}>My Medicare</Text>
-                    <Text style ={{fontSize:20,marginLeft:30,marginTop:12}}>Verified</Text>
-                    {/* <Icon
-                  name="right"
-                  size={30}
-                  color="black"
-                  style={{ marginLeft:10}}
-                 /> */}
-
-                </Block>
-
-{/* 
-                <Block style={styles.boxUse}>
-                <Icon2
-                  name="file-medical"
-                  size={30}
-                  color="black"
-                  style={{ marginLeft:10}}
-                 />
-
-                    <Text style ={{fontSize:20,marginLeft:30}}>Basic Information</Text>
-                    
-                    <Icon
-                  name="right"
-                  size={30}
-                  color="black"
-                  style={{ marginLeft:65}}
-                 />
-
-                </Block> */}
-
-
-                <Block style={styles.boxUse}>
-
-          
-                <Icon2
-                  name="history"
-                  size={30}
-                  color="black"
-                  style={{ marginLeft:10,marginTop:10}}
-                 />
-
-                    <Text style ={{fontSize:20,marginLeft:30,marginTop:12}}>Appointment History</Text>
-                 
-                    <Icon
-                  name="right"
-                  size={30}
-                  color="black"
-                  style={{ marginLeft:30,marginTop:12}}
-                 />
-
-                </Block>
-
-                
               </Block>
                   
+
+              <Block style={styles.apphisCard}>
+              <View style={ {flexDirection:'row', marginTop:15, marginLeft:18}}>
+                      <View>
+                      
+                          <Icon2
+                      name="history"
+                      size={28}
+                      color="black"
+                      style={{ marginLeft:10,marginTop:10}}
+                    />
+                      
+                      </View>
+                      <View>
+                     
+                      <Text style ={{fontSize:25, fontWeight:"bold", marginLeft:10, marginTop:7}}>Appointment History</Text>
+                      </View>
+                  </View>
+               
+
+                    
+                 
+                
+
+                </Block>
 
             </ScrollView>
           </ImageBackground>
@@ -395,7 +273,7 @@ const styles = StyleSheet.create({
     flex: 1
   },
   profileContainer: {
-    width: width,
+    width: width* 0.9,
     height: height,
     padding: 0,
     zIndex: 1
@@ -405,47 +283,75 @@ const styles = StyleSheet.create({
     height: height
   },
   profileCard: {
-    // position: "relative",
-    padding: theme.SIZES.BASE,
-    //marginHorizontal: theme.SIZES.BASE,
-    width: width,
-  //  marginTop:30,
-    // borderTopLeftRadius: 6,
-    // borderTopRightRadius: 6,
-   
+    width: width * 0.9,
+    marginLeft: 20,
+    height: height * 0.2,
     shadowColor: "black",
+    marginTop:40,
+    marginBottom:40,
     shadowOffset: { width: 0, height: 0 },
     shadowRadius: 8,
     shadowOpacity: 0.2,
-    zIndex: 0,
+    backgroundColor:"rgb(240,248,255)",
+    borderWidth: 3,
+    borderRadius: 20,
+    elevation:20,
     flexDirection:  'row',
-    backgroundColor:"#D9E6F7"
+  },
+  appCard: {
+    width: width * 0.9,
+    marginLeft: 20,
+    height: height * 0.2,
+    shadowColor: "black",
+    marginTop:0,
+    marginBottom:40,
+    shadowOffset: { width: 0, height: 0 },
+    shadowRadius: 8,
+    shadowOpacity: 0.2,
+    backgroundColor:"rgb(230,240,255)",
+    borderWidth: 3,
+    borderRadius: 20,
+    elevation:20,
+    flexDirection:  'row',
   },
   appointment: {
     padding: theme.SIZES.BASE,
-    backgroundColor:"#DCF7F2",
-    marginTop:20,
-    height:200,
+    marginLeft:10,
     flexDirection:  'column',
   },
+  insuranceCard: {
+    width: width * 0.9,
+    marginLeft: 20,
+    height: height * 0.2,
+    shadowColor: "black",
+    marginTop:0,
+    marginBottom:40,
+    shadowOffset: { width: 0, height: 0 },
+    shadowRadius: 8,
+    shadowOpacity: 0.2,
+    backgroundColor:"rgb(220,240,240)",
+    borderWidth: 3,
+    borderRadius: 20,
+    elevation:20,
+    flexDirection:  'row',
+  },
   information:{
-    
-   // backgroundColor:"yellow",
     marginTop:10,
-    flexDirection:  'column',
+    marginLeft:62,
   },
   boxUse: {
     flexDirection:  'row', 
-    backgroundColor:"#B9EDC4",
+    backgroundColor:"#ffffff",
      marginTop:15,
      paddingTop:7,
      height:70
   },
 
   avatarContainer: {
+    marginTop:25,
     position: "relative",
     // marginRight:width/2
-    
+    marginLeft:20,
     
   },
   avatar: {
@@ -468,7 +374,23 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     width: thumbMeasure,
     height: thumbMeasure
-  }
+  },
+  apphisCard: {
+    width: width * 0.9,
+    marginLeft: 20,
+    height: height * 0.2,
+    shadowColor: "black",
+    marginTop:0,
+    marginBottom:0,
+    shadowOffset: { width: 0, height: 0 },
+    shadowRadius: 8,
+    shadowOpacity: 0.2,
+    backgroundColor:"rgb(210,240,255)",
+    borderWidth: 3,
+    borderRadius: 20,
+    elevation:20,
+    flexDirection:  'row',
+  },
 });
 
 export default Profile;

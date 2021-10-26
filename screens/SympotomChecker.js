@@ -9,6 +9,7 @@ import {
   ScrollView,
 } from "react-native";
 import { SearchBar } from 'react-native-elements';
+import {  Icon, Input, argonTheme  } from "../components";
 import { NavBar, Block, Text, theme, Button, DeckSwiper, Radio } from "galio-framework";
 import StepIndicator from 'react-native-step-indicator';
 import Swiper from 'react-native-swiper';
@@ -211,7 +212,7 @@ class SympotomChecker extends React.Component {
 
 
       
-
+        <Block  style={styles.card}>
         <Block style={{marginTop:10}}>
         <StepIndicator
           stepCount={3}
@@ -227,12 +228,11 @@ class SympotomChecker extends React.Component {
     
         <Block>
           <SearchBar
-          
+            
             lightTheme={true}
             placeholder="Type Here to Search..." onChangeText={this.updateSearch} value={this.state.search}
           />
         </Block>
-        <Block safe flex middle style={styles.card}>
         <Swiper
            ref={swipeRef}
           style={{ flexGrow: 1 }}
@@ -258,7 +258,7 @@ class SympotomChecker extends React.Component {
                 //   }}
                 color="warning"
 
-                style={{marginLeft:6,width:190,alignItems:'center',textAlign:'center'}}
+                style={{marginLeft:6,width:width * 0.39,alignItems:'center',textAlign:'center'}}
                 // size="large"
                   onPress={this.clickButton.bind(this,item)}
                 
@@ -285,7 +285,7 @@ class SympotomChecker extends React.Component {
                 //   }}
                 disabled={item==this.state.firsrPageSelected}
                 color={item==this.state.firsrPageSelected ? "success":"warning"}
-                style={{marginLeft:6,width:190}}
+                style={{marginLeft:6,width:width * 0.39}}
                 onPress={this.secondClickButton.bind(this,item)}
                 // size="large"
                 >
@@ -297,13 +297,14 @@ class SympotomChecker extends React.Component {
             </Block>
             </ScrollView>
           </View>
-          <View key={"page3"} style={{backgroundColor:"#D9E6F7", height:600}}>
+          <View key={"page3"} style={{backgroundColor:"#D9E6F7", height:height * 0.2}}>
+            <Block flex middle>
           {this.state.result.length>0 ? this.state.result.map((item) => {
                 return (
                 
                 <Button
 
-                size="large" 
+                size="large"
                 color="success"
                 key={item}
         
@@ -319,8 +320,8 @@ class SympotomChecker extends React.Component {
               }) : 
               <Button
 
-              size="large" 
-              color="success"
+              size= "large"
+              color="rgb(240,248,255)"
                 onPress={() => { 
                 }}
               >
@@ -335,9 +336,14 @@ class SympotomChecker extends React.Component {
                 navigation.navigate("Booking")
               }}
             >
-            <Text>Booking a doctor now!</Text>
+                                
+                      <Icon name="trello" family="Feather" color={"#ffffff"} size={23} />
+                      <Text bold size={14} color="white">
+                          Booking now
+                      </Text>
+                    
               </Button>
-
+              </Block>
           </View>
         </Swiper>
                 </Block>
@@ -353,11 +359,10 @@ const styles = StyleSheet.create({
   {
     padding:6,
     width: width * 0.9,
-    marginLeft: 20,
-    height: height * 1.1,
+    marginLeft: width * 0.05,
+    height: height * 0.8,
     shadowColor: "black",
-    marginTop:10,
-    marginBottom:40,
+    marginTop:width * 0.05,
     shadowOffset: { width: 0, height: 0 },
     shadowRadius: 8,
     shadowOpacity: 0.2,

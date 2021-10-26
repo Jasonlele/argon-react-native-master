@@ -109,11 +109,11 @@ class HospitalMap extends React.Component {
                     </View>
                     <View>
                     <Button color="primary" onPress={() => navigation.navigate('Booking')} style={styles.createButton}>
-                    <Icon name="trello" family="Feather" color={"#ffffff"} size={23} />
-                        <Text bold size={14} color={argonTheme.COLORS.WHITE}>
-                            Booking now
-                        </Text>
-                      </Button>
+                      <Icon name="trello" family="Feather" color={"#ffffff"} size={23} />
+                      <Text bold size={14} color={argonTheme.COLORS.WHITE}>
+                          Booking now
+                      </Text>
+                    </Button>
                     </View>
                 </View>
                     </Block>
