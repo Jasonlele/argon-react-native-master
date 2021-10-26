@@ -264,7 +264,39 @@ class Booking extends React.Component {
         "INSERT INTO DoctorImage (nameuse, imagelink, doctorname, introduction,  hospital, date,  time) VALUES('2021-10-30      Jimmy      UQ Medical Centre      Respiratory',  'http://81.68.132.232/wp-content/uploads/2021/10/4-1-300x200.jpg', 'Jimmy', 'Dr. Jiming specializes in Respiratory and once worked as an attending physician in a famous hospital', 'UQ Medical Centre', '2021-10-30', '13:00')"
       );
 
-  
+
+      tx.executeSql(
+        "INSERT INTO DoctorImage (nameuse, imagelink, doctorname, introduction,  hospital, date,  time) VALUES('2021-10-29      Yifan      Wesley Hospital      Pediatrics',  'http://81.68.132.232/wp-content/uploads/2021/10/1-1-300x200.jpg', 'Yifan', 'Doctor of Pediatrics good at various intractable diseases in pediatrics Has won many awards', 'Royal Hospital', '2021-10-29', '15:00')"
+      );
+
+                                                                                                                                                                                                                            
+      tx.executeSql(
+        "INSERT INTO DoctorImage (nameuse, imagelink, doctorname, introduction,  hospital, date,  time) VALUES('2021-10-30      Jiale      Wesley Hospital      ophthalmology',  'http://81.68.132.232/wp-content/uploads/2021/10/5-1-300x169.jpg', 'Jiale', 'Dr Jiale is a well-known ophthalmologist in Australia His research has been published in the Lancet magazine many times', 'Wesley Hospital', '2021-10-30', '12:00')"
+      );
+
+
+      tx.executeSql(
+        "INSERT INTO DoctorImage (nameuse, imagelink, doctorname, introduction,  hospital, date,  time) VALUES('2021-10-29      Yuanbo      Meter Hospital      Oncology',  'http://81.68.132.232/wp-content/uploads/2021/10/2-1-300x200.jpg', 'Yuanbo', 'Doctor of Medicine An international oncology leader and a well-known surgical oncologist', 'Meter Hospital', '2021-10-29', '12:00')"
+      );
+
+
+      tx.executeSql(
+        "INSERT INTO DoctorImage (nameuse, imagelink, doctorname, introduction,  hospital, date,  time) VALUES('2021-10-30      Jimmy      Meter Hospital      Respiratory',  'http://81.68.132.232/wp-content/uploads/2021/10/4-1-300x200.jpg', 'Jimmy', 'Dr. Jiming specializes in Respiratory and once worked as an attending physician in a famous hospital', 'UQ Medical Centre', '2021-10-30', '12:00')"
+      );
+
+                                                                                                                                                       
+      tx.executeSql(
+        "INSERT INTO DoctorImage (nameuse, imagelink, doctorname, introduction,  hospital, date,  time) VALUES('2021-10-29      Yundong      Private Hospital      Pediatrics',  'http://81.68.132.232/wp-content/uploads/2021/10/6-300x200.jpg', 'Yundong', 'Dr. Yuan Dong graduated from Harvard Medical School, specializing in pediatrics. Loved by children', 'Private Hospital', '2021-10-29', '12:00')"
+      );
+
+      tx.executeSql(
+        "INSERT INTO DoctorImage (nameuse, imagelink, doctorname, introduction,  hospital, date,  time) VALUES('2021-10-30      Jiale      Private Hospital      Oncology',  'http://81.68.132.232/wp-content/uploads/2021/10/5-1-300x169.jpg', 'Jiale', 'Dr Jiale is a well-known ophthalmologist in Australia His research has been published in the Lancet magazine many times', 'Wesley Hospital', '2021-10-30', '12:00')"
+      );
+
+                                                
+                                                                                                                                                                                                                                                                                                            
+
+                                                               
       tx.executeSql("select * from DoctorImage", 
       [],
        (_, result) =>{

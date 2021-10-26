@@ -100,28 +100,7 @@ class Profile extends React.Component {
           
        }
         );
-        // tx.executeSql("select bookname from BookingDetail where phone = ?", 
-        // [test],
-        //  (_, result) =>{
-        //   var len = result.rows.length;                      
-        //   let result1=[]
-        //     if(len>0){
-             
-        //       for(let i=0; i<len; i++){
-        //         // result1.push(result.rows.item(i).date +"      "+ result.rows.item(i).name +"      "+ result.rows.item(i).hostipal)
-        //         // console.log(JSON.stringify(result.rows.item(i).date))
-        //         result1.push(result.rows.item(i).bookname)
-        //       }
-        //       this.setState({firstSearchPageData :result1})
-              
-  
-              
-        //     } 
-            
-        //  }
-           
-    
-        //   );
+
       
     });
 
