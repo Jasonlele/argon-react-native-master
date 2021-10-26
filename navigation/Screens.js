@@ -276,12 +276,40 @@ function EmergencyStack(props) {
 function BookingStack(props) {
   return (
     <Stack.Navigator initialRouteName="Booking" mode="card" headerMode="screen">
+       <Stack.Screen
+        name="Onboarding"
+        component={Onboarding}
+        option={{
+          headerTransparent: true
+        }}
+      />
+      <Stack.Screen name="App" component={AppStack} />
+        
+
+      <Stack.Screen
+        name="Pro"
+        component={Pro}
+        options={{
+          header: ({ navigation, scene }) => (
+            <Header
+              title=""
+              back
+              white
+              transparent
+              navigation={navigation}
+              scene={scene}
+            />
+          ),
+          headerTransparent: true
+        }}
+      />
       <Stack.Screen
         name="Booking"
         component={Booking}
         options={{
           header: ({ navigation, scene }) => (
             <Header
+              back
               transparent
               white
               title=""

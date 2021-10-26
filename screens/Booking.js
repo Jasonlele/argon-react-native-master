@@ -15,6 +15,7 @@ import { Button, Icon, Input } from "../components";
 import { Images, argonTheme } from "../constants";
 import MapView from 'react-native-maps';
 import * as SQLite from "expo-sqlite";
+import { Header} from "../components";
 
 const { width, height } = Dimensions.get("screen");
 const createOneButtonAlert = () =>
@@ -119,6 +120,7 @@ class Booking extends React.Component {
                        (_, result) =>{
                           var len = result.rows.length;                      
                           let result1=[]
+                          console.log('result',result);
                           for(let i=0; i<len; i++){
                               // result1.push(result.rows.item(i).date +"      "+ result.rows.item(i).name +"      "+ result.rows.item(i).hostipal)
                               // console.log(JSON.stringify(result.rows.item(i).date))
@@ -165,7 +167,7 @@ class Booking extends React.Component {
     
     // });
 
-    //执行插值操作
+    // 执行插值操作
     // db.transaction((tx) => {
     //   tx.executeSql(
     //     "INSERT INTO Doctor (name, hostipal, date, time) VALUES('bruce','aaa','2021-10-24', '12:00')"
@@ -217,8 +219,17 @@ class Booking extends React.Component {
 
 
     return (
-      <Block flex middle>
-        <StatusBar hidden />
+      <Block flex>
+         <Header
+            title="Online Booing"
+            back
+            optionLeft="Option 1"
+            optionRight="Option 2"
+            style={{marginBottom:2}}
+            navigation={this.props.navigation}
+            titleStyle = {{fontWeight: "bold", fontSize:22, marginLeft:35}} />
+        <Block style={{marginTop:10}}></Block>
+        {/* <StatusBar hidden /> */}
         <ImageBackground
           source={Images.RegisterBackground}
           style={{ width, height, zIndex: 1 }}

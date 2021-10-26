@@ -200,14 +200,13 @@ class SympotomChecker extends React.Component {
       
       <Block flex style={styles.container}>
         <Header
-            
-             title="Sympotom Checker"
-             back
-             optionLeft="Option 1"
-             optionRight="Option 2"
-             style={{marginBottom:2}}
-             navigation={this.props.navigation}
-             titleStyle = {{fontWeight: "bold", fontSize:22, marginLeft:35}} />
+          title="Sympotom Checker"
+          back
+          optionLeft="Option 1"
+          optionRight="Option 2"
+          style={{marginBottom:2}}
+          navigation={this.props.navigation}
+          titleStyle = {{fontWeight: "bold", fontSize:22, marginLeft:35}} />
         
 
 
