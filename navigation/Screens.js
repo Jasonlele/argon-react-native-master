@@ -13,7 +13,6 @@ import Pro from "../screens/Pro";
 import Profile from "../screens/Profile";
 import uploadProfile from "../screens/uploadProfile";
 import BookingDetail from "../screens/BookingDetail";
-import Register from "../screens/Register";
 import Elements from "../screens/Elements";
 import HospitalMap from "../screens/HospitalMap";
 import Emergency from "../screens/Emergency";
@@ -32,6 +31,7 @@ import CustomDrawerContent from "./Menu";
 
 // header for screens
 import { Header } from "../components";
+import Account from "../screens/Account";
 
 const { width } = Dimensions.get("screen");
 
@@ -752,7 +752,7 @@ function AppStack(props) {
       <Drawer.Screen name="Booking" component={BookingStack} />
       <Drawer.Screen name="BookingDetail" component={BookingDetailStack} />
       <Drawer.Screen name="Profile" component={ProfileStack} />
-      <Drawer.Screen name="Account" component={Register} />
+      <Drawer.Screen name="Account" component={Account} />
       <Drawer.Screen name="Emergency" component={Emergency} />
       <Drawer.Screen name="Translate" component={Translate} />
       <Drawer.Screen name="SympotomChecker" component={SympotomChecker} />
