@@ -38,35 +38,35 @@ class Onboarding extends React.Component {
 
 
   
-  //登录框邮箱输入
+  //Email text onchange
   EmailChangeText=(Email)=>{
     this.setState({Email})
 
   }
 
-  //账号输入点击完成
+  //after phone number and password complete and press the confirm button
   EmailonSubmitEditing=()=>{
-    //console.log("输入完成");
+    
     const {Email} = this.state;
     const phoneValid=validator.ValidatePhone(Email);
     if(!phoneValid){
-        //没通过
+        //pass
         this.setState({phoneValid});
         this.setState({loginMessage:"invalid number"})
         
     }else{
-        //通过
+        //not pass
         this.setState({phoneValid});
         this.setState({loginMessage:"valid number"})
     }
 
   }
-  //密码输入中
+  //onchange password text
   PasswordChangeText=(Password)=>{
     this.setState({Password})
 
   }
-  // 邮箱密码输入完成
+  // phone number and password input complete
   PasswordsubmitEditing=()=>{
     const {Email,Username} = this.state;
     global.test = Email;
@@ -75,14 +75,6 @@ class Onboarding extends React.Component {
     const loginValid =login.ValidateLogin(Email,Password);
     const { navigation } = this.props;
     const db = SQLite.openDatabase("db.DECO3801");
-  //   if(!loginValid){
-  //     //没通过
-  //     this.setState({loginValid});
-  //     alert("Wrong account or password")
-      
-  // }else{
-  //   navigation.navigate("App")
-  // }
   db.transaction((tx) => {
     
     tx.executeSql("select * from Users where phone = ? and password = ? ", 
@@ -90,16 +82,7 @@ class Onboarding extends React.Component {
      (_, result) =>{
         var len = result.rows.length;
         console.log(JSON.stringify(result.rows))
-        // if(len>0){
-        //   console.log(JSON.stringify(result.rows))
-        //   //????
-           
-        // } else{
-        //   alert("Wrong account or password")
-        // }     
      }
-       
-
       );
 
       tx.executeSql("select username from Users where phone = ? and password = ? ", 
@@ -114,8 +97,6 @@ class Onboarding extends React.Component {
           }else{
             alert("Wrong account or password")
           }  
-         
-           
        }
         );
       
@@ -132,7 +113,7 @@ class Onboarding extends React.Component {
     const db = SQLite.openDatabase("db.DECO3801");
 
     
-     //删除表，请一定要注释
+     //delete table
     // db.transaction((tx) => {
     //   tx.executeSql(
     //     "DROP TABLE Users;"
@@ -142,7 +123,7 @@ class Onboarding extends React.Component {
     // });
 
 
-    //创建users表
+    //build user table
     db.transaction((tx) => {
       tx.executeSql(
         "create table if not exists Users (id integer primary key not null, phone text, password text, username text);"
@@ -152,7 +133,7 @@ class Onboarding extends React.Component {
 
 
 
-   // 执行插值操作并打印整个表，每次刷新都会执行，注意不要重复插值
+   // insert data into database and print whe whole table
     // db.transaction((tx) => {
     //   tx.executeSql(
     //     "INSERT INTO Users (phone, password, username) VALUES('111','12345','yyf')"
@@ -173,11 +154,6 @@ class Onboarding extends React.Component {
     //     );
       
     // });
-
-
-
-
-
 
     return (
       <Block flex  middle style={styles.container}>
@@ -215,8 +191,6 @@ class Onboarding extends React.Component {
                         value={Password}
                         onChangeText={this.PasswordChangeText}
                       />
-                
-                       
                   </Block> 
               <Block center>
                 <Button

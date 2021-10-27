@@ -31,68 +31,65 @@ class Service extends React.Component {
                     navigation={this.props.navigation}
                     titleStyle = {{fontWeight: "bold", fontSize:25, marginLeft:45, fontFamily: 'serif'}} />
                     
-        <Block flex middle>
-        <Block>
-                  <Text style = {{fontSize:25, marginBottom:25}}>Select an option to check</Text>
-                </Block>
-              <Block style={styles.clinicCard}>
-                <Block style={{marginLeft:0}}>
-                  <Text style={{fontSize:30, fontWeight: "bold", marginLeft:130, marginTop:30}}>Clinic</Text>
-                  <Text style={{fontSize:23,marginTop:5, marginBottom:50, marginLeft:80, marginBottom:40}}>General Pracitioner</Text>
-                  
-                </Block>
-                <Block style ={{marginLeft:0}}>
+          <Block flex middle>
+          <Block>
+              <Text style = {{fontSize:25, marginBottom:25}}>Select an option to check</Text>
+          </Block>
+
+          <Block style={styles.clinicCard}>
+            <Block style={{marginLeft:0}}>
+                <Text style={{fontSize:30, fontWeight: "bold", marginLeft:130, marginTop:30}}>Clinic</Text>
+                <Text style={{fontSize:23,marginTop:5, marginBottom:50, marginLeft:80, marginBottom:40}}>General Pracitioner</Text>
+              </Block>
+
+              <Block style ={{marginLeft:0}}>
                 <TouchableWithoutFeedback onPress={() => navigation.navigate('ServiceClinic')}>
-                <Icon
-                  name="right"
-                  size={35}
-                  color="black"
-                  style={{ marginTop:50,marginLeft:13}}
-                 />
+                  <Icon
+                    name="right"
+                    size={35}
+                    color="black"
+                    style={{ marginTop:50,marginLeft:13}}
+                  />
                 </TouchableWithoutFeedback>
-
-                </Block>
               </Block>
+            </Block>
 
-              <Block style={styles.centerCard}>
-                <Block style={{marginLeft:10}}>
-                  <Text style={{fontSize:30, fontWeight: "bold", marginLeft:45, marginTop:30}}>Medical Center</Text>
-                  <Text style={{fontSize:23,marginTop:5, marginBottom:50, marginLeft:108, marginBottom:40}}>Specialist</Text>
-                  
-                </Block>
-                <Block style ={{marginLeft:4}}>
+            <Block style={styles.centerCard}>
+              <Block style={{marginLeft:10}}>
+                <Text style={{fontSize:30, fontWeight: "bold", marginLeft:45, marginTop:30}}>Medical Center</Text>
+                <Text style={{fontSize:23,marginTop:5, marginBottom:50, marginLeft:108, marginBottom:40}}>Specialist</Text>
+              </Block>
+              <Block style ={{marginLeft:4}}>
                 <TouchableWithoutFeedback onPress={() => navigation.navigate('ServiceMedicalCenter')}>
-                <Icon
-                  name="right"
-                  size={35}
-                  color="black"
-                  style={{ marginTop:50,marginLeft:20}}
-                 />
-                </TouchableWithoutFeedback>
-                </Block>
+                  <Icon
+                    name="right"
+                    size={35}
+                    color="black"
+                    style={{ marginTop:50,marginLeft:20}}
+                  />
+                  </TouchableWithoutFeedback>
               </Block>
+            </Block>
 
-              <Block style={styles.hospitalCard}>
-                <Block style={{marginLeft:10}}>
-                  <Text style={{fontSize:30, fontWeight: "bold", marginLeft:100, marginTop:30}}>Hospital</Text>
-                  <Text style={{fontSize:23,marginTop:5, marginBottom:50, marginLeft:85, marginBottom:40}}>Private/Public</Text>
-                  
-                </Block>
-                <Block style ={{marginLeft:0}}>
+            <Block style={styles.hospitalCard}>
+              <Block style={{marginLeft:10}}>
+                <Text style={{fontSize:30, fontWeight: "bold", marginLeft:100, marginTop:30}}>Hospital</Text>
+                <Text style={{fontSize:23,marginTop:5, marginBottom:50, marginLeft:85, marginBottom:40}}>Private/Public</Text> 
+              </Block>
+              <Block style ={{marginLeft:0}}>
                 <TouchableWithoutFeedback onPress={() => navigation.navigate('ServiceHospital')}>
-                <Icon
-                  name="right"
-                  size={35}
-                  color="black"
-                  style={{ marginTop:50,marginLeft:48}}
-                 />
-                </TouchableWithoutFeedback>
-                </Block>
+                  <Icon
+                    name="right"
+                    size={35}
+                    color="black"
+                    style={{ marginTop:50,marginLeft:48}}
+                  />
+                  </TouchableWithoutFeedback>
               </Block>
-
+            </Block>
           </Block>
       </Block>
-      </Block>
+    </Block>
     );
   }
 }

@@ -44,7 +44,6 @@ class Account extends React.Component{
           <Icon name="map" family="Foundation" color={"#ffffff"} size={50} />
           </Button>
         </Block>
-        
       </Block>
     );
   }

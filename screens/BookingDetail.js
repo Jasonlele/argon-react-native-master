@@ -152,21 +152,11 @@ class Translate extends React.Component {
 
     return (
       <Block flex style={{backgroundColor: "rgb(240,248,255)"}}>
-         
-         
-         
-         
          <ImageBackground
                 source={{uri:link}}
                 style={styles.container}>
-      
-          
           <Text style={{marginLeft:235, fontSize:25,marginTop:100,fontWeight:'bold'}}>Dr. {doctorName}</Text>
-
-          
-
          </ImageBackground>
-
 
          <Block style={{height:100,backgroundColor: theme.COLORS.WHITE,}}>
            <Block style ={{flexDirection: 'row'}}>
@@ -177,54 +167,38 @@ class Translate extends React.Component {
                   style={{ marginTop:6,marginLeft:10}}
                  />
            <Text style={{fontWeight:'bold',fontSize:20,marginLeft:8,color:"#6D6F70",fontStyle:'italic'}}>introduction</Text>
-
-
            </Block>
-  
-           
-           <Text style={{width:280,marginLeft:30,marginTop:10}}>
-              {introduction}</Text>
-        
-
-
+           <Text style={{width:280,marginLeft:30,marginTop:10}}>{introduction}</Text>
          </Block>
 
          <Block style={{height:80,backgroundColor:theme.COLORS.WHITE,marginTop:20}}>
-
          <Block style ={{flexDirection: 'row'}}>
          <Icon2
-                  name="hospital-o"
-                  size={13}
-                  color="black"
-                  style={{ marginTop:6,marginLeft:10}}
-                 />
+            name="hospital-o"
+            size={13}
+            color="black"
+            style={{ marginTop:6,marginLeft:10}}
+            />
          <Text style={{fontWeight:'bold',fontSize:17,marginLeft:8, color:"#6D6F70"}}>Visiting hospital</Text>
          </Block>
-
          <Text style={{fontWeight:'bold',fontSize:23,marginLeft:88,marginTop:6}}>{hospital}</Text>
+        </Block>
 
+        <Block style={{height:250,backgroundColor:theme.COLORS.WHITE,marginTop:20}}>
+          <Block style ={{flexDirection: 'row'}}>
+          <Icon3
+            name="clock"
+            size={13}
+            color="black"
+            style={{ marginTop:10,marginLeft:10}}
+          />
+          <Text style={{fontWeight:'bold',fontSize:17,marginLeft:8,marginTop:5,color:"#6D6F70"}}>Next visit time  (subject to change)</Text>
+          </Block>
 
-         </Block>
-
-         <Block style={{height:250,backgroundColor:theme.COLORS.WHITE,marginTop:20}}>
-
-         <Block style ={{flexDirection: 'row'}}>
-
-         <Icon3
-                  name="clock"
-                  size={13}
-                  color="black"
-                  style={{ marginTop:10,marginLeft:10}}
-                 />
-         <Text style={{fontWeight:'bold',fontSize:17,marginLeft:8,marginTop:5,color:"#6D6F70"}}>Next visit time  (subject to change)</Text>
-         </Block>
          <Block style={{backgroundColor:"rgb(240,248,255)",marginTop:15,height:70,width:315,marginLeft:20}}>
          <Text style={styles.timeStyle}>{date}     {time}</Text>
 
          </Block>
-
-
-
          <ScrollView style={styles.scrollView} horizontal={true}>
 
           <Block style={styles.clenderStyle}>
@@ -257,28 +231,11 @@ class Translate extends React.Component {
             <Text style={{fontWeight:'bold',marginTop:10,marginLeft:15}} >Expert clinic</Text>
 
           </Block>
-          
-
-
-
-
-
-
-
       </ScrollView>
+    </Block>
+      <Button onPress={this.submitBookig} color="black" style={styles.buttonStyle} >Confirm appointment</Button>
          
-
-         </Block>
-
-
-         
-{/* 
-         <Text>{name}</Text>
-         <Text>{link}</Text> */}
-
-         <Button onPress={this.submitBookig} color="black" style={styles.buttonStyle} >Confirm appointment</Button>
-         
-      </Block>
+  </Block>
     );
   }
 }
@@ -332,10 +289,8 @@ overlay: {
       color:"#FBA93A"
 
     },
-    scrollView: {
-      
+    scrollView: {   
       marginHorizontal: 10,
-      
     },
   });
 

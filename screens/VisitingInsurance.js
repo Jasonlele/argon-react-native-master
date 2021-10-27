@@ -46,9 +46,8 @@ class VisitingInsurance extends React.Component {
                 <Block style={{marginLeft:10}}>
                     <ScrollView>
                         <Text style={{fontSize:26, marginTop:10}}>
-                        Overseas Visitors Health Cover (OVHC) is a form of health insurance which is designed for visitors to Australia who do not have access to Australia's public Medicare system for medical or hospital expenses. OVHC insures against potential expenses you may incur if you require medical or hospital treatment. 
-
-Every OVHC policy will differ in costs, eligibility and benefits. However, most policies should cover you for medically-required hospital admissions and a portion of doctor's fees.
+                        Overseas Visitors Health Cover (OVHC) is a form of health insurance which is designed for visitors to Australia who do not have access to Australia's public Medicare system for medical or hospital expenses. OVHC insures against potential expenses you may incur if you require medical or hospital treatment.
+                        Every OVHC policy will differ in costs, eligibility and benefits. However, most policies should cover you for medically-required hospital admissions and a portion of doctor's fees.
                         </Text>
                     </ScrollView>
                 </Block>
