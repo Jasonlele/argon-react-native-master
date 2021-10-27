@@ -5,6 +5,7 @@ import {
   Dimensions,
   ImageBackground,
   View,
+  Alert
 } from "react-native";
 import { Block, Text, theme} from "galio-framework";
 import { Button } from "../components";
@@ -42,14 +43,41 @@ class History extends React.Component {
     })
 }
 
-  beginTranslate = async()=>{
-    const result = await translate(this.state.unTranslateText, {
-      to: "en",
-    });
-    console.log(result);
-    this.setState({
-      translatedText:result[0]
-    })
+  beginTranslate = async(item)=>{
+    Alert.alert(
+      "Operation warning",
+      "Are you sure you have completed this consultation",
+      [
+        {
+          text: "YES",
+          onPress: () =>    
+          
+          db.transaction((tx) => {
+            // console.log(item)
+          //   console.log(name)
+          // UPDATE COMPANY SET ADDRESS = 'Texas' WHERE ID = 6;
+            tx.executeSql("update BookingDetail  set finish = 'yes' where bookname = ? ", 
+            [item],
+         
+               
+        
+              );
+              
+          }),
+          style: "cancel",
+        },
+      ],
+      {
+        cancelable: true,
+        onDismiss: () =>
+          Alert.alert(
+            "This alert was dismissed by tapping outside of the alert dialog."
+          ),
+      }
+    );
+ 
+
+
   }
 //登录框邮箱输入
 EmailChangeText=(unTranslateText)=>{
@@ -64,7 +92,7 @@ EmailChangeText=(unTranslateText)=>{
     db.transaction((tx) => {
         // console.log(item)
       //   console.log(name)
-        tx.executeSql("select bookname  from BookingDetail where phone = ? ", 
+        tx.executeSql("select bookname  from BookingDetail where phone = ? and finish = 'no' ", 
         [test],
          (_, result) =>{
          
@@ -128,11 +156,20 @@ EmailChangeText=(unTranslateText)=>{
                 return (
                 <Block  key={item}>
 
-                    
-                    <Text style={{color:'black',fontSize:25,fontWeight:'bold', marginLeft: 20, marginTop:20}}>
+                  <Button
+                  style={{height:60, width:width  * 0.8}}
+                  color="rgb(230,238,235)"
+                  // style={{marginLeft:12}}
+                  size="large"
+                  onPress={() => this.beginTranslate(item)}
+                  key={item}
+                  >
+                    <Text style={{color:'black',fontSize:13,fontWeight:'bold', marginLeft: 20, marginTop:20}}>
 
                     {item}
                     </Text>
+
+                    </Button>
                 
             
                 

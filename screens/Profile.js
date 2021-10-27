@@ -47,7 +47,7 @@ class Profile extends React.Component {
         db.transaction((tx) => {
    
     
-            tx.executeSql("select bookname from BookingDetail where phone = ?", 
+            tx.executeSql("select bookname from BookingDetail where phone = ? and finish = 'no'", 
             [test],
              (_, result) =>{
               var len = result.rows.length;                      
