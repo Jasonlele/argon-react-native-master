@@ -9,7 +9,7 @@ export default [
    * nawicon, 2021. Examination free vector icons designed by nawicon. [online] Flaticon. Available at: <https://www.flaticon.com/premium-icon/examination_2869780?term=patient&page=1&position=11&page=1&position=11&related_id=2869780&origin=search> [Accessed 25 October 2021].
    */
   {
-    title: 'Sympotom Checker',
+    title: 'Symptom Checker',
     image: 'http://81.68.132.232/wp-content/uploads/2021/10/examination.png',
     cta: 'SympotomChecker' 
   },
