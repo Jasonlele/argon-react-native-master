@@ -35,20 +35,25 @@ class Profile extends React.Component {
      Refresh:false,
      firstSearchPageData:["                  Click here to check"]
     };
-    
+  
 
+   //刷新
+      setInterval(()=>{
+          this.RefreshPage()//每个一秒，自动刷新
+        },1000);
   }
   //build and connect data base 
   RefreshPage=()=>{
         const{firstSearchPageData}= this.state
     
         db.transaction((tx) => {
-          tx.executeSql("select bookname from BookingDetail where phone = ?", 
+          tx.executeSql("select bookname from BookingDetail where phone = ? and finish = 'no'", 
           [test],
-            (_, result) =>{
+           (_, result) =>{
             var len = result.rows.length;                      
             let result1=[]
               if(len>0){
+
                 for(let i=0; i<len; i++){
                   // result1.push(result.rows.item(i).date +"      "+ result.rows.item(i).name +"      "+ result.rows.item(i).hostipal)
                   // console.log(JSON.stringify(result.rows.item(i).date))
@@ -56,7 +61,8 @@ class Profile extends React.Component {
                 }
                 this.setState({firstSearchPageData :result1})        
               } 
-            }
+
+           }
             );
       });
   }
