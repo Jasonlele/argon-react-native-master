@@ -45,7 +45,7 @@ class Profile extends React.Component {
 
   //build and connect data base 
   RefreshPage=()=>{
-        const{firstSearchPageData}= this.state
+        const{firstSearchPageDatam,Refresh}= this.state
     
         db.transaction((tx) => {
           tx.executeSql("select bookname from BookingDetail where phone = ? and finish = 'no'", 
@@ -66,6 +66,8 @@ class Profile extends React.Component {
            }
             );
       });
+
+      this.setState({Refresh:true})
   }
   
   render() {
