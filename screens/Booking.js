@@ -29,18 +29,17 @@ const createOneButtonAlert = () =>
 );
 
 class Booking extends React.Component {
- 
 
   constructor(props) {
     super(props);
     this.state = {
       obj:{
         bookDay:"",
-        bookTime:"",  //预约
+        bookTime:"",
     },
-    date:new Date(),//给日期控件用
+    date:new Date(),
     mode:"date",
-    show:false, //是否显示时间控件
+    show:false,
     link:"",
     dateUse:"",
     firstSearchPageData: ['Choose an appointment time'],
@@ -49,32 +48,32 @@ class Booking extends React.Component {
   }
 
   handleDateChange = (event,date) => {
-    //这是设置日期,即确认按钮
+    //set date
     if(event.type === "set"){
         const bookDay = this.dateToString(date)
         let obj = this.state.obj
         obj.bookDay = bookDay
         this.setState({obj,date,show:false})
     }else{
-        //这是点击取消按钮
+        //cancel button
         this.setState({show:false})
     }
    
   }
 
   handleTimeChange = (event,date) => {
-    //这是设置时间,即确认按钮
+    //set time
     if(event.type === "set"){
         const bookTime = this.timeToString(date)
         let obj = this.state.obj
         obj.bookTime = bookTime
         this.setState({obj,date,show:false})
     }else{
-        //这是点击取消按钮
+        //cancle button
         this.setState({show:false})
     }
   }
-  //时间转字符串的函数
+  //Time to String
   timeToString = (date) => {
     const {firstSearchPageData,dateUse} = this.state;
     var hour =  date.getHours().toString();
@@ -90,7 +89,7 @@ class Booking extends React.Component {
     return timeDate;
   }
 
-  //日期转字符串的函数
+  //data to String
   dateToString = (date) => {
     
     var year = date.getFullYear();
@@ -118,15 +117,9 @@ class Booking extends React.Component {
                               console.log(JSON.stringify(result.rows.item(i).department))
                               result1.push(result.rows.item(i).date +"      "+ result.rows.item(i).name +"      "+ result.rows.item(i).hostipal +"      "+ result.rows.item(i).department)
                           }
-                          this.setState({firstSearchPageData :result1})
-                          
-                                                                    
-                          
-                       }
-                         
-                  
+                          this.setState({firstSearchPageData :result1})                                       
+                       }             
                         );
-                        
                     });
  
                     
@@ -141,10 +134,8 @@ class Booking extends React.Component {
       tx.executeSql(
         "create table if not exists Doctor (id integer primary key not null, name text, hostipal text, date text, time text, department text);"
       );
-
-
     });
-     //删除医生表，请一定要注释
+     //delet doctor table
     // db.transaction((tx) => {
     //   tx.executeSql(
     //     "DROP TABLE Doctor;"
@@ -154,10 +145,7 @@ class Booking extends React.Component {
     // });
 
 
-
-
-    // 执行医生插值操作,（老董 158-204）
-
+    // insert doctor information into the table
 
     // db.transaction((tx) => {
     //           tx.executeSql(
@@ -204,197 +192,142 @@ class Booking extends React.Component {
       
     // });
 
-    
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-       //删除照片表，请一定要注释
+       //delet picture table
     db.transaction((tx) => {
       tx.executeSql(
         "DROP TABLE DoctorImage;"
       );
-      // console.log(JSON.stringify(db))
-    
     });
 
                                                                                                 
-    // 执行对照片表的插值操作
-
-
+    // insert picture into table
     db.transaction((tx) => {
-     
       tx.executeSql(
         "create table if not exists DoctorImage (id integer primary key not null, nameuse text, imagelink text, doctorname text, introduction text, hospital text, date text, time text);"
       );
       
     });
     
-    
-    
     db.transaction((tx) => {
-
-
-
+      /**Freepik. 2021. Free Photo | Smiling asian male doctor pointing upwards. [online] Available at: <https://www.freepik.com/free-photo/smiling-asian-male-doctor-pointing-upwards_4010419.htm#page=1&query=doctor&position=3&from_view=keyword> [Accessed 1 October 2021]. */
       tx.executeSql(
         "INSERT INTO DoctorImage (nameuse, imagelink, doctorname, introduction,  hospital, date,  time) VALUES('2021-10-29      Yifan      Royal Hospital      Pediatrics',  'http://81.68.132.232/wp-content/uploads/2021/10/1-1-300x200.jpg', 'Yifan', 'Doctor of Pediatrics good at various intractable diseases in pediatrics Has won many awards', 'Royal Hospital', '2021-10-29', '13:00')"
       );
-                                                                                                                                                                                                                                                                                                                      
+      /** Freepik. 2021. Free Photo | Portrait of a hansome young male doctor man. [online] Available at: <https://www.freepik.com/free-photo/portrait-hansome-young-male-doctor-man_6871490.htm#page=1&query=doctor&position=28&from_view=keyword> [Accessed 2 October 2021]. */                                                                                                                                                                                                                                                                                                                
       tx.executeSql(
         "INSERT INTO DoctorImage (nameuse, imagelink, doctorname, introduction,  hospital, date,  time) VALUES('2021-10-30      Yuanbo      Royal Hospital      Oncology',  'http://81.68.132.232/wp-content/uploads/2021/10/2-1-300x200.jpg', 'Yuanbo', 'Doctor of Medicine An international oncology leader and a well-known surgical oncologist', 'Royal Hospital', '2021-10-30', '13:00')"
       );
 
-                                                                                                                                                                                                                                                   
+      /**Freepik. 2021. Free Photo | Portrait of female nurse showing stethoscope on white.. [online] Available at: <https://www.freepik.com/free-photo/portrait-female-nurse-showing-stethoscope-white_16462771.htm#page=1&query=doctor&position=8&from_view=keyword> [Accessed 3 October 2021]. */                                                                                                                                                                                                         
       tx.executeSql(
         "INSERT INTO DoctorImage (nameuse, imagelink, doctorname, introduction,  hospital, date,  time) VALUES('2021-10-29      Carlos      UQ Medical Centre      Cardiac Surgery',  'http://81.68.132.232/wp-content/uploads/2021/10/3-1-300x200.jpg', 'Carlos', 'Dr Carlos dedicated to solving cardiovascular diseases has many years of experience in the industry', 'UQ Medical Centre', '2021-10-29', '14:00')"
       );
 
-
+      /**Freepik. 2021. Free Photo | Female doctor looking at camera and smiling in blue uniform. [online] Available at: <https://www.freepik.com/free-photo/female-doctor-looking-camera-smiling-blue-uniform_15405878.htm#page=1&position=5&from_view=detail#query=doctor&position=5&from_view=detail> [Accessed 7 October 2021]. */
       tx.executeSql(
         "INSERT INTO DoctorImage (nameuse, imagelink, doctorname, introduction,  hospital, date,  time) VALUES('2021-10-30      Jimmy      UQ Medical Centre      Respiratory',  'http://81.68.132.232/wp-content/uploads/2021/10/4-1-300x200.jpg', 'Jimmy', 'Dr. Jiming specializes in Respiratory and once worked as an attending physician in a famous hospital', 'UQ Medical Centre', '2021-10-30', '13:00')"
       );
 
-
+        /**Freepik. 2021. Free Photo | Smiling asian male doctor pointing upwards. [online] Available at: <https://www.freepik.com/free-photo/smiling-asian-male-doctor-pointing-upwards_4010419.htm#page=1&query=doctor&position=3&from_view=keyword> [Accessed 1 October 2021]. */
       tx.executeSql(
         "INSERT INTO DoctorImage (nameuse, imagelink, doctorname, introduction,  hospital, date,  time) VALUES('2021-10-29      Yifan      Wesley Hospital      Pediatrics',  'http://81.68.132.232/wp-content/uploads/2021/10/1-1-300x200.jpg', 'Yifan', 'Doctor of Pediatrics good at various intractable diseases in pediatrics Has won many awards', 'Royal Hospital', '2021-10-29', '15:00')"
       );
 
-                                                                                                                                                                                                                            
+     /**Freepik. 2021. Free Photo | Young asia male doctor in white medical uniform with stethoscope looking at camera, smile and arms crossed while video conference call with patient in health hospital.. [online] Available at: <https://www.freepik.com/free-photo/young-asia-male-doctor-white-medical-uniform-with-stethoscope-looking-camera-smile-arms-crossed-while-video-conference-call-with-patient-health-hospital_15114477.htm#page=1&query=doctor&pos> [Accessed 3 October 2021]. */                                                                                                                                                                                                                          
       tx.executeSql(
         "INSERT INTO DoctorImage (nameuse, imagelink, doctorname, introduction,  hospital, date,  time) VALUES('2021-10-30      Jiale      Wesley Hospital      ophthalmology',  'http://81.68.132.232/wp-content/uploads/2021/10/5-1-300x169.jpg', 'Jiale', 'Dr Jiale is a well-known ophthalmologist in Australia His research has been published in the Lancet magazine many times', 'Wesley Hospital', '2021-10-30', '12:00')"
       );
 
-
+      /** Freepik. 2021. Free Photo | Portrait of a hansome young male doctor man. [online] Available at: <https://www.freepik.com/free-photo/portrait-hansome-young-male-doctor-man_6871490.htm#page=1&query=doctor&position=28&from_view=keyword> [Accessed 2 October 2021]. */
       tx.executeSql(
         "INSERT INTO DoctorImage (nameuse, imagelink, doctorname, introduction,  hospital, date,  time) VALUES('2021-10-29      Yuanbo      Meter Hospital      Oncology',  'http://81.68.132.232/wp-content/uploads/2021/10/2-1-300x200.jpg', 'Yuanbo', 'Doctor of Medicine An international oncology leader and a well-known surgical oncologist', 'Meter Hospital', '2021-10-29', '12:00')"
       );
 
-
+      /** Freepik. 2021. Free Photo | Female doctor looking at camera and smiling in blue uniform. [online] Available at: <https://www.freepik.com/free-photo/female-doctor-looking-camera-smiling-blue-uniform_15405878.htm#page=1&position=5&from_view=detail#query=doctor&position=5&from_view=detail> [Accessed 7 October 2021]. */
       tx.executeSql(
         "INSERT INTO DoctorImage (nameuse, imagelink, doctorname, introduction,  hospital, date,  time) VALUES('2021-10-30      Jimmy      Meter Hospital      Respiratory',  'http://81.68.132.232/wp-content/uploads/2021/10/4-1-300x200.jpg', 'Jimmy', 'Dr. Jiming specializes in Respiratory and once worked as an attending physician in a famous hospital', 'UQ Medical Centre', '2021-10-30', '12:00')"
       );
 
-                                                                                                                                                       
+       /**https://www.freepik.com/free-photo/young-male-doctor-white-uniform-standing-with-crossed-arms-looking-confident-front-view_15616210.htm#page=1&query=doctor&position=15&from_view=keyword */                                                                                                                                                
       tx.executeSql(
         "INSERT INTO DoctorImage (nameuse, imagelink, doctorname, introduction,  hospital, date,  time) VALUES('2021-10-29      Yundong      Private Hospital      Pediatrics',  'http://81.68.132.232/wp-content/uploads/2021/10/6-300x200.jpg', 'Yundong', 'Dr. Yuan Dong graduated from Harvard Medical School, specializing in pediatrics. Loved by children', 'Private Hospital', '2021-10-29', '12:00')"
       );
-
+      /**Freepik. 2021. Free Photo | Young asia male doctor in white medical uniform with stethoscope looking at camera, smile and arms crossed while video conference call with patient in health hospital.. [online] Available at: <https://www.freepik.com/free-photo/young-asia-male-doctor-white-medical-uniform-with-stethoscope-looking-camera-smile-arms-crossed-while-video-conference-call-with-patient-health-hospital_15114477.htm#page=1&query=doctor&pos> [Accessed 3 October 2021]. */
       tx.executeSql(
         "INSERT INTO DoctorImage (nameuse, imagelink, doctorname, introduction,  hospital, date,  time) VALUES('2021-10-30      Jiale      Private Hospital      Oncology',  'http://81.68.132.232/wp-content/uploads/2021/10/5-1-300x169.jpg', 'Jiale', 'Dr Jiale is a well-known ophthalmologist in Australia His research has been published in the Lancet magazine many times', 'Wesley Hospital', '2021-10-30', '12:00')"
       );
-
-                                                
-                                                                                                                                                                                                                                                                                                            
-
-                                                               
+                                                    
       tx.executeSql("select * from DoctorImage", 
       [],
        (_, result) =>{
-        
-        console.log(JSON.stringify(result.rows))    
-          
+        console.log(JSON.stringify(result.rows))     
        }
-        
         );
-      
     });
-
-
-
-
 
     return (
       <Block flex >
             <Header
-            
-            title="Booking"
-            back
-            optionLeft="Option 1"
-            optionRight="Option 2"
-            style={{marginBottom:2}}
-            navigation={this.props.navigation}
-            titleStyle = {{fontWeight: "bold", fontSize:22, marginLeft:35, fontFamily: 'serif'}} />
+              title="Booking"
+              back
+              optionLeft="Option 1"
+              optionRight="Option 2"
+              style={{marginBottom:2}}
+              navigation={this.props.navigation}
+              titleStyle = {{fontWeight: "bold", fontSize:22, marginLeft:35, fontFamily: 'serif'}} />
         
           <Block safe flex middle style={styles.card}>
             <Block >
-              <Block flex>
-           
-                <Block>
-                  
-              <Block  style={{ height:width *0.9, flexDirection: 'row',flexWrap: 'wrap'}}>
-              {firstSearchPageData.map((item) => {
-
-              
-          
-                return (
-                <Block key={item}>
-
-                  <Button
-                  style={{height:60, width:width  * 0.8}}
-                  color="rgb(230,238,235)"
-                  // style={{marginLeft:12}}
-                  size="large"
-                  onPress={() => navigation.navigate('BookingDetail', {jjw:item})}
-                  key={item}
-                  >
-                    <Text style={{color:'black',fontSize:16,fontWeight:'bold'}}>
-
-                    {item}
-                    </Text>
-                   
-                    </Button>
-                   {/* <Text>{link}</Text> */}
-                    {/* <Image source={{uri:link}}style={{width:40,height:40}} /> */}
-                   
-                </Block>
-
-                )
-              })}
-
-            </Block>
-
-                    </Block>                    
-                    <Block middle style = {{height: height * 0.2}}> 
-                      <View>
-                        <View>
-                          <Button color= "black" onPress={() => {this.setState({mode:"date",show:true})}} 
-                          title="Choose date" style ={{width:width * 0.8 ,marginTop:20}}>
-                            <Text style= {{fontSize: 18, fontWeight: "bold", color: "#FFFFFF"}}>Choose Booking Date</Text>
-                            </Button>
-                          {show && (
-                              <DateTimePicker
-                              testID="datePicker"
-                              value={date}
-                              mode={mode}
-                              minimumDate={new Date()}
-                              maximumDate={new Date(2023,1,1)}
-                              display="default"
-                              onChange={this.handleDateChange}
-                              />
-                          )}
-                        </View>
-                      </View>
-                     {/* 插值前一定要把这行注释掉 */}
-                      {/* <Text bold size={18} style={{marginTop:20}}>{this.dateToString(date)} {this.timeToString(date)}</Text> */}
-                     
+              <Block flex>         
+                <Block> 
+                  <Block  style={{ height:width *0.9, flexDirection: 'row',flexWrap: 'wrap'}}>
+                  {firstSearchPageData.map((item) => {
+                    return (
+                    <Block key={item}>
+                      <Button
+                      style={{height:60, width:width  * 0.8}}
+                      color="rgb(230,238,235)"
+                      // style={{marginLeft:12}}
+                      size="large"
+                      onPress={() => navigation.navigate('BookingDetail', {jjw:item})}
+                      key={item}
+                      >
+                        <Text style={{color:'black',fontSize:16,fontWeight:'bold'}}>
+                        {item}
+                        </Text>                   
+                      </Button>
                     </Block>
+                    )
+                  })}
 
                 </Block>
+              </Block>               
+
+              <Block middle style = {{height: height * 0.2}}> 
+                <View>
+                  <View>
+                    <Button color= "black" onPress={() => {this.setState({mode:"date",show:true})}} 
+                    title="Choose date" style ={{width:width * 0.8 ,marginTop:20}}>
+                      <Text style= {{fontSize: 18, fontWeight: "bold", color: "#FFFFFF"}}>Choose Booking Date</Text>
+                      </Button>
+                    {show && (
+                        <DateTimePicker
+                        testID="datePicker"
+                        value={date}
+                        mode={mode}
+                        minimumDate={new Date()}
+                        maximumDate={new Date(2023,1,1)}
+                        display="default"
+                        onChange={this.handleDateChange}
+                        />
+                    )}
+                  </View>
+                </View>
               </Block>
             </Block>
-
-
+          </Block>
         </Block>
+      </Block>
     );
   }
 }

@@ -43,8 +43,7 @@ class CitizenInsurance extends React.Component {
                     <Block style={{marginLeft:10}}>
                     <ScrollView>
                         <Text style={{fontSize:26, marginTop:10}}>Medicare is available to Australian and New Zealand citizens, permanent residents in Australia, and people from countries with reciprocal agreements.
-
-Medicare covers all of the cost of public hospital services. It also covers some or all of the costs of other health services. These can include services provided by GPs and medical specialists. They can also include physiotherapy, community nurses and basic dental services for children.
+                          Medicare covers all of the cost of public hospital services. It also covers some or all of the costs of other health services. These can include services provided by GPs and medical specialists. They can also include physiotherapy, community nurses and basic dental services for children.
                         </Text>
                         </ScrollView>
                     </Block>

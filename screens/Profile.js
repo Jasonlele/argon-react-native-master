@@ -37,8 +37,8 @@ class Profile extends React.Component {
     };
   
 
-   
   }
+
   //build and connect data base 
   RefreshPage=()=>{
         const{firstSearchPageDatam,Refresh}= this.state
@@ -123,6 +123,7 @@ class Profile extends React.Component {
               navigation={this.props.navigation}
               titleStyle = {{fontWeight: "bold", fontSize:25, marginLeft:35, fontFamily: 'serif'}} />
 
+            
               <Block flex style={styles.profileCard}>
                 <Block style={styles.avatarContainer}>
                   <Image source={{ uri: imageUri }} style={styles.avatar} />

@@ -28,9 +28,7 @@ export default function ImagePickerExample() {
         tx.executeSql(
           "create table if not exists ProfileImage (id integer primary key not null, phone text, uri text);"
         );
-        
       });
-
 
       let result = await ImagePicker.launchImageLibraryAsync({
         mediaTypes: ImagePicker.MediaTypeOptions.All,
@@ -40,8 +38,7 @@ export default function ImagePickerExample() {
       });
   
       console.log(result);
-      
-          db.transaction((tx) => {
+      db.transaction((tx) => {
       tx.executeSql(
         "INSERT INTO ProfileImage (phone, uri) VALUES(?,?)",
         [test,result.uri]
@@ -52,15 +49,9 @@ export default function ImagePickerExample() {
        (_, result) =>{
         
         console.log(JSON.stringify(result.rows))
-          
        }
-        
-        );
-      
+      );
     });
-
-
-  
       if (!result.cancelled) {
         setImage(result.uri);
       }
@@ -72,27 +63,18 @@ export default function ImagePickerExample() {
     return (
     
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      
-      {/* {image && <Image source={{ uri: image}} style={{ width: 200, height: 200 }} />} */}
-      <View>
-      <Text>Old View:</Text>
-      <Image source={{ uri: useUri}} style={{ width: 200, height: 200 }} />
-      </View>
-        {/* <Text>{useUri}</Text> */}
-        <View style={{marginTop:20}}>
-        <Text>New View:</Text>
-        <Image source={{ uri: image}} style={{ width: 200, height: 200 }} />
-
-        <View style={{marginTop:20}}>
-
-        <Button title="Upload your avatar" onPress={pickImage} />
-
-
+        <View>
+        <Text>Old View:</Text>
+        <Image source={{ uri: useUri}} style={{ width: 200, height: 200 }} />
         </View>
       
-        
+        <View style={{marginTop:20}}>
+          <Text>New View:</Text>
+          <Image source={{ uri: image}} style={{ width: 200, height: 200 }} />
+          <View style={{marginTop:20}}>
+          <Button title="Upload your avatar" onPress={pickImage} />
+          </View>
         </View>
-
       </View>
     );
   }

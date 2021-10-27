@@ -41,29 +41,24 @@ class HospitalMap extends React.Component {
     };
   }
 
-
-
   render() {
     const { navigation } = this.props;
     
     return (
       <Block flex middle>
-        <StatusBar hidden />
-        
+        <StatusBar hidden />   
           <Block safe flex middle>
             <Block style={styles.registerContainer}>
               <Block flex>
-           
                 <Block>
                 <Header
- 
-             title="HospitalMap"
-             back
-             optionLeft="Option 1"
-             optionRight="Option 2"
-             style={{marginBottom:2}}
-             navigation={this.props.navigation}
-             titleStyle = {{fontWeight: "bold", fontSize:30, marginLeft:35, fontFamily: 'serif'}} />
+                  title="HospitalMap"
+                  back
+                  optionLeft="Option 1"
+                  optionRight="Option 2"
+                  style={{marginBottom:2}}
+                  navigation={this.props.navigation}
+                  titleStyle = {{fontWeight: "bold", fontSize:30, marginLeft:35, fontFamily: 'serif'}} />
              <Text style={{fontSize:25, fontWeight:'bold', marginLeft:38, marginTop:20}}>Look for a nearby hospital</Text>
                     </Block>                    
                     
@@ -115,7 +110,7 @@ class HospitalMap extends React.Component {
                       </Text>
                     </Button>
                     </View>
-                </View>
+                    </View>
                     </Block>
 
                 </Block>

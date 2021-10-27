@@ -19,39 +19,39 @@ class Booking extends React.Component {
   state={
     obj:{
         bookDay:"",
-        bookTime:"",  //预约
+        bookTime:"",  //booking
     },
-    date:new Date(),//给日期控件用
+    date:new Date(),
     mode:"date",
-    show:false //是否显示时间控件
+    show:false 
   }
 
   handleDateChange = (event,date) => {
-    //这是设置日期,即确认按钮
+    //set date
     if(event.type === "set"){
         const bookDay = this.dateToString(date)
         let obj = this.state.obj
         obj.bookDay = bookDay
         this.setState({obj,date,show:false})
     }else{
-        //这是点击取消按钮
+        //cancel button
         this.setState({show:false})
     }
   }
 
   handleTimeChange = (event,date) => {
-    //这是设置时间,即确认按钮
+    //set time
     if(event.type === "set"){
         const bookTime = this.timeToString(date)
         let obj = this.state.obj
         obj.bookTime = bookTime
         this.setState({obj,date,show:false})
     }else{
-        //这是点击取消按钮
+        //cancel button
         this.setState({show:false})
     }
   }
-  //时间转字符串的函数
+  //time to String type
   timeToString = (date) => {
     var hour =  date.getHours().toString();
     var minute = date.getMinutes().toString();
@@ -65,7 +65,7 @@ class Booking extends React.Component {
     return timeDate;
   }
 
-  //日期转字符串的函数
+  //date to String type
   dateToString = (date) => {
     var year = date.getFullYear();
     var month =(date.getMonth() + 1).toString();

@@ -19,7 +19,7 @@ import { MaterialIcons, FontAwesome5 } from '@expo/vector-icons';
 import * as SQLite from "expo-sqlite";
 const { width, height } = Dimensions.get("screen");
 
-
+// output the information about appointment history
 class History extends React.Component {
   constructor(props) {
     super(props);
@@ -51,18 +51,10 @@ class History extends React.Component {
         {
           text: "YES",
           onPress: () =>    
-          
           db.transaction((tx) => {
-            // console.log(item)
-          //   console.log(name)
-          // UPDATE COMPANY SET ADDRESS = 'Texas' WHERE ID = 6;
             tx.executeSql("update BookingDetail  set finish = 'yes' where bookname = ? ", 
             [item],
-         
-               
-        
-              );
-              
+              );             
           }),
           style: "cancel",
         },
@@ -79,7 +71,7 @@ class History extends React.Component {
 
 
   }
-//登录框邮箱输入
+//translate text
 EmailChangeText=(unTranslateText)=>{
   this.setState({unTranslateText})
 }
@@ -90,41 +82,21 @@ EmailChangeText=(unTranslateText)=>{
 
     const db = SQLite.openDatabase("db.DECO3801");
     db.transaction((tx) => {
-        // console.log(item)
-      //   console.log(name)
         tx.executeSql("select bookname  from BookingDetail where phone = ? and finish = 'no' ", 
         [test],
          (_, result) =>{
-         
-          //  console.log(JSON.stringify(result.rows.item(0).date))
-                                                      
-        //   console.log(JSON.stringify(result.rows.item(0).imagelink))
           var len = result.rows.length;                      
           let result1=[]
           console.log('result',result);
           for(let i=0; i<len; i++){
-              // result1.push(result.rows.item(i).date +"      "+ result.rows.item(i).name +"      "+ result.rows.item(i).hostipal)
               console.log(JSON.stringify(result.rows.item(i).department))
               result1.push(result.rows.item(i).bookname)
           }
           this.setState({firstSearchPageData :result1})
-          
-          
-
-         }
-           
-    
+         }  
           );
           
       });
-
-
-
-
-
-
-
-
 
     return (
       <Block flex  style={styles.container}>
@@ -132,13 +104,13 @@ EmailChangeText=(unTranslateText)=>{
 
         <Block flex>
         <Header
-                    title="Booking History"
-                    back
-                    optionLeft="Option 1"
-                    optionRight="Option 2"
-                    style={{marginBottom:2}}
-                    navigation={this.props.navigation}
-                    titleStyle = {{fontWeight: "bold", fontSize:25, marginLeft:35, fontFamily: 'serif'}} />
+          title="Booking History"
+          back
+          optionLeft="Option 1"
+          optionRight="Option 2"
+          style={{marginBottom:2}}
+          navigation={this.props.navigation}
+          titleStyle = {{fontWeight: "bold", fontSize:25, marginLeft:35, fontFamily: 'serif'}} />
         <Block flex  style={styles.card}>
             
         <Button
@@ -149,36 +121,30 @@ EmailChangeText=(unTranslateText)=>{
           <Icon name="history" family="MaterialIcons" color={"#ffffff"} size={50} />
         </Button>
         
-        {firstSearchPageData.map((item) => {
+        {firstSearchPageData.map((item) => {      
+          return (
+          <Block  key={item}>
 
-              
-                        
-                return (
-                <Block  key={item}>
+            <Button
+            style={{height:60, width:width  * 0.8}}
+            color="rgb(230,238,235)"
+            // style={{marginLeft:12}}
+            size="large"
+            onPress={() => this.beginTranslate(item)}
+            key={item}
+            >
+              <Text style={{color:'black',fontSize:13,fontWeight:'bold', marginLeft: 20, marginTop:20}}>
 
-                  <Button
-                  style={{height:60, width:width  * 0.8}}
-                  color="rgb(230,238,235)"
-                  // style={{marginLeft:12}}
-                  size="large"
-                  onPress={() => this.beginTranslate(item)}
-                  key={item}
-                  >
-                    <Text style={{color:'black',fontSize:13,fontWeight:'bold', marginLeft: 20, marginTop:20}}>
+              {item}
+              </Text>
 
-                    {item}
-                    </Text>
-
-                    </Button>
-                
-            
-                
-                </Block>
-
-                )
-                })}
-
-        
+            </Button>
+          
+      
+          
+          </Block>
+          )
+          })}
         </Block>
         </Block>
       </Block>

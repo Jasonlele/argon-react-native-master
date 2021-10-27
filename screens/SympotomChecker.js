@@ -141,7 +141,7 @@ class SympotomChecker extends React.Component {
   }
   render() {
     const db = SQLite.openDatabase("db.DECO3801");
-    //创建表
+    //build table
     db.transaction((tx) => {
       tx.executeSql(
         "create table if not exists Sympotom (id integer primary key not null, symptomName text, factor text, causes text);"
