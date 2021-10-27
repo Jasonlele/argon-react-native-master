@@ -21,6 +21,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { Fontisto } from '@expo/vector-icons';
 import * as SQLite from "expo-sqlite";
+import ModalDropdown from 'react-native-modal-dropdown';
 
 const { width, height } = Dimensions.get("screen");
 
@@ -31,10 +32,10 @@ class Profile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-     
+     insurance:"StudyingInsurance",
      imageUri:"1111", 
      Refresh:false,
-     firstSearchPageData:["aaa"]
+     firstSearchPageData:["                  Click here to check"]
     };
     
 
@@ -68,7 +69,7 @@ class Profile extends React.Component {
   
   render() {
     const { navigation } = this.props;
-    const{imageUri,Refresh, firstSearchPageData} = this.state;
+    const{imageUri, insurance, firstSearchPageData} = this.state;
     global.useUri = imageUri;
     //数据库操作
 
@@ -124,7 +125,7 @@ class Profile extends React.Component {
               optionRight="Option 2"
               style={{marginBottom:2}}
               navigation={this.props.navigation}
-              titleStyle = {{fontWeight: "bold", fontSize:25, marginLeft:35}} />
+              titleStyle = {{fontWeight: "bold", fontSize:25, marginLeft:35, fontFamily: 'serif'}} />
 
               <Block flex style={styles.profileCard}>
              
@@ -173,135 +174,90 @@ class Profile extends React.Component {
           <TouchableWithoutFeedback onPress={this.RefreshPage}>
               <Block flex style={styles.appointment}>
                 <Block>
-                <View style={ {flexDirection:'row', marginTop:1, marginLeft:30}}>
+                <View style={ {flexDirection:'row', marginTop:1, marginLeft:20}}>
                       <View>
                       <TouchableWithoutFeedback onPress={() => navigation.navigate('Booking')}>
-                      <MaterialCommunityIcons style={{marginTop:2}} name="timeline-plus" size={30} color="black" />
-                      </TouchableWithoutFeedback>  
-                      
+                      <MaterialCommunityIcons style={{marginTop:2}} name="timeline-plus" size={32} color="black" />
+                       
+                      </TouchableWithoutFeedback> 
                       </View>
                       <View>
-                      <Text style ={{fontSize:25, marginLeft:10, fontWeight:'bold', marginBottom:2}}>My Appointment</Text>
+                      <TouchableWithoutFeedback onPress={() => navigation.navigate('Booking')}>
+                      <Text style ={{fontSize:25, marginLeft:20, fontWeight:'bold', marginBottom:2}}>My Appointment</Text>
+                      </TouchableWithoutFeedback> 
                       </View>
+                      
                   </View>
                 </Block>
+                <ScrollView>
                 {firstSearchPageData.map((item) => {
                       return (
                       <Block key={item}>                       
-                        <Text key={item} style ={{marginTop:5, fontSize:23}}>                                                 
+                        <Text key={item} style ={{marginTop:5, fontSize:15}}>                                                 
                           {item}                   
                         </Text>
                       </Block>
                         )
                 })}
+                </ScrollView>
               </Block>
               </TouchableWithoutFeedback>
               </Block>   
 
-              <Block flex style={styles.information}>
-                <Block style={styles.boxUse}>
-                <Icon
-                  name="pluscircle"
-                  size={30}
-                  color="black"
-                  style={{ marginLeft:10,marginTop:10}}
-                 />
-
-                    <Text style ={{fontSize:20,marginLeft:30,marginTop:12}}>My Insurance</Text>
-                   
-                    <Icon
-                  name="right"
-                  size={30}
-                  color="black"
-                  style={{ marginLeft:100,marginTop:10}}
-                 /> 
+              <Block style={styles.insuranceCard}>
+                <Block flex style={styles.information}>
+                <View style={ {flexDirection:'row', marginTop:15}}>
+                      <View>
+                      <TouchableWithoutFeedback onPress={() => navigation.navigate('Insurance')}>
+                      <FontAwesome5 name="hand-sparkles" size={28} color="black" />
+                      </TouchableWithoutFeedback>
+                      </View>
+                      <View>
+                      <TouchableWithoutFeedback onPress={() => navigation.navigate('Insurance')}>
+                      <Text style ={{fontSize:25, fontWeight:"bold", marginLeft:30,marginTop: 0}}>My Insurance</Text>
+                      </TouchableWithoutFeedback>
+                      </View>
+                  </View>
+                  
+                  <ModalDropdown defaultValue=" Choose Types" 
+                      dropdownStyle= {{marginLeft:0}} 
+                      dropdownTextStyle={{fontSize:25}} 
+                      textStyle={{fontSize:25, fontWeight:"bold", marginTop: 20, marginLeft: 15}} 
+                      options={["StudyingInsurance", "VisitingInsurance", "CitizenInsurance"]}
+                      onSelect = {(value) => this.setState({insurance:(String(this.state.insurance[value]))})}
+                      />
+                        
+                       
                 </Block>
-
-{/* 
-                <Block style={styles.boxUse}>
-                <Icon
-                  name="heart"
-                  size={30}
-                  color="black"
-                  style={{ marginLeft:10}}
-                 />
-
-                    <Text style ={{fontSize:20,marginLeft:30}}>Favortite Doctor</Text>
-                    <Text style ={{fontSize:20,marginLeft:30}}>2</Text>
-                    <Icon
-                  name="right"
-                  size={30}
-                  color="black"
-                  style={{ marginLeft:40}}
-                 />
-
-                </Block> */}
-
-
-                <Block style={styles.boxUse}>
-                <Icon2
-                  name="capsules"
-                  size={30}
-                  color="black"
-                  style={{ marginLeft:10,marginTop:10}}
-                 />
-
-                    <Text style ={{fontSize:20,marginLeft:30,marginTop:12}}>My Medicare</Text>
-                    <Text style ={{fontSize:20,marginLeft:30,marginTop:12}}>Verified</Text>
-                    {/* <Icon
-                  name="right"
-                  size={30}
-                  color="black"
-                  style={{ marginLeft:10}}
-                 /> */}
-
-                </Block>
-
-{/* 
-                <Block style={styles.boxUse}>
-                <Icon2
-                  name="file-medical"
-                  size={30}
-                  color="black"
-                  style={{ marginLeft:10}}
-                 />
-
-                    <Text style ={{fontSize:20,marginLeft:30}}>Basic Information</Text>
-                    
-                    <Icon
-                  name="right"
-                  size={30}
-                  color="black"
-                  style={{ marginLeft:65}}
-                 />
-
-                </Block> */}
-
-
-                <Block style={styles.boxUse}>
-
-          
-                <Icon2
-                  name="history"
-                  size={30}
-                  color="black"
-                  style={{ marginLeft:10,marginTop:10}}
-                 />
-
-                    <Text style ={{fontSize:20,marginLeft:30,marginTop:12}}>Appointment History</Text>
-                 
-                    <Icon
-                  name="right"
-                  size={30}
-                  color="black"
-                  style={{ marginLeft:30,marginTop:12}}
-                 />
-
-                </Block>
-
-                
               </Block>
                   
+
+              <Block style={styles.apphisCard}>
+
+              <TouchableWithoutFeedback onPress={() => navigation.navigate('History')}>
+              <View style={ {flexDirection:'row', marginTop:15, marginLeft:18}}>
+                      <View>
+                      
+                          <Icon2
+                      name="history"
+                      size={28}
+                      color="black"
+                      style={{ marginLeft:10,marginTop:10}}
+                    />
+                      
+                      </View>
+                      <View>
+                     
+                      <Text style ={{fontSize:25, fontWeight:"bold", marginLeft:10, marginTop:7}}>Appointment History</Text>
+                      </View>
+                  </View>
+                </TouchableWithoutFeedback>
+
+                    
+                 
+                
+
+                </Block>
 
             </ScrollView>
           </ImageBackground>
@@ -350,7 +306,7 @@ const styles = StyleSheet.create({
     height: height * 0.2,
     shadowColor: "black",
     marginTop:0,
-    marginBottom:0,
+    marginBottom:40,
     shadowOffset: { width: 0, height: 0 },
     shadowRadius: 8,
     shadowOpacity: 0.2,
@@ -365,13 +321,29 @@ const styles = StyleSheet.create({
     marginLeft:10,
     flexDirection:  'column',
   },
+  insuranceCard: {
+    width: width * 0.9,
+    marginLeft: 20,
+    height: height * 0.2,
+    shadowColor: "black",
+    marginTop:0,
+    marginBottom:40,
+    shadowOffset: { width: 0, height: 0 },
+    shadowRadius: 8,
+    shadowOpacity: 0.2,
+    backgroundColor:"rgb(220,240,240)",
+    borderWidth: 3,
+    borderRadius: 20,
+    elevation:20,
+    flexDirection:  'row',
+  },
   information:{
     marginTop:10,
-    flexDirection:  'column',
+    marginLeft:62,
   },
   boxUse: {
     flexDirection:  'row', 
-    backgroundColor:"#B9EDC4",
+    backgroundColor:"#ffffff",
      marginTop:15,
      paddingTop:7,
      height:70
@@ -385,10 +357,9 @@ const styles = StyleSheet.create({
     
   },
   avatar: {
-    width: 104,
-    height: 104,
+    width: width * 0.26,
+    height: height * 0.12,
     borderRadius: 62,
-    borderWidth: 0
   },
   nameInfo: {
     marginTop: 35
@@ -404,7 +375,23 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     width: thumbMeasure,
     height: thumbMeasure
-  }
+  },
+  apphisCard: {
+    width: width * 0.9,
+    marginLeft: 20,
+    height: height * 0.2,
+    shadowColor: "black",
+    marginTop:0,
+    marginBottom:0,
+    shadowOffset: { width: 0, height: 0 },
+    shadowRadius: 8,
+    shadowOpacity: 0.2,
+    backgroundColor:"rgb(210,240,255)",
+    borderWidth: 3,
+    borderRadius: 20,
+    elevation:20,
+    flexDirection:  'row',
+  },
 });
 
 export default Profile;

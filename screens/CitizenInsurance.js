@@ -28,13 +28,13 @@ class CitizenInsurance extends React.Component {
     return (
       <Block>                  
                   <Header         
-             title="Hospital"
+             title="Citizen Insurance"
              back
              optionLeft="Option 1"
              optionRight="Option 2"
              style={{marginBottom:2}}
              navigation={this.props.navigation}
-             titleStyle = {{fontWeight: "bold", fontSize:30, marginLeft:35}} />
+             titleStyle = {{fontWeight: "bold", fontSize:26, marginLeft: width * 0.08, fontFamily: 'serif'}} />
         <Block flex>
             <Block flex middle>
                 <Text style={{fontSize:40,marginTop:160, fontWeight: "bold", marginLeft:5, marginBottom:40}}>Introduction</Text>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   StyleSheet,
   ImageBackground,
@@ -6,17 +6,23 @@ import {
   StatusBar,
   KeyboardAvoidingView,
   Alert,
+  TextInput,
+  View,
 } from "react-native";
 import { Block, Checkbox, Text} from "galio-framework";
 import { Button, Icon, Input } from "../components";
 import { Images, argonTheme } from "../constants";
 import validator from "../constants/validator";
 import * as SQLite from "expo-sqlite";
+import RNPasswordStrengthMeter, {
+  BarPasswordStrengthDisplay,
+  BoxPasswordStrengthDisplay,
+  CircularPasswordStrengthDisplay,
+  TextPasswordStrengthDisplay,
+} from 'react-native-password-strength-meter';
+
+
 const { width, height } = Dimensions.get("screen");
-
-
-
-
 
 const createOneButtonAlert = () =>{
   
@@ -64,6 +70,7 @@ const createOneButtonAlert = () =>{
   
 class Register extends React.Component {
 
+  onChange = password => this.setState({ password })
   constructor(props) {
     super(props);
     this.state = {
@@ -173,21 +180,10 @@ class Register extends React.Component {
           ],
           { cancelable: false }
         );
-
-
-
-
-
-
-
-
-
-
           }
           
        }
-        
-           
+    
           );
           
       });
@@ -226,10 +222,6 @@ class Register extends React.Component {
 
   }
 
-
-
-
-
   render() {
 
     const{phone,password,loginMessage,phoneValid,name} = this.state;
@@ -244,16 +236,13 @@ class Register extends React.Component {
     return (
       <Block flex middle>
         <StatusBar hidden />
-        <ImageBackground
-          source={Images.RegisterBackground}
-          style={{ width, height, zIndex: 1 }}
-        >
+
           <Block safe flex middle>
             <Block style={styles.registerContainer}>
              
               <Block flex>
                 <Block flex={0.17} middle>
-                  <Text  style ={{fontWeight:'bold'}} size={30} >
+                  <Text  style ={{fontWeight:'bold', fontFamily: 'serif'}} size={30} >
                     Sign Up
                   </Text>
                 </Block>
@@ -306,6 +295,7 @@ class Register extends React.Component {
                       <Input
                         password
                         borderless
+                        onChangeText={this.onChange}
                         placeholder="Password"
                         iconContent={
                           <Icon
@@ -320,7 +310,12 @@ class Register extends React.Component {
                         value={password}
                         onChangeText={this.PasswordChangeText}
                       />
-                      <Block row style={styles.passwordCheck}>
+                      <BarPasswordStrengthDisplay
+                        password={password}
+                        width = {width * 0.75}
+                        minLength = {6}
+                      />
+                      {/* <Block row style={styles.passwordCheck}>
                         <Text size={12} color={argonTheme.COLORS.MUTED}>
                           password strength:
                         </Text>
@@ -329,9 +324,9 @@ class Register extends React.Component {
                           strong
                         </Text>
                       
-                      </Block>
+                      </Block> */}
                     </Block>
-                    <Block row width={width * 0.75}>
+                    <Block row width={width * 0.75} style = {{marginLeft: width * 0.05}}>
                       <Checkbox
                         checkboxStyle={{
                           borderWidth: 3
@@ -362,7 +357,7 @@ class Register extends React.Component {
               </Block>
             </Block>
           </Block>
-        </ImageBackground>
+       
       </Block>
     );
   }
@@ -370,19 +365,20 @@ class Register extends React.Component {
 
 const styles = StyleSheet.create({
   registerContainer: {
-    width: width * 0.9,
-    height: height * 0.875,
-    backgroundColor: "#F4F5F7",
-    borderRadius: 4,
-    shadowColor: argonTheme.COLORS.BLACK,
-    shadowOffset: {
-      width: 0,
-      height: 4
-    },
-    shadowRadius: 8,
-    shadowOpacity: 0.1,
-    elevation: 1,
-    overflow: "hidden"
+      height: height * 0.85,
+      padding:6,
+      width: width * 0.85,
+      marginLeft: width * 0.01,
+      shadowColor: "black",
+      marginTop:width * 0.05,
+      shadowOffset: { width: 0, height: 0 },
+      shadowRadius: 8,
+      shadowOpacity: 0.2,
+      backgroundColor:"rgb(240,248,255)",
+      borderWidth: 3,
+      borderRadius: 20,
+      elevation:20,
+    
   },
   socialConnect: {
     backgroundColor: argonTheme.COLORS.WHITE,

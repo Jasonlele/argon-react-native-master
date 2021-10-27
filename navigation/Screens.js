@@ -26,6 +26,7 @@ import Service from "../screens/Service";
 import ServiceClinic from "../screens/ServiceClinic";
 import ServiceMedicalCenter from "../screens/ServiceMedicalCenter";
 import ServiceHospital from "../screens/ServiceHospital";
+import History from "../screens/History";
 // drawer
 import CustomDrawerContent from "./Menu";
 
@@ -146,9 +147,61 @@ function ProfileStack(props) {
         }}
       />
 
+    <Stack.Screen
+        name="History"
+        component={History}
+        options={{
+          header: ({ navigation, scene }) => (
+            <Header
+              transparent
+              white
+              title="History"
+              navigation={navigation}
+              scene={scene}
+            />
+          ),
+          cardStyle: { backgroundColor: "#FFFFFF" },
+          headerTransparent: true
+        }}
+      />
+
       
       
     </Stack.Navigator>
+  );
+}
+
+function HistoryStack(props) {
+  return (
+    
+      <Stack.Navigator initialRouteName="History" mode="card" headerMode="screen">
+      <Stack.Screen
+        name="History"
+        component={History}
+        options={{
+          header: ({ navigation, scene }) => (
+            <Header
+              transparent
+              white
+              title="History"
+              navigation={navigation}
+              scene={scene}
+            />
+          ),
+          cardStyle: { backgroundColor: "#FFFFFF" },
+          headerTransparent: true
+        }}
+      />
+
+   
+
+    
+      
+      
+    </Stack.Navigator>
+
+
+      
   );
 }
 
@@ -742,6 +795,9 @@ function BookingDetailStack(props) {
     </Stack.Navigator>
   );
 }
+
+
+
 
 
 
