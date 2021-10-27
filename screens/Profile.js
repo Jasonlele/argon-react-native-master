@@ -208,12 +208,12 @@ class Profile extends React.Component {
                 <Block flex style={styles.information}>
                 <View style={ {flexDirection:'row', marginTop:15}}>
                       <View>
-                      <TouchableWithoutFeedback onPress={() => navigation.navigate('insurance')}>
+                      <TouchableWithoutFeedback onPress={() => navigation.navigate('Insurance')}>
                       <FontAwesome5 name="hand-sparkles" size={28} color="black" />
                       </TouchableWithoutFeedback>
                       </View>
                       <View>
-                      <TouchableWithoutFeedback onPress={() => navigation.navigate('insurance')}>
+                      <TouchableWithoutFeedback onPress={() => navigation.navigate('Insurance')}>
                       <Text style ={{fontSize:25, fontWeight:"bold", marginLeft:30,marginTop: 0}}>My Insurance</Text>
                       </TouchableWithoutFeedback>
                       </View>
