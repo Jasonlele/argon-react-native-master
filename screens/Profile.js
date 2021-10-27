@@ -37,11 +37,12 @@ class Profile extends React.Component {
     };
   
 
-   //刷新
-      setInterval(()=>{
-          this.RefreshPage()//每个一秒，自动刷新
-        },1000);
+   //刷新 refresh the profile image
+    setInterval(()=>{
+        this.RefreshPage()//每个一秒，自动刷新
+    },1000);
   }
+
   //build and connect data base 
   RefreshPage=()=>{
         const{firstSearchPageData}= this.state
@@ -119,6 +120,7 @@ class Profile extends React.Component {
               navigation={this.props.navigation}
               titleStyle = {{fontWeight: "bold", fontSize:25, marginLeft:35, fontFamily: 'serif'}} />
 
+            
               <Block flex style={styles.profileCard}>
                 <Block style={styles.avatarContainer}>
                   <Image source={{ uri: imageUri }} style={styles.avatar} />

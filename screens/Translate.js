@@ -44,7 +44,7 @@ class Translate extends React.Component {
       translatedText:result[0]
     })
   }
-//登录框邮箱输入
+//untranlate text
 EmailChangeText=(unTranslateText)=>{
   this.setState({unTranslateText})
 }
