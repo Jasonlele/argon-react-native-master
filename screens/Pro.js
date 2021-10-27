@@ -326,7 +326,7 @@ class Register extends React.Component {
                       
                       </Block> */}
                     </Block>
-                    <Block row width={width * 0.75}>
+                    <Block row width={width * 0.75} style = {{marginLeft: width * 0.05}}>
                       <Checkbox
                         checkboxStyle={{
                           borderWidth: 3

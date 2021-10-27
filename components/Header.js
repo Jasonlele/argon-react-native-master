@@ -12,7 +12,7 @@ const { height, width } = Dimensions.get('window');
 const iPhoneX = () => Platform.OS === 'ios' && (height === 812 || width === 812 || height === 896 || width === 896);
 
 const BellButton = ({isWhite, style, navigation}) => (
-  <TouchableOpacity style={[styles.button, style]} onPress={() => navigation.navigate('Pro')}>
+  <TouchableOpacity style={[styles.button, style]} onPress={() => navigation.navigate('History')}>
     <Icon
       family="Feather"
       size={16}
@@ -178,8 +178,9 @@ const styles = StyleSheet.create({
   },
   title: {
     width: '100%',
-    fontSize: 16,
+    fontSize: 20,
     fontWeight: 'bold',
+     fontFamily: 'serif'
   },
   navbar: {
     paddingVertical: 0,
