@@ -341,7 +341,7 @@ class Booking extends React.Component {
 
                   <Button
                   style={{height:60, width:width  * 0.8}}
-                  color="info"
+                  color="rgb(230,238,235)"
                   // style={{marginLeft:12}}
                   size="large"
                   onPress={() => navigation.navigate('BookingDetail', {jjw:item})}

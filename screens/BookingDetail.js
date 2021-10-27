@@ -234,19 +234,19 @@ class Translate extends React.Component {
 
           </Block>
           <Block style={styles.clenderStyle2}>
-            <Text style={{fontWeight:'bold',fontSize:18,marginLeft:35,marginTop:5,color:"#5FC1F0"}}>Tuesday</Text>
+            <Text style={{fontWeight:'bold',fontSize:18,marginLeft:30,marginTop:5,color:"#5FC1F0"}}>Tuesday</Text>
             <Text style={{fontWeight:'bold',marginTop:10,marginLeft:15}}>9 am to 12 am</Text>
             <Text style={{fontWeight:'bold',marginTop:10,marginLeft:15}} >Expert clinic</Text>
 
           </Block>
           <Block style={styles.clenderStyle2}>
-            <Text style={{fontWeight:'bold',fontSize:18,marginLeft:35,marginTop:5,color:"#5FC1F0"}}>Wednesday</Text>
+            <Text style={{fontWeight:'bold',fontSize:17,marginLeft:25,marginTop:5,color:"#5FC1F0"}}>Wednesday</Text>
             <Text style={{fontWeight:'bold',marginTop:10,marginLeft:15}}>12 am to 3 pm</Text>
             <Text style={{fontWeight:'bold',marginTop:10,marginLeft:15}} >Expert clinic</Text>
 
           </Block>
           <Block style={styles.clenderStyle2}>
-            <Text style={{fontWeight:'bold',fontSize:18,marginLeft:35,marginTop:5,color:"#5FC1F0"}}>Thursday</Text>
+            <Text style={{fontWeight:'bold',fontSize:18,marginLeft:25,marginTop:5,color:"#5FC1F0"}}>Thursday</Text>
             <Text style={{fontWeight:'bold',marginTop:10,marginLeft:15}}>12 am to 3 pm</Text>
             <Text style={{fontWeight:'bold',marginTop:10,marginLeft:15}} >Expert clinic</Text>
 

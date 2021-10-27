@@ -99,7 +99,7 @@ EmailChangeText=(unTranslateText)=>{
 
 
     return (
-      <Block flex style={styles.container}>
+      <Block flex  style={styles.container}>
         <StatusBar hidden/>
 
         <Block flex>
@@ -110,14 +110,14 @@ EmailChangeText=(unTranslateText)=>{
                     optionRight="Option 2"
                     style={{marginBottom:2}}
                     navigation={this.props.navigation}
-                    titleStyle = {{fontWeight: "bold", fontSize:25, marginLeft:35}} />
+                    titleStyle = {{fontWeight: "bold", fontSize:25, marginLeft:35, fontFamily: 'serif'}} />
         <Block flex  style={styles.card}>
             
         <Button
           iconFamily="antdesign" 
           color="warning" 
           iconColor="#fff" 
-          style={{ width: 300, borderRadius:10 }}> 
+          style={{ width: width * 0.8, borderRadius:10, height: height *0.07}}> 
           <Icon name="history" family="MaterialIcons" color={"#ffffff"} size={50} />
         </Button>
         
@@ -126,10 +126,10 @@ EmailChangeText=(unTranslateText)=>{
               
                         
                 return (
-                <Block key={item}>
+                <Block  key={item}>
 
                     
-                    <Text style={{color:'black',fontSize:16,fontWeight:'bold'}}>
+                    <Text style={{color:'black',fontSize:25,fontWeight:'bold', marginLeft: 20, marginTop:20}}>
 
                     {item}
                     </Text>
@@ -159,7 +159,7 @@ const styles = StyleSheet.create({
     marginLeft: 20,
     height: height * 1,
     shadowColor: "black",
-    marginTop:20,
+    marginTop:40,
     marginBottom:50,
     shadowOffset: { width: 0, height: 0 },
     shadowRadius: 8,
