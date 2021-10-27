@@ -37,10 +37,7 @@ class Profile extends React.Component {
     };
   
 
-   //刷新
-      setInterval(()=>{
-          this.RefreshPage()//每个一秒，自动刷新
-        },1000);
+   
   }
   //build and connect data base 
   RefreshPage=()=>{
@@ -66,7 +63,12 @@ class Profile extends React.Component {
             );
       });
 
-      this.setState({Refresh:true})
+     
+  }
+
+  RefreshPage2=async()=>{
+    const{Refresh}=this.state
+    this.setState({Refresh:true})
   }
   
   render() {
